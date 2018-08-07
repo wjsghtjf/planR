@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
 
-      t.float :rank_point
+      t.float :rank_point, default: 0
       t.timestamps null: false
     end
 

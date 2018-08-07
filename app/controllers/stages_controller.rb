@@ -1,7 +1,7 @@
 class StagesController < ApplicationController
   
   before_action :set_stage, only: [:update, :delete, :check]
-  before_action :find_roomCal, only: [:show, :check]
+  before_action :find_roomCal, only: [:show, :check, :hintpage]
   before_action :get_chats, only: [:show ]
   
   # View가 있는 Controller
@@ -137,24 +137,28 @@ class StagesController < ApplicationController
     redirect_to stage_manage_all_path(@stage.room_id)
   end
   
-  def usehint
-    @hintCal = RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id])
-    @hintCal.usedhint = (@hintCal.usedhint + 1)
-    @hintCal.save
+  # def usehint
+  #   @hintCal = RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id])
+  #   @hintCal.usedhint = (@hintCal.usedhint + 1)
+  #   @hintCal.save
     
-  end
+  # end
 
   def hintpage
     @room = Room.find(params[:room_id])
     @stages = Stage.where('room_id' => @room.id)
     @hintlist = Stage.new
     @hint_num = params[:hint_num]
+    
     @stages.each do |s|
-      if params[:stages_id] == s.id
-      @hintlist = s
-      @hintlist.save
+      if Integer(params[:stages_id]) == s.id
+        @hintlist = s
+        @hintlist.save
       end
     end
+
+    @roomCal.usedhint = (@roomCal.usedhint) + 1
+    @roomCal.save
     
     
     # @hintlist = Stage.find_by("room_id = ? AND stages_id = ?", params[:room_id], params[:stages_id])
@@ -166,8 +170,8 @@ class StagesController < ApplicationController
     @stage_level = Integer(params[:stage_level])
     # @hintCal = RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id])
     # before_action으로 @roomCal에 값 가져옵니당
-    @hintCal=@roomCal
-    @ep = User.find(current_user.id)
+
+   
     
     @is_wrong_answer=true
     if @stage.answer == params[:enter_answer]
@@ -180,15 +184,19 @@ class StagesController < ApplicationController
       @stage_level = 1 +  Integer(params[:stage_level])
       @is_wrong_answer=false
       
-      
-      if @hintCal.usedhint == 1
-        # @ep.rank_point = (@ep.rank_point) + 0.007
-      elsif @hintCal.usedhint == 2
-        # @ep.rank_point = (@ep.rank_point) + 0.004
+      if @roomCal.usedhint == 1
+        User.find(current_user.id).rank_point += 0.007
+      elsif @roomCal.usedhint == 2
+         User.find(current_user.id).rank_point += 0.004
+      elsif @roomCal.usedhint == 3
+         User.find(current_user.id).rank_point += 0.001
       else
-        # @ep.rank_point = (@ep.rank_point) + 0.01
-      end
-      
+         User.find(current_user.id).rank_point += 0.01
+      end 
+     
+      @roomCal.usedhint = 0
+      @roomCal.save
+       
     else
       if @roomCal.last_stage_level == @stage_level
         @roomCal.try = @roomCal.try + 1
@@ -208,7 +216,7 @@ class StagesController < ApplicationController
   end
 
   def stage_params
-      params.require(:stage).permit(:title,:content,:hint1,:image,:answer)
+      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,:image,:answer)
   end
   
   

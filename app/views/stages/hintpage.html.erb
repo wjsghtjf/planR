@@ -6,20 +6,11 @@
 
 
 <% if Integer(@hint_num) == 1 %>
-<div class='form-group'>
-  <label for='hint1'>힌트 1 ::</label>
-  <text  class='form-control' name='hint1'><%=@hintlist.hint1%></text>
-</div>
+  <h5>힌트 1 :: <%=@hintlist.hint1%></h5>
 <% elsif Integer(@hint_num) == 2 %>
-<div class='form-group'>
-  <label for='hint1'>힌트 2 ::</label>
-  <text  class='form-control' name='hint2'><%=@hintlist.hint2%></text>
-</div>
+  <h5>힌트 2 :: <%=@hintlist.hint2%></h5>
 <% else %>
-<div class='form-group'>
-  <label for='hint1'>힌트 3 ::</label>
-  <text  class='form-control' name='hint3'><%=@hintlist.hint3%></text>
-</div>
+  <h5>힌트 3 :: <%=@hintlist.hint3%></h5>
 <% end %>
 
 <br><br><hr><%=link_to "홈 화면으로", '/'%>
