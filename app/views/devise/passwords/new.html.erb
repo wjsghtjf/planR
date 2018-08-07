@@ -1,0 +1,18 @@
+<h2>비밀번호를 잃어버리셨나요?</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "비밀번호 재설정하기" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

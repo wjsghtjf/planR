@@ -1,0 +1,46 @@
+
+<input type='hidden' name='stage_id' value = '<%=@stage.id%>'/>
+
+<div class='form-group'>
+  <label for='title'>스테이지 제목 :: </label>
+  <p><%=@stage.title %></p>
+  </div>
+
+<div class='form-group'>
+  <label for='content'>내용 :: </label>
+  <p class='form-control' name='content'><%=@stage.content%> </p>
+</div>
+
+<br><br>
+
+<div class='form-group'>
+  <label for='content'>힌트 개방 :: </label>
+  
+
+
+  
+  
+  <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal" >
+    <i class="material-icons left">vpn_key</i>
+  </button>
+  
+  
+  
+  <%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,1), method: :post, :class => 'btn-floating pulse',data: {confirm: "힌트를 사용하시겠습니까? 랭킹포인트가 차감됩니다." } %>
+  <%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,2), method: :post, :class => 'btn-floating pulse' %>
+  <%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,3), method: :post, :class => 'btn-floating pulse' %>
+</div>
+
+
+
+
+<!--이미지가 있는 경우에만 -->
+<% if (@stage.image && @stage.image.length)>0 %>
+<div>
+    <div class='form-group'>
+        <label>이미지</label><br/>
+         <%= image_tag @stage.image.url(:main) , id: 'img-upload', class: 'img-main' if @stage.image.url %>
+    </div>
+</div>
+<% end %>
+

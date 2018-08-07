@@ -1,0 +1,25 @@
+<br>
+<br>
+<h3>당신을 돕기 위해 누군가 찾아왔습니다.</h3><br>
+<hr>
+<br>
+
+
+<% if Integer(@hint_num) == 1 %>
+<div class='form-group'>
+  <label for='hint1'>힌트 1 ::</label>
+  <text  class='form-control' name='hint1'><%=@hintlist.hint1%></text>
+</div>
+<% elsif Integer(@hint_num) == 2 %>
+<div class='form-group'>
+  <label for='hint1'>힌트 2 ::</label>
+  <text  class='form-control' name='hint2'><%=@hintlist.hint2%></text>
+</div>
+<% else %>
+<div class='form-group'>
+  <label for='hint1'>힌트 3 ::</label>
+  <text  class='form-control' name='hint3'><%=@hintlist.hint3%></text>
+</div>
+<% end %>
+
+<br><br><hr><%=link_to "홈 화면으로", '/'%>

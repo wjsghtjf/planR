@@ -1,0 +1,56 @@
+
+  <head> 
+    <title>Plan R :: 만든다. 방탈출.</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
+    
+  </head>
+
+
+  <body>
+      <nav>
+        <div class="nav-wrapper">
+        <a href="/" class="brand-logo center"><i class="large material-icons">https</i>Plan R</a>
+          
+          <% if user_signed_in? %>
+          <ul id="nav-mobile" class="left">
+            <li><a href="<%= room_mine_path%>">방탈출 메이커</a></li>
+            <li><a href="<%= room_index_path%>">방탈출 플레이</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right">
+            <li><a href="<%= post_ranking_path%>">랭킹</a><li>
+            <li><a href="<%= post_mypage_path%>">마이페이지</a></li>
+            <li><%= link_to "로그아웃", destroy_user_session_path, method: :delete %></li>
+          </ul>
+          <% elsif %>
+          <ul id="nav-mobile" class="right">
+           <li><a href="post_ranking_path%>">랭킹</a><li>
+           <li><%= link_to "로그인", user_session_path %></li>
+           <li><%= link_to "회원가입", "/users/sign_up" %></li>
+          </ul>
+          <% end %>
+        </div>
+      </nav>
+    </div>
+
+    <%= yield %>
+  </body>
+  
+  <footer class="page-footer">
+          <div class="container">
+              <div class="col s12">
+                <p class="white-text">만든다. 방탈출.</p>
+                <p class="grey-text text-lighten-4">내 손으로 직접 만들고 공유하는 신개념 방탈출 플랫폼</p>
+            <p class="white-text">© 플랜 R</p>
+            <br>
+            
+                
+              </div>
+          </div>
+  </footer>

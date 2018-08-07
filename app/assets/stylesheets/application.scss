@@ -1,0 +1,113 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css); .nanumgothic * { font-family: 'Nanum Gothic', sans-serif; }
+@import "rooms.scss";
+@import "posts.scss";
+@import "stages.scss";
+
+html {
+    font-family: 'Nanum Gothic';
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* 내비게이션 시작 */
+
+nav {
+    //background: RGBA(255, 255, 255, 1);
+    background: #020202;
+    position: fixed;
+    z-index: 10;
+}
+
+nav ul li a {
+    //color: RGB(97, 115, 140);
+    color: white;
+}
+
+nav a:visited {
+    color: white;
+}
+
+nav a i {
+    color: black;
+}
+
+
+/* 내비게이션 CSS 끝, 풋터 CSS 시작 */
+
+.page-footer{
+  //background: linear-gradient(to right, RGB(97, 115, 140), RGB(237, 235, 223)); 그라데이션 배경색
+  background: #020202;
+  position: static;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100vw;
+}
+
+/* 메인페이지 */
+
+.mainpage {
+    height: 98vh;
+    width: 100vw;
+    background-image: url("/assets/mainpage_img.jpg");
+    background-size: 100vw 98vh;
+    background-repeat: no-repeat;
+}
+
+.mainpage_wrapper {
+    height: 98vh;
+    width: 100vw;
+    background-color: RGBA(0, 0, 0, 0.6);
+}
+
+
+.mainpage_button {
+    display: inline-block;
+    width: 100px;
+    padding:5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: grey;
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 60vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 0px 0px 20px #000;
+}
+
+footer {
+    color: #B6ACCC;
+    text-align: center;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: relative;
+    top: 0;
+    right: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: inline;
+}
+// stage manage에서 미리보기 버튼 
+#btn_preview , #btn_cancel{
+    display: none;
+}
+
+
+.item-selected  {
+  color : red !important; 
+}
+

@@ -1,0 +1,60 @@
+<!--이 파일은 Room말고 Post에 있으면 좋을거 같아요-->
+<br>
+<br>
+<h3>멀티플레이 초대 수락 페이지</h3><br>
+<hr>
+<br>
+
+<% @invites.each do |inv| %>
+<% if inv.invite_accpeted!=2 %>
+"<%=User.find(inv.invite_host).nickname %>"님께서  [<%=inv.room.title%>] 게임에 초대했습니다. <%="수락 상태" if inv.invite_accpeted==@INVITE_ACCEPT %> <%="대기상태" if inv.invite_accpeted==@INVITE_WAIT %><%="거절했음" if inv.invite_accpeted==@INVITE_DENY %>
+
+ <form method='GET' action="<%=invite_update_path %>" style='display:inline'>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type='hidden' value='<%=inv.id%>' name='invite_id'/>
+      
+      <input type='hidden' value='1' name='invite_accpeted'/>
+      <input type='submit' value='수락하기' class='btn btn-default'/>
+</form>
+
+ <form method='POST' action="<%=invite_update_path %>" style='display:inline'>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type='hidden' value='<%=inv.id%>' name='invite_id'/>
+      
+      <input type='hidden' value='2' name='invite_accpeted'/>
+      <input type='submit' value='거절하기' class='btn btn-default'/>
+</form>
+ 
+<br/>
+
+<% end %>
+<% end %>
+
+
+<form method='POST' action="<%=invite_update_path %>" style='display:inline'>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type='hidden' value='-1' name='invite_id'/>
+      
+      <input type='submit' value='대기상태로 초기화하기 ㅋㅋ' class='btn btn-default'/>
+</form>
+
+<br><br><hr><%=link_to "홈 화면으로", '/'%>
+
+<form data-remote="true"> <!--rails ajax  -->
+    <input type="text" name="body">
+    <input type="submit">
+</form>
+
+
+<script>
+    $("form").submit(function(e){
+        $.ajax({
+          method: "POST",   //form에서 method
+          url: "/home/new", //form에서 action
+          data: { body: $("input[name=body]").val() } //전달할 데이터 body는 input중에 name이 body인 것의 값
+        }).done(function( msg ) {
+            // alert( "Data Saved: " + msg );
+        });
+    })
+</script>
+

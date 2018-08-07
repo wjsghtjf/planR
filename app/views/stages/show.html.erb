@@ -1,0 +1,110 @@
+<br><br><br><br><br><br>
+
+
+
+<div class="row">
+    <div class="col s2"></div>
+    <div class="col s8">
+STAGE <%=@stage_level +1 %> <br><br>
+
+
+
+<%= render 'dialog_modal' %>
+
+<% if @wait_for_update %>
+    아직 배포자가 본 방탈출을 완결하지 않았습니다.<br>
+    추후의 업데이트를 기다려주세요!<br/>
+<% elsif %>
+
+<% if @stage %>
+    <!-- stage_id: <%=@stage.id %> -->
+    <%= render 'form', stage: @stage%>
+    <div class='form-group'>
+  <label for='answer'>정답 입력창 :: </label>
+  
+  
+  <form action='<%=stage_check_path(@room.id, @stage.id, @stage_level)%>' method="post" id='nextStage'>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <input type="string" name="enter_answer"  autocomplete=off>
+    <input type='hidden' value='<%= @stage_level%>' name='stage_level'/>
+     <input type='submit' id='btn_check_answer'  class="btn waves-effect waves-light"  value='제출'/>
+      
+    <i class="material-icons right">send</i>
+  </form>
+  
+</div>
+<% end %>
+
+
+
+<% end%>
+
+
+<% if  @stage_level > 0 %>
+ <form method='POST' action="<%=stage_show_path(@room.id) %>" style='display:inline'>
+     
+    
+     
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='hidden' value='<%= @stage_level-1 %>' name='stage_level'/>
+    <input type='submit' value='이전' class='btn btn-default'/>
+  </form>
+<% end %>
+    <!-- 베포된 페이지 까지만 보여주기-->
+<% if (@stages.length)-1 > @stage_level %>
+ <form method='POST' action="<%=stage_show_path(@room.id) %>" style='display:inline'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='hidden' value='<%= @stage_level +1 %>' name='stage_level'/>
+    <input type='submit' value='다음' class='btn btn-default'/>
+  </form>
+ <% end %>
+ 
+ 
+
+<%= render 'timeline' %>
+
+<br><br><hr>
+</div>
+
+<div class="col s2">
+    <nav> <!-- navbar content here  --> dmdpd</nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/mainpage_img.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+</div>
+</div>
+
+
+<br><br><br><br><br><br>
+<script>
+
+$(document).ready( function() {
+    if("<%=params[:is_wrong_answer] %>" == 'true')
+        alert('정답이 아닙니다');
+})
+  
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+  
+ $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+    
+</script>

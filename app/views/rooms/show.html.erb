@@ -1,0 +1,38 @@
+<center>
+<br>
+<br>
+<div class="row">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <br>
+        <h3><%=@room.title %></h3>
+        <hr>
+        <br>
+        <h5>:: 게임 설명</h5>
+        <br>
+        <div class="content_box">
+        <p><%=@room.content %></p>
+        </div>
+        <br>
+
+        <p>플레이 인원 수를 선택해주세요.</p>
+
+
+        <% if @stages %>
+        <% if RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id]) != nil %>
+        <%= link_to '<i class="material-icons left">person</i>혼자 시작하기'.html_safe, room_cal_create_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
+        <% else  %> 
+        <%= link_to '<i class="material-icons left">person</i>혼자 시작하기'.html_safe, stage_show_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
+        <%end%>
+        <br><br>
+        <%= link_to '<i class="material-icons left">group</i>팀으로 시작하기'.html_safe, room_team_path(@room.id,@roomCal.team_id), method: :get, :class => 'waves-effect waves-light btn' %>
+        <br><br>
+        <%end%>
+        
+         <p>* 다인 플레이 선택 시, 방탈출 클리어 보너스로 획득하는 EP(Escape Point)가 감소됩니다.</p><br><br>
+        
+        <br><br><hr><br><br><br><br>
+    </div>
+    <div class="col s2"></div> 
+</div>
+</center>

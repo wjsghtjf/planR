@@ -1,0 +1,36 @@
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<h5 class="center">Access to Plan R</h5>
+<br>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<center>
+  <div class="row">
+    <div class="col s2">
+      
+    </div>
+    <div class="col s8">
+          <%= f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <div class="form-actions">
+    <%= f.button :submit,"로그인"%>
+    </div>
+    </div>
+    <div class="col s2">
+      
+    </div>
+  </div>
+  </center>
+  
+<% end %>
+
+<%= render "devise/shared/links" %>
