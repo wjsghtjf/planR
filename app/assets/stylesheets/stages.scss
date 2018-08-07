@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 타임라인 내비게이션 
+
 main {
   z-index: 2;
   position: relative;
-  height: 100%;
+  height: 70%;
   background-color: transparent;
   -webkit-transition: transform .7s ease-in-out;
   -moz-transition: transform .7s ease-in-out;
@@ -28,7 +30,6 @@ main {
   display: block;
   height: 5px;
   width: 50px;
-  background-color: #FFFFFF;
   margin: 10px auto;
 }
 
@@ -110,6 +111,7 @@ main {
 
 .sidebar {
     overflow-y: scroll;
+    height: 70%;
 }
 
 .sidebar-list {
@@ -132,35 +134,35 @@ main {
 }
 
 .sidebar-item:first-child {
-  -webkit-transition: all .7s .1s ease-in-out;
-  -moz-transition: all .7s .1s ease-in-out;
-  -ms-transition: all .7s .1s ease-in-out;
-  -o-transition: all .7s .1s ease-in-out;
-  transition: all .7s .1s ease-in-out;
+  -webkit-transition: all .3s .1s ease-in-out;
+  -moz-transition: all .3s .1s ease-in-out;
+  -ms-transition: all .3s .1s ease-in-out;
+  -o-transition: all .3s .1s ease-in-out;
+  transition: all .3s .1s ease-in-out;
 }
 
 .sidebar-item:nth-child(2) {
-  -webkit-transition: all .7s .2s ease-in-out;
-  -moz-transition: all .7s .2s ease-in-out;
-  -ms-transition: all .7s .2s ease-in-out;
-  -o-transition: all .7s .2s ease-in-out;
-  transition: all .7s .2s ease-in-out;
+  -webkit-transition: all .3s .1s ease-in-out;
+  -moz-transition: all .3s .1s ease-in-out;
+  -ms-transition: all .3s .1s ease-in-out;
+  -o-transition: all .3s .1s ease-in-out;
+  transition: all .3s .1s ease-in-out;
 }
 
 .sidebar-item:nth-child(3) {
-  -webkit-transition: all .7s .3s ease-in-out;
-  -moz-transition: all .7s .3s ease-in-out;
-  -ms-transition: all .7s .3s ease-in-out;
-  -o-transition: all .7s .3s ease-in-out;
-  transition: all .7s .3s ease-in-out;
+  -webkit-transition: all .3s .1s ease-in-out;
+  -moz-transition: all .3s .1s ease-in-out;
+  -ms-transition: all .3s .1s ease-in-out;
+  -o-transition: all .3s .1s ease-in-out;
+  transition: all .3s .1s ease-in-out;
 }
 
 .sidebar-item:last-child {
-  -webkit-transition: all .7s .8s ease-in-out;
-  -moz-transition: all .7s .8s ease-in-out;
-  -ms-transition: all .7s .8s ease-in-out;
-  -o-transition: all .7s .8s ease-in-out;
-  transition: all .7s .6s ease-in-out;
+  -webkit-transition: all .3s .1s ease-in-out;
+  -moz-transition: all .3s .1s ease-in-out;
+  -ms-transition: all .3s .1s ease-in-out;
+  -o-transition: all .3s .1s ease-in-out;
+  transition: all .3s .1s ease-in-out;
 }
 
 .sidebar-item.active {
@@ -247,3 +249,5 @@ main {
     display: none;
   }
 }
+
+// 타임라인 내비게이션 끝

@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   post 'rooms/:room_id/publish/:stage_id', to: 'rooms#publish', as: 'room_publish'
   
 #Room-like관련 라우팅
-  get 'rooms/:room_id/finish', to: 'rooms#finish', as: 'room_finish'
-  post 'rooms/:room_id/like' , to: 'rooms#like'
+  get 'rooms/index', to: 'rooms#finish', as: 'room_finish'
+  post 'rooms/index/like' , to: 'rooms#like'
   
   
 #Team Management 관련 라우팅
@@ -106,9 +106,11 @@ Rails.application.routes.draw do
   post 'rooms/:room_id/stages/delete', to: 'stages#delete', as: 'stage_delete'
   
  
+#타임라인관련
+  #타임라인 메세지 작성
+  post 'chats/create', to: 'chats#create', as: 'chat_create'
+  #타임라인 메세지 삭제
+  post "chats/delete", to: "chats#delete", as: 'chat_delete'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  post 'chats/create', to: 'chats#create', as: 'chat_create'
-  #주석달아주고 위로 옮겨주세요~
-  get "/rooms/:room_id/stages/show/chats/delete/:chat_id" => "chats#delete"
 end

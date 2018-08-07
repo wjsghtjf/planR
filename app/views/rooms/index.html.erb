@@ -4,30 +4,54 @@
 <br>
 
 <div class="row">
-<div class="col s2"></div>
-<div class="col s8">
+<div class="col s1"></div>
+<div class="col s10">
 <% @rooms.each do |room| %>
 <% @publish_stage_id=room.publish_stage_id%>  
 
 <div class="index-content">
     <div class="container">
-        <a href="<%=room_show_path(room.id) %>">
         <div class="col-lg-4">
             <div class="card">
                 <!-- 이미지 유저가 올린걸로 바꿀 수 있게 해주세요 -->
+                <a href="<%=room_show_path(room.id) %>">
                 <img src="/assets/mainpage_img.jpg">
+                </a>
                 <p><%=truncate room.title, length: 20 %></p>
                 <!--<p><%=truncate room.content, length: 28  %></p>-->
-                <p>좋아요 들어갈 부분</p>
+    
+                <p>
+                    <strong>좋아요 : </strong>
+                    <%= @likecount %>명
+                </p>
+                
+    <p>
+      <% if @roomCal.like %>
+      
+      <form action='/rooms/index/like' method='post'>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <button> 좋아요 취소</button>  
+      </form>
+      
+      <% else %>
+      <form action='/rooms/index/like' method='post'>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <button> 좋아요</button>  
+      </form>
+      
+      <% end %>
+    </p>
+    
+    
+   
             </div>
         </div>
-        </a>
     </div>
 </div>
 <% end %>
 </div>
 
-<div class="col s2"></div>
+<div class="col s1"></div>
 
 </div>
 </center>

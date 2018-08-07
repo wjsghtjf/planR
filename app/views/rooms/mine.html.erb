@@ -1,12 +1,14 @@
 <br>
 <br>
 <h1>내가 만든 방 목록 보기</h1>
+
+<div class="row">
+    <div class="col s1"></div>
+    <div class="col s10">
 <a href="<%= room_new_path%>">새로운 방탈출 만들기</a>
 
 
 <hr>
-
-
 
 <div class="row align-items-center">
 <% @rooms.each do |room| %>
@@ -22,6 +24,8 @@
         </div>
     </div>
 <% end %>
+    </div>
+    </div>
+    <div class="col s1"></div>
 </div>
-
-<br><br><hr><%=link_to "홈 화면으로", '/' %>
+<br><br><hr>

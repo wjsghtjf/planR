@@ -7,33 +7,6 @@ $(document).ready( function() {
 })
 </script>
 
-<script>
-    
-const sidebarBox = document.querySelector('#box'),
-		sidebarBtn = document.querySelector('#btn'),
-		pageWrapper = document.querySelector('#page-wrapper');
-
-sidebarBtn.addEventListener('click', event => {
-		sidebarBtn.classList.toggle('active');
-		sidebarBox.classList.toggle('active');
-});
-
-pageWrapper.addEventListener('click', event => {
-
-		if (sidebarBox.classList.contains('active')) {
-				sidebarBtn.classList.remove('active');
-				sidebarBox.classList.remove('active');
-		}
-});
-
-window.addEventListener('keydown', event => {
-
-		if (sidebarBox.classList.contains('active') && event.keyCode === 27) {
-				sidebarBtn.classList.remove('active');
-				sidebarBox.classList.remove('active');
-		}
-});
-</script>
 <br><br><br><br><br><br>
 
 <div class="row">
@@ -78,7 +51,7 @@ window.addEventListener('keydown', event => {
         <% end %>
     
         <!-- 배포된 페이지 까지만 보여주기-->
-        <% if (@stages.length)-1 > @stage_level %>
+        <% if (@stages.length)-1 > @stage_level && @stage_level<@roomCal.last_stage_level %>
          <form method='POST' action="<%=stage_show_path(@room.id) %>" style='display:inline'>
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <input type='hidden' value='<%= @stage_level +1 %>' name='stage_level'/>
@@ -91,63 +64,9 @@ window.addEventListener('keydown', event => {
     </div>
 
     <div class="col s2">
-            <div class="nav-right visible-xs">
-          <div class="button" id="btn">
-            <div class="bar top"></div>
-            <div class="bar middle"></div>
-            <div class="bar bottom"></div>
-          </div>
-        </div>
-        <!-- nav-right -->
-        <main>
-        
-            <div class="nav-right hidden-xs">
-              <div class="button" id="btn">
-                <div class="bar top"></div>
-                <div class="bar middle"></div>
-                <div class="bar bottom"></div>
-              </div>
-            </div>
-            <!-- nav-right -->
-          </nav>
-        
-          <a href="http://codepen.io/tonkec/" class="ua" target="_blank">
-            <i class="fa fa-user"></i>
-          </a>
-        </main>
-        
-        <div class="sidebar">
-          <ul class="sidebar-list">
-            
-            <li class="sidebar-item"><%= render 'timeline' %></li>
-          </ul>
-        </div>
-     </div>
-</div>
+       <%= render './time_lines/timeline' %>
+    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<script>
-  
-  
-$(document).ready(function() {
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
 
-  function toggleSidebar() {
-    $(".button").toggleClass("active");
-    $("main").toggleClass("move-to-left");
-    $(".sidebar-item").toggleClass("active");
-  }
-
-  $(".button").on("click tap", function() {
-    toggleSidebar();
-  });
-
-  $(document).keyup(function(e) {
-    if (e.keyCode === 27) {
-      toggleSidebar();
-    }
-  });
-
-});
-
-</script>
 <br><br><br><br><br><br>

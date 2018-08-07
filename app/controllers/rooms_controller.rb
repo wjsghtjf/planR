@@ -1,10 +1,19 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
-  before_action :find_roomCals, only: [:like, :show, :finish] 
+  before_action :find_roomCals, only: [:show, :finish] 
   before_action :find_invites, only: [:team] 
    # View가 있는 Controller
    
   def index
+  @rooms = Room.all
+  @likecount = Room.new
+  
+  @rooms.each do |like|
+    @likecount = like.likes
+  end
+  
+  @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
+    
     @dummy=0   # publish_stage_id값이 누적되어쌓임. 해결방안을위한 임시방편..나은방법있음추가요망
     @publish_stage_id=0
     if params[:sort] == "recent"
@@ -109,18 +118,36 @@ class RoomsController < ApplicationController
   
 #좋아요 부분  
   def like
-   
-    if @roomCal.likes.nil?
-      @roomCal.likes = (@roomCal.likes)+1
+    
+  @rooms = Room.all
+       @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
+  
+  @rooms.each do |like|
+        if @roomCal.like.nil?
+      @roomCal.like = (@roomCal.like)+1
       @likes = Room.find(params[:room_id])
       @likes = (@likes)+1
     else
-      @roomCal.likes = (@roomCal.likes)-1
+      @roomCal.like = (@roomCal.like)-1
       @likes = Room.find(params[:room_id])
       @likes = (@likes)-1
     end
     
     redirect_to :back
+  end
+    
+
+    # if @roomCal.like.nil?
+    #   @roomCal.like = (@roomCal.like)+1
+    #   @likes = Room.find(params[:room_id])
+    #   @likes = (@likes)+1
+    # else
+    #   @roomCal.like = (@roomCal.like)-1
+    #   @likes = Room.find(params[:room_id])
+    #   @likes = (@likes)-1
+    # end
+    
+    # redirect_to :back
   end
   
   def find_invites

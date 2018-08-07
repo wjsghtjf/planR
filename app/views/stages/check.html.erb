@@ -1,18 +1,16 @@
-<form method='post' action='<%=stage_show_path(params[:room_id])%>' id='checkAnswer' >
+<%=form_tag stage_show_path(params[:room_id]), { method: 'post', id: 'checkAnswer'} do %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type='hidden' name='stage_level' value='<%=@stage_level %>'/>
-    <input type='hidden' name='is_wrong_answer' value='<%=@is_wrong_answer %>'/>
-</form>
+    <%= hidden_field_tag :stage_level, @stage_level %>
+    <%= hidden_field_tag :is_wrong_answer, @is_wrong_answer  %>
+<% end %>
 
 <script>
 
-<% if @is_wrong_answer %>
-    document.getElementById("checkAnswer").submit();
-<% else %>
-    document.getElementById("checkAnswer").submit();
-<% end %>
-
+$(document).ready( function() {
+    <% if @is_wrong_answer %>
+        document.getElementById("checkAnswer").submit();
+    <% else %>
+        document.getElementById("checkAnswer").submit();
+    <% end %>
+});
 </script>
-
-
-      

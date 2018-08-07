@@ -1,0 +1,162 @@
+<div class="nav-right visible-xs">
+    <div class="button" id="btn">
+        <div class="bar top"></div>
+        <div class="bar middle"></div>
+        <div class="bar bottom"></div>
+    </div>
+</div>
+<!-- nav-right -->
+<main>
+    
+    <div class="nav-right hidden-xs">
+        <div class="button" id="btn">
+            <div class="bar top"></div>
+            <div class="bar middle"></div>
+            <div class="bar bottom"></div>
+        </div>
+    </div>
+<!-- nav-right -->
+</nav>
+    <i class="fa fa-user"></i></a>
+</main>
+    
+    <div class="sidebar">
+      <ul class="sidebar-list">
+        
+        <li class="sidebar-item">
+            <ul id='chat_list'>
+                <%@chats.each do |c| %>
+                    <li id='chat_item' class='this_stage_<%= c.stage_id == @stage.id%>'>
+                        <div class="list_content">
+                            <!--유저에 이름 정보가 없어-->
+                            <p>스테이지 아이디 : <%=c.stage_id %> </p>
+                            <p class="author"><%=@userMap[c.user_id] %></p>
+                            <p class="content"><%=c.content%></p>
+                            
+                            <%=form_tag(chat_delete_path, { method: 'post'}) do %>
+                                <%= hidden_field_tag :room_id, @room.id %>
+                                <%= hidden_field_tag :stage_level, @stage_level %>
+                                <%= hidden_field_tag :chat_id, c.id %>
+                                <%=submit_tag("삭제")%>
+                            <% end %>
+                        </div>
+                    </li>
+
+                <% end %>
+                
+            </ul>
+            <%=form_for :chat, url: chat_create_path, method: 'post' do |f| %>
+                
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%= hidden_field_tag :room_id, @room.id %>
+                <%= hidden_field_tag :stage_level, @stage_level %>
+                
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :stage_id, value: @stage.id %>
+                <%= f.hidden_field :team_id, value: @roomCal.team_id %>
+            
+                <div class='form-group'>
+                    <%= f.label :content , '내용'%>
+                    <%= f.text_area :content ,placeholder: '내용을 입력하세요', class: 'form-control' , :autocomplete => :off %>
+                </div>
+                <br>
+                <%= f.submit '저장', class: 'btn btn-default'   %>
+                
+            <%end%>
+            
+            <label id='lb_now_stage' onclick='show_now()'>현재 스테이지로 보기 </label> / <label id='lb_all_stage' onclick='show_all()'>전체 스테이지로 보기 </label>
+                
+        </li>
+      </ul>
+    </div>
+ </div>
+
+    
+<script>
+
+function show_all(){
+    updateList(true);
+    
+}
+function show_now(){
+    updateList(false);
+    
+}
+function updateList(is_all){
+    if(is_all){
+        $('#lb_all_stage').css('color', 'red');
+        $('#lb_now_stage').css('color', '#9e9e9e');
+        $('.this_stage_false').css('display','block');
+    }
+    else{
+        $('#lb_all_stage').css('color', '#9e9e9e');
+        $('#lb_now_stage').css('color', 'red');
+        $('.this_stage_false').css('display','none');
+    }
+    
+}
+
+
+$(document).ready( function() {
+    updateList(false);
+      
+  function toggleSidebar() {
+    
+    $(".button").toggleClass("active");
+    $("main").toggleClass("move-to-left");
+    $(".sidebar-item").toggleClass("active");
+  }
+
+  $(".button").on("click tap", function() {
+    toggleSidebar();
+  });
+
+  $(document).keyup(function(e) {
+    if (e.keyCode === 27) {
+      toggleSidebar();
+    }
+  });
+
+  
+  if('<%=params[:is_opened]%>'=='1'){
+      toggleSidebar();
+  }
+});
+                               
+                           
+</script>
+
+
+<!--이거 없어도 돌아가는거 같은데-->
+<!--<script>-->
+<!--var isOpened = false;-->
+    
+<!--const sidebarBox = document.querySelector('#box'),-->
+<!--		sidebarBtn = document.querySelector('#btn'),-->
+<!--		pageWrapper = document.querySelector('#page-wrapper');-->
+
+<!--sidebarBtn.addEventListener('click', event => {-->
+<!--    isOpened=true;    -->
+<!--		sidebarBtn.classList.toggle('active');-->
+<!--		sidebarBox.classList.toggle('active');-->
+<!--});-->
+
+<!--pageWrapper.addEventListener('click', event => {-->
+
+<!--		if (sidebarBox.classList.contains('active')) {-->
+		  
+<!--        isOpened=false;-->
+<!--				sidebarBtn.classList.remove('active');-->
+<!--				sidebarBox.classList.remove('active');-->
+<!--		}-->
+<!--});-->
+
+<!--window.addEventListener('keydown', event => {-->
+
+<!--		if (sidebarBox.classList.contains('active') && event.keyCode === 27) {-->
+<!--        isOpened=false;-->
+<!--				sidebarBtn.classList.remove('active');-->
+<!--				sidebarBox.classList.remove('active');-->
+<!--		}-->
+<!--});-->
+<!--</script>-->

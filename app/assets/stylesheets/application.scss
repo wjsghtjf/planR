@@ -61,7 +61,9 @@ nav a i {
 .mainpage_wrapper {
     height: 98vh;
     width: 100vw;
-    background-color: RGBA(0, 0, 0, 0.6);
+    background-color: black;
+    opacity: 0.9;
+    z-index: 10;
 }
 
 
@@ -111,3 +113,15 @@ footer {
   color : red !important; 
 }
 
+
+.img-thumb{
+    width : auto;
+    height : 300px;
+    object-fit : contain;
+}
+
+.img-main{
+    width : 60%;
+    height : auto;
+    object-fit : contain;
+}

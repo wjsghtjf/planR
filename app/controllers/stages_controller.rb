@@ -18,7 +18,7 @@ class StagesController < ApplicationController
       puts "Stage/show : stage_level = #{@stage_level} from parameter"
       # URL로 감히 다음 스테이지를 보려고 한 경우, last_stage_level로 stage_level를 바꿔버린다.
       if @roomCal.last_stage_level < @stage_level
-        puts "#{current_user.id}, #{current.user.email} 님께서 비정상적인 접근을 시도했습니다."
+        puts "#{current_user.id}, #{current_user.email} 님께서 비정상적인 접근을 시도했습니다."
         @stage_level=@roomCal.last_stage_level
       end
     elsif @roomCal
@@ -50,7 +50,8 @@ class StagesController < ApplicationController
         @stage=@stages.last
       else
         puts "Stage/show : @stage가 nill이다"
-        redirect_to room_index_path # '/rooms/index'
+        
+        redirect_to room_show_path(params[:room_id])
       end
     end
     
