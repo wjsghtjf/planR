@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   
   
   def find_invites
-    @invites = Invitation.where("invite_guest = :user_id", { :user_id => current_user.id })
+    @invites = current_user.invitations
     
   end
 end

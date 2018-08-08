@@ -1,16 +1,13 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
-  before_action :find_roomCals, only: [:show, :finish] 
+  before_action :find_roomCal, only: [:show, :finish]  
+  before_action :set_team, only: [:team] 
   before_action :find_invites, only: [:team] 
-   # View가 있는 Controller
+  
    
   def index
   @rooms = Room.all
-  @likecount = Room.new
-  
-  @rooms.each do |like|
-    @likecount = like.likes
-  end
+ 
   
   @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
     
@@ -30,29 +27,13 @@ class RoomsController < ApplicationController
   def show
    @room = Room.find(params[:room_id])
    
-   if @roomCal == nil
-    @roomCal=RoomCal.new
-    @roomCal.room_id=params[:room_id]
-    @roomCal.user_id=current_user.id
-    
-    @team = Team.new
-    @team.save
-    @roomCal.team_id = @team.id
-    
-    @roomCal.save
-  end
-  if @roomCal.team_id == nil
-    @team = Team.new
-    @team.save
-    @roomCal.team_id = @team.id
-    @roomCal.save
-    
-  end
-   @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
+  @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
   end
   
   def team
     @room = Room.find(params[:room_id])
+   
+    
   end
   
   
@@ -66,7 +47,7 @@ class RoomsController < ApplicationController
   end
   
   def mine
-    @rooms=Room.where('master_id' => current_user.id)
+    @rooms=Room.where('user_id' => current_user.id)
   end
   
     
@@ -85,8 +66,9 @@ class RoomsController < ApplicationController
     if @room.content.length==0
       @room.content="  "
     end
-    @room.master_id= current_user.id
+    @room.user_id= current_user.id
     @room.save
+    
     redirect_to stage_manage_all_path(@room.id)
   end
   
@@ -115,47 +97,23 @@ class RoomsController < ApplicationController
   def room_params
       params.require(:room).permit(:title,:content)
   end
-  
-#좋아요 부분  
-  def like
-    
-  @rooms = Room.all
-       @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
-  
-  @rooms.each do |like|
-        if @roomCal.like.nil?
-      @roomCal.like = (@roomCal.like)+1
-      @likes = Room.find(params[:room_id])
-      @likes = (@likes)+1
-    else
-      @roomCal.like = (@roomCal.like)-1
-      @likes = Room.find(params[:room_id])
-      @likes = (@likes)-1
+ 
+ 
+  def set_team
+     @team = Team.find_by(user_id: current_user.id)
+    if @team.nil?
+      @team = Team.new(user_id: current_user.id)
+      @team.save
     end
     
-    redirect_to :back
-  end
-    
-
-    # if @roomCal.like.nil?
-    #   @roomCal.like = (@roomCal.like)+1
-    #   @likes = Room.find(params[:room_id])
-    #   @likes = (@likes)+1
-    # else
-    #   @roomCal.like = (@roomCal.like)-1
-    #   @likes = Room.find(params[:room_id])
-    #   @likes = (@likes)-1
-    # end
-    
-    # redirect_to :back
   end
   
   def find_invites
-    @invites = Invitation.where("room_id = :room_id AND team_id= :team_id", { :room_id => params[:room_id], :team_id => params[:team_id]})
+    @invites = Invitation.where("room_id = :room_id AND team_id= :team_id", { :room_id => params[:room_id], :team_id => @team.id})
     
   end
   
-  def find_roomCals
-   @roomCal = RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id])
+  def find_roomCal
+   @roomCal = RoomCal.find_by(user_id:  current_user.id, room_id: params[:room_id])
   end
 end

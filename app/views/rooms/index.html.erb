@@ -22,25 +22,11 @@
     
                 <p>
                     <strong>좋아요 : </strong>
-                    <%= @likecount %>명
+                    <%= room.likes.size %>명
                 </p>
-                
-    <p>
-      <% if @roomCal.like %>
-      
-      <form action='/rooms/index/like' method='post'>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <button> 좋아요 취소</button>  
-      </form>
-      
-      <% else %>
-      <form action='/rooms/index/like' method='post'>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <button> 좋아요</button>  
-      </form>
-      
-      <% end %>
-    </p>
+                <p>
+                </p>
+
     
     
    

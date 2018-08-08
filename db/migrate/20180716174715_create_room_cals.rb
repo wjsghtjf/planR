@@ -9,8 +9,12 @@ class CreateRoomCals < ActiveRecord::Migration[5.2]
       t.integer :endTime
       t.integer :try , default: 0
       t.integer :is_pass , default: 0
-      t.integer :like , default: 0
       t.integer :usedhint , default: 0
+      
+      t.integer :mode, default: 0
+      # mode 0 = 시작 전 상태, mode 1 = 싱글플레이 상태, mode 2 = 멀티플레이 상태
+      
+      
       t.timestamps
     end
   end

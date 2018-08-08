@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_02_092028) do
+ActiveRecord::Schema.define(version: 2018_08_08_052304) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
     t.integer "team_id"
     t.integer "stage_id", default: -1
-    t.string "content"
+    t.string "content", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_chats_on_team_id"
@@ -24,15 +24,24 @@ ActiveRecord::Schema.define(version: 2018_08_02_092028) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.integer "invite_host"
-    t.integer "invite_guest"
-    t.integer "invite_accpeted", default: 0
+    t.integer "user_id"
     t.integer "team_id"
     t.integer "room_id"
+    t.integer "invite_accepted", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_invitations_on_room_id"
     t.index ["team_id"], name: "index_invitations_on_team_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_likes_on_room_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -55,8 +64,8 @@ ActiveRecord::Schema.define(version: 2018_08_02_092028) do
     t.integer "endTime"
     t.integer "try", default: 0
     t.integer "is_pass", default: 0
-    t.integer "like", default: 0
     t.integer "usedhint", default: 0
+    t.integer "mode", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_room_cals_on_room_id"
@@ -64,24 +73,25 @@ ActiveRecord::Schema.define(version: 2018_08_02_092028) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+    t.string "title", default: ""
+    t.text "content", default: ""
     t.float "difficulty"
     t.integer "likes", default: 0
-    t.integer "master_id", null: false
+    t.integer "user_id"
     t.integer "publish_stage_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "stages", force: :cascade do |t|
     t.integer "room_id"
-    t.string "title"
-    t.text "content"
+    t.string "title", default: ""
+    t.text "content", default: ""
     t.string "video"
     t.integer "try", default: 0
     t.integer "pass", default: 0
-    t.string "answer"
+    t.string "answer", default: ""
     t.string "hint1"
     t.string "hint2"
     t.string "hint3"
@@ -92,8 +102,10 @@ ActiveRecord::Schema.define(version: 2018_08_02_092028) do
   end
 
   create_table "teams", force: :cascade do |t|
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'invites/create'
-  get 'invites/update'
   devise_for :users
   
 
@@ -21,9 +19,18 @@ Rails.application.routes.draw do
   #[마이페이지] Notification(초대수락페이지)
   get 'posts/notification', as: 'post_notification'
   
-  #[초대하기] ??
-  get 'invites/create', as: 'invite_create'
+  
+#Team Management 관련 라우팅
+  get 'rooms/:room_id/team/:host_id', to:'rooms#team', as:'room_team'
+  
+  
+  #팀원 초대하기
+  post 'invites/create', as: 'invite_create'
+  #팀원 응답하기
   post 'invites/update', as: 'invite_update'
+  
+  #팀원 초대 다 삭제하기
+  post 'invites/deleteAll', as: 'invite_delete_all'
 
   
   #[플레이] 방탈출 전체 목록 보기
@@ -53,20 +60,18 @@ Rails.application.routes.draw do
   #Room 베포하기
   post 'rooms/:room_id/publish/:stage_id', to: 'rooms#publish', as: 'room_publish'
   
-#Room-like관련 라우팅
-  get 'rooms/index', to: 'rooms#finish', as: 'room_finish'
-  post 'rooms/index/like' , to: 'rooms#like'
+#Like관련 라우팅
+
+  post 'likes/toggle' , to: 'likes#toggle', as: 'like_toggle'
   
-  
-#Team Management 관련 라우팅
-  get 'rooms/:room_id/team/:team_id', to:'rooms#team', as:'room_team'
-  # post 방식으로바꿀것
-  get  "rooms/:room_id/team/:team_id/invites/create", to:"invites#create" , as:'room_invite'
   
 #RoomCal 관련 라우팅 ↓
   
   #RoomCal 생성하기
   post 'rooms/:room_id/room_cals/create', to: 'room_cals#create', as: 'room_cal_create'
+  
+  #RoomCal 삭제하기
+  post 'rooms/:room_id/room_cals/delete', to: 'room_cals#delete', as: 'room_cal_delete'
   
   
 #Stage-View 관련 라우팅 ↓

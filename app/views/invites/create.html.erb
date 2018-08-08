@@ -1,2 +1,15 @@
-<h1>Invites#create</h1>
-<p>Find me in app/views/invites/create.html.erb</p>
+
+        
+<%=form_tag(room_team_path(params[:room_id],params[:host_id]),{ method: "get",  id: 'sendPost'}) do %>
+    
+<% end %>
+
+<script>
+    if('<%= (0 if @invite_user==nil) %>'=='0')
+        alert("그런사람 없습니다");
+    else if('<%=@already_invited %>'=='true' )
+        alert("이미 초대된 상태입니다.");
+    else if('<%=@already_crazy %>'=='true' )
+        alert("자기자신을 초대한다고..?");
+    document.getElementById('sendPost').submit();
+</script>

@@ -16,22 +16,33 @@
       </div>
     </div>
   </div>
-  <!--post방식으로바꿀것-->
-  <form action="<%=room_invite_path(@room.id, params[:team_id]) %>"  class="form-horizontal", method="get">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <input type="text" name="input_invite_guest" class="form-control" id="exampleInputName2" placeholder="초대할 ID">
-          <button type="submit" class="btn btn-default">만들기</button>
-         </form>
+  <%=form_tag invite_create_path, {method: 'post' , class: 'form-horizontal' } do %>
+    <%=hidden_field_tag :room_id , params[:room_id] %>
+    <%=hidden_field_tag :team_id , @team.id %>
+    <%=hidden_field_tag :host_id , params[:host_id] %>
+    <%=text_field_tag :input_nick_name ,'' , class: 'form-control' , id: 'exampleInputName2', placeholder: '초대할 유저의 닉네임'%>
+    <%=submit_tag '초대하기', class:  'btn btn-default' %>
+  <% end %>
+  
+ 
 
 <ul>
 <% @invites.each do |invite| %>
-<% @uuuu1 = User.find(invite.invite_host).nickname %>
-<% @uuuu2 = User.find(invite.invite_guest).nickname %>
+<% @uuuu1 = User.find(invite.team.user_id).nickname %>
+<% @uuuu2 = User.find(invite.user_id).nickname %>
 <li>
 id = <%=invite.id  %> //  host = <%=@uuuu1  %>  ▷ guest = <%=@uuuu2  %><br/>
 </li>
 <% end %>
 </ul>         
+
+   <%=form_tag invite_delete_all_path, {method: 'post' , class: 'form-horizontal' } do %>
+    <%=hidden_field_tag :room_id , params[:room_id] %>
+    <%=hidden_field_tag :team_id , @team.id %>
+    <%=hidden_field_tag :host_id , params[:host_id] %>
+    <%=submit_tag '다 취소하기', class:  'btn btn-default' %>
+  <% end %>
+  
          
 
 
