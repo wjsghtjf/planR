@@ -1,31 +1,32 @@
-<br>
-<br>
-<h1>내가 만든 방 목록 보기</h1>
+<center>
+<br><br><br>
 
 <div class="row">
     <div class="col s1"></div>
     <div class="col s10">
-<a href="<%= room_new_path%>">새로운 방탈출 만들기</a>
-
-
-<hr>
-
-<div class="row align-items-center">
-<% @rooms.each do |room| %>
-<% @publish_length = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => room.publish_stage_id, :room_id => room.id}).length%> 
-        <div class="card col-sm-6 col-md-3">
-        <div class="font">
-            <div class="card-body" >
-                <h5 class="card-title" style="font-size:200%"> <%= link_to room.title , stage_manage_all_path(room.id) %></h5>
-                <p class="card-text">게임 <%=room.id %></p>
-                <p>배포중인 스테이지수 <%=@publish_length %> /  <%=room.stages.length %>  </p>
-                <a href=<%=stage_manage_all_path(room.id) %> class="btn btn-outline-success">스테이지 수정하러 가기 </a>
+        <p style="font-size: 20pt">:: 제작 중 방탈출</p>
+        <a href="<%= room_new_path%>" class="btn new_room">새로운 방탈출 만들기</a>
+        <br><br><hr>
+    <% @rooms.each do |room| %>
+    <% @publish_length = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => room.publish_stage_id, :room_id => room.id}).length%> 
+        <div class="index-content">
+            <div class="container">
+                <div class="col-lg-4">
+                    <div class="card">
+                    <!-- 이미지 유저가 올린걸로 바꿀 수 있게 해주세요 -->
+                        <img src="/assets/mainpage_img.jpg">
+                        <p><%=truncate room.title, length: 20 %></p>
+                        <p>배포 중인 스테이지수 <%=@publish_length %> /  <%=room.stages.length %>  </p>
+                        <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-outline-success">스테이지 수정하러 가기 </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-<% end %>
-    </div>
+    <% end %>
+    <hr>
     </div>
     <div class="col s1"></div>
 </div>
-<br><br><hr>
+
+<br><br>
+</center>

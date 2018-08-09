@@ -15,7 +15,17 @@ class PostsController < ApplicationController
   end
   
   def mypage
+    #현재 플레이 방탈출 부분
     @user=User.find(current_user.id)
+    @room_cals = @user.room_cals
+    
+    
+    
+    #초대수락 페이지 부분
+    @invite_new_count = current_user.invitations.select { |invite| invite.invite_accepted == 0 }.size
+    
+    
+    #랭킹보기 페이지 부분
   end
   
   def ranking

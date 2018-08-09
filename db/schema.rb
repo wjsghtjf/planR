@@ -14,12 +14,13 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "room_id"
     t.integer "team_id"
-    t.integer "stage_id", default: -1
+    t.integer "stage_id"
     t.string "content", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_chats_on_team_id"
+    t.index ["stage_id"], name: "index_chats_on_stage_id"
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
@@ -103,8 +104,10 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
 
   create_table "teams", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_teams_on_room_id"
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
 

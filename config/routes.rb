@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   
   
 #Team Management 관련 라우팅
-  get 'rooms/:room_id/team/:host_id', to:'rooms#team', as:'room_team'
+  get 'rooms/:room_id/team/:team_id', to:'rooms#team', as:'room_team'
   
   
   #팀원 초대하기
@@ -117,5 +117,9 @@ Rails.application.routes.draw do
   #타임라인 메세지 삭제
   post "chats/delete", to: "chats#delete", as: 'chat_delete'
   
+  
+#팀 관련 
+  #팀만들기
+  post 'rooms/:room_id/teams/create', to: 'teams#create', as: 'team_create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

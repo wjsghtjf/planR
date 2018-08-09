@@ -40,6 +40,16 @@ class StagesController < ApplicationController
         puts "Stage/show : @stage = #{@stage}"
         break
       end
+      
+    #   @hintlist= Stage.new
+    #   @stages.each do |s|
+    #   if Integer(params[:stages_id]) == s.id
+    #     @hintlist = s
+    #     @hintlist.save
+    #   end
+    # end
+      
+      
     end
     
     
@@ -172,7 +182,6 @@ class StagesController < ApplicationController
     # @hintCal = RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id])
     # before_action으로 @roomCal에 값 가져옵니당
 
-   
     
     @is_wrong_answer=true
     
@@ -180,10 +189,9 @@ class StagesController < ApplicationController
       
       puts "Stage/check : 정답"
       
-      
       @roomCal.last_stage_level = (@roomCal.last_stage_level + 1)
       @roomCal.save
-      @stage_level = 1 +  Integer(params[:stage_level])
+      @stage_level = 1 + Integer(params[:stage_level])
       @is_wrong_answer=false
       
       if @roomCal.usedhint == 1
@@ -223,21 +231,16 @@ class StagesController < ApplicationController
   
   
   def find_roomCal
-  
     @roomCal = RoomCal.find_by(user_id: current_user.id, room_id: params[:room_id])
-   
   end
   
   def get_chats
-    @chats = Chat.where("team_id == :team_id", {:team_id => @roomCal.team_id})
     
-    @userMap = Hash.new
-    
-    @chats.each do |c|
-      if @userMap[c.user_id]==nil
-        @user = User.find(c.user_id)
-        @userMap[c.user_id] =@user.nickname
-      end
+    if @roomCal.mode == 2
+      @chats = Chat.where("team_id == :team_id", {:team_id => @roomCal.team_id})
+    else
+      # @chats = Chat.where("user_id == :user_id AND room_id == :room_id", {:user_id => current_user.id, :room_id => params[:room_id]})
+      @chats = Chat.where("user_id == :user_id", {:user_id => current_user.id})
     end
     
   end

@@ -56,7 +56,7 @@ class InvitesController < ApplicationController
     @invite.save
     
     if @invite.invite_accepted==@@INVITE_ACCEPT
-      redirect_to room_team_path(@invite.room_id, @invite.team.user_id)
+      redirect_to room_team_path(@invite.room_id, @invite.team.id)
     else
       redirect_to post_notification_path
     end
@@ -69,6 +69,6 @@ class InvitesController < ApplicationController
     @invites = Invitation.where("room_id = :room_id AND team_id = :team_id", { :room_id => params[:room_id], :team_id => params[:team_id]})
     @invites.delete_all
     
-    redirect_to room_team_path(params[:room_id], params[:host_id])
+    redirect_to room_team_path(params[:room_id], params[:team_id])
   end
 end

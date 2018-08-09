@@ -1,5 +1,5 @@
 class Chat < ApplicationRecord
     
-    belongs_to :team
+    belongs_to :stage
     belongs_to :user
 end

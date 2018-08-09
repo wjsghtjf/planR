@@ -1,7 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
   before_action :find_roomCal, only: [:show, :finish]  
-  before_action :set_team, only: [:team] 
   before_action :find_invites, only: [:team] 
   
    
@@ -25,15 +24,14 @@ class RoomsController < ApplicationController
   end
   
   def show
-   @room = Room.find(params[:room_id])
+    @room = Room.find(params[:room_id])
    
-  @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
+    @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
   end
   
   def team
     @room = Room.find(params[:room_id])
    
-    
   end
   
   
@@ -98,19 +96,9 @@ class RoomsController < ApplicationController
       params.require(:room).permit(:title,:content)
   end
  
- 
-  def set_team
-     @team = Team.find_by(user_id: current_user.id)
-    if @team.nil?
-      @team = Team.new(user_id: current_user.id)
-      @team.save
-    end
-    
-  end
   
   def find_invites
-    @invites = Invitation.where("room_id = :room_id AND team_id= :team_id", { :room_id => params[:room_id], :team_id => @team.id})
-    
+    @invites = Invitation.where("room_id = :room_id AND team_id= :team_id", { :room_id => params[:room_id], :team_id => params[:team_id]})
   end
   
   def find_roomCal

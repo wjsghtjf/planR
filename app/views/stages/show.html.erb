@@ -1,6 +1,4 @@
-
 <script>
-
 $(document).ready( function() {
     if("<%=params[:is_wrong_answer] %>" == 'true')
         alert('정답이 아닙니다');
@@ -32,9 +30,7 @@ $(document).ready( function() {
     
                   <input type="string" name="enter_answer"  autocomplete=off>
                   <input type='hidden' value='<%= @stage_level%>' name='stage_level'/>
-                  <input type='submit' id='btn_check_answer'  class="btn waves-effect waves-light"  value='제출'/>
-          
-                 <i class="material-icons right">send</i>
+                  <input type='submit' id='btn_check_answer'  class="btn"  value='제출'/>
               </form>
       
               </div>

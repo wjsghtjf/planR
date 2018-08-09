@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<br>
-<br>
-<br>
+<center>
+<br><br><br>
 
 <!-- Page Content -->
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-lg-3">
-      <h1 class="my-4">방탈출 만들기</h1>
-      <div class="list-group">
-        <% @stages.each_with_index do |s, i|%>
-        
-          <% if s.id == @stage.id %>
-            <% @stage_level= i+1 %>
-            <%= link_to "Stage #{i+1} : #{s.title}", stage_manage_each_path(s.room_id, s.id) , :class => "list-group-item item-selected"%>
-          <% else %>
-            <%= link_to "Stage #{i+1} : #{s.title}",  stage_manage_each_path(s.room_id, s.id), :class => "list-group-item"%>
-          <% end  %>
-            
-        <% end  %>
-        
-          <%= link_to "Add stage",  stage_create_path(@room.id) , :class => "list-group-item", method: :post  %>
-      </div>
-    </div>
-    <!-- /.col-lg-3 -->
-
-      <div class='col-lg-9'>
-
-      
-        <div class='card-header'>
-        </div>
-        <div class='card-body'>
-            <div class='container'>
-              <h2>Stage <%=@stage_level%></h2>
-              <p>사진 및 동영상, 텍스트를 입력하세요.</p>
-              <div class='row'>
-                <div>
+<div class="row">
+	<div class="col s2">
+		<div class="stage_list">
+	   		<% @stages.each_with_index do |s, i|%>
+	        <% if s.id == @stage.id %>
+	        	<% @stage_level= i+1 %>
+	            <%= link_to "Stage #{i+1} : #{s.title}", stage_manage_each_path(s.room_id, s.id) , :class => "list-group-item item-selected"%><hr class="list_line">
+	        <% else %>
+	            <%= link_to "Stage #{i+1} : #{s.title}",  stage_manage_each_path(s.room_id, s.id), :class => "list-group-item"%><hr class="list_line">
+	        <% end  %>
+	        <% end  %>
+	        <% if @stage_level != 20 %>
+	        <%= link_to "Add stage",  stage_create_path(@room.id) , :class => "list-group-item", method: :post  %>
+	        <% end %><br>
+  		</div>
+   </div>
+   <div class="col s8">
+      <h2>:: Stage <%=@stage_level%></h2>
+                <div class="make_room">
                   <% if @stage %>
                     <% if @edit_mode %>
-                        <%= render 'form_manage_edit', stage: @stage%>
+                        <%= render 'form_manage_edit', stage: @stage, :class => "form_manage" %>
                     <% else %>
-                        <%= render 'form_manage', stage: @stage%>
+                        <%= render 'form_manage', stage: @stage, :class => "form_manage" %>
                     <% end %>
                   
                   
@@ -63,32 +46,12 @@
     
 
                 </div>
-                
-                </div>
-              </div>
-            </div>
-      
-          <hr>
-        </div>
-      
+      </div>
       <!-- /.card -->
-      
-    </div>
-    <!-- /.col-lg-9 -->
+      <div class="col s1"></div>
+      </div>   
 
-
-</div>
-<!-- /.container -->
-
-
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; 멋쟁이처럼 탈출하기 2018</p>
-  </div>
-  <!-- /.container -->
-</footer>
-
+</center>
 
 <!--여기서 부터 자바스크립트입니다 -->
 <script>

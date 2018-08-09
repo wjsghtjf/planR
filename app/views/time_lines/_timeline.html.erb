@@ -30,7 +30,7 @@
                         <div class="list_content">
                             <!--유저에 이름 정보가 없어-->
                             <p>스테이지 아이디 : <%=c.stage_id %> </p>
-                            <p class="author"><%=@userMap[c.user_id] %></p>
+                            <p class="author"><%=c.user.nickname %></p>
                             <p class="content"><%=c.content%></p>
                             
                             <%=form_tag(chat_delete_path, { method: 'post'}) do %>

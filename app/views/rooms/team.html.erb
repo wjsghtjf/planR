@@ -18,7 +18,7 @@
   </div>
   <%=form_tag invite_create_path, {method: 'post' , class: 'form-horizontal' } do %>
     <%=hidden_field_tag :room_id , params[:room_id] %>
-    <%=hidden_field_tag :team_id , @team.id %>
+    <%=hidden_field_tag :team_id , params[:team_id] %>
     <%=hidden_field_tag :host_id , params[:host_id] %>
     <%=text_field_tag :input_nick_name ,'' , class: 'form-control' , id: 'exampleInputName2', placeholder: '초대할 유저의 닉네임'%>
     <%=submit_tag '초대하기', class:  'btn btn-default' %>
@@ -28,24 +28,31 @@
 
 <ul>
 <% @invites.each do |invite| %>
-<% @uuuu1 = User.find(invite.team.user_id).nickname %>
-<% @uuuu2 = User.find(invite.user_id).nickname %>
 <li>
-id = <%=invite.id  %> //  host = <%=@uuuu1  %>  ▷ guest = <%=@uuuu2  %><br/>
+id = <%=invite.id  %> //  host = <%=invite.team.user.nickname  %>  ▷ guest = <%=invite.user.nickname%> <%= "대기" if invite.invite_accepted == 0%>
+<%= "수락" if invite.invite_accepted==1 %>
+<%= "거절" if invite.invite_accepted==2 %>
+<br/>
 </li>
 <% end %>
 </ul>         
 
    <%=form_tag invite_delete_all_path, {method: 'post' , class: 'form-horizontal' } do %>
     <%=hidden_field_tag :room_id , params[:room_id] %>
-    <%=hidden_field_tag :team_id , @team.id %>
-    <%=hidden_field_tag :host_id , params[:host_id] %>
+    <%=hidden_field_tag :team_id , params[:team_id]%>
     <%=submit_tag '다 취소하기', class:  'btn btn-default' %>
   <% end %>
   
          
 
 
+
+
+   <%=form_tag room_cal_create_path(@room.id), {method: 'post' , class: 'waves-effect waves-light btn' } do %>
+    <%=hidden_field_tag :mode , 2 %>
+    <%=hidden_field_tag :team_id , params[:team_id] %>
+    <%=submit_tag '이 구성으로 시작하기', class:  'btn btn-default' %>
+  <% end %>
 
 
 

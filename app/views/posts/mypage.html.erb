@@ -3,11 +3,31 @@
 <h3>마이페이지</h3><br>
 <hr>
 <br>
-<%=@user.rank_point%>
+<!--<%=@user.rank_point%>-->
+
+
+            
+<% @room_cals.each do |room_cal| %>
+   <% if room_cal.mode != 0 %>
+        <% if room_cal.mode == 1 %>
+        [싱글]<%= room_cal.room.title %> || <%= room_cal.room.content%>
+        <%= link_to '바로가기', room_show_path(room_cal.room.id)%><br>
+        <% elsif room_cal.mode == 2 %>
+        [멀티]<%= room_cal.room.title %> || <%= room_cal.room.content%>
+        <%= link_to '바로가기', room_show_path(room_cal.room.id)%><br>
+        <% end %>
+   <% end%>
+<% end %>
+
+<br>
+<br>
+
+
+
 <%= link_to '<i class="material-icons left">build</i>계정 수정'.html_safe, edit_user_registration_path, :class => 'waves-effect waves-light btn' %>
 <br>
 <br>
-<%= link_to '<i class="material-icons left">drafts</i>멀티플레이 초대 수락'.html_safe, post_notification_path, method: :get, :class => 'waves-effect waves-light btn' %>
+<%= link_to "<i class='material-icons left'>drafts</i>멀티플레이 초대 수락 #{ @invite_new_count if @invite_new_count>0 }".html_safe, post_notification_path, method: :get, :class => 'waves-effect waves-light btn' %>
 
 
 <br><br><hr><%=link_to "홈 화면으로", '/'%>
