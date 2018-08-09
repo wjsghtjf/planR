@@ -37,9 +37,10 @@ class RoomCalsController < ApplicationController
   def delete_room_cal
     
      @roomCal = RoomCal.find_by(user_id: current_user.id,  room_id: params[:room_id])
+     
      if !@roomCal.nil?
-       if !@roomCal.team_id.nil? 
-        @team =Team.find(@roomCal.team_id)
+       if !@roomCal.team_id.nil? && RoomCal.where("team_id= :team_id", {:team_id => @roomCal.team_id}).size == 1
+        @team =Team.find(@roomCal.team_id) 
         @team.destroy
         @team.save
       end
