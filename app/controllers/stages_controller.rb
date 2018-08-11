@@ -119,7 +119,7 @@ class StagesController < ApplicationController
     @stage.save
     
     # 새로 만들어진 stage는 edit_mode로 redirect해준다.
-    redirect_to stage_manage_all_path(@stage.room_id, edit_mode: true)
+    redirect_to stage_manage_all_path(params[:room_id], edit_mode: true)
   end
   
   def update

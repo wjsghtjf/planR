@@ -14,7 +14,10 @@
         	<% end  %>
         	
 	        <% if @stage_level!=20 %>
-	        	<%= link_to "Add stage",  stage_create_path(@room.id) , :class => "list-group-item", method: :post  %>
+	        	<%=form_tag stage_create_path, { method: 'post'} do %>
+				    <%= hidden_field_tag :room_id, @room.id %>		    
+				    <%=submit_tag 'Add Stage', class: "btn" %>
+				<% end %>
 	        <% end %><br>
   		</div>
    </div>

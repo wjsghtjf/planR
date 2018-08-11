@@ -34,13 +34,13 @@
                             break
                           end     
                       end       %>
-                        <li>Stage <%=@c_level %></li>
+                        <li class='this_stage_false'>Stage <%=@c_level %></li>
                     <% end %>
                     <li id='chat_item' class='this_stage_<%= c.stage_id == @stage.id%>'>
                         <div class="list_content">
                           
                             <div class="ch_list">
-                            <span class="st">STAGE <%=c.stage_id %> </span>
+                            <span class="st">STAGE <%=@c_level %> </span>
                             <span class="author"><%=c.user.nickname %></span> | 
                             <span ><%=c.content%></span>
                            
