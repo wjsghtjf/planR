@@ -2,3 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 메인페이지 노이즈 
+
+.main-content {
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    
+    height: 100vh;
+    
+    background: white;
+    color: #fff;
+    text-align: center;
+}
+
+.noise {
+    // z-index: 100;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+    
+    pointer-events: none;
+    // opacity: .05;
+    
+    opacity: 1;
+}
+
+.main-title {
+    padding: .3em 1em .25em;
+    
+    z-index: 11; //희성추가
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: lightgrey;
+    
+    background: black;
+}
+
+
+// 메인페이지 노이즈 끝

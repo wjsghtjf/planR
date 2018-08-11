@@ -25,19 +25,32 @@
         
         <li class="sidebar-item">
             <ul id='chat_list'>
-                <%@chats.each do |c| %>
+                <%@chats.each_with_index do |c,i| %>
+                    <% if i==0 || @chats[i].stage_id!=@chats[i-1].stage_id %>
+                    
+                     <% @stages.each_with_index do |s, index|
+                          if s.id == @chats[i].stage_id
+                            @c_level=index+1
+                            break
+                          end     
+                      end       %>
+                        <li>Stage <%=@c_level %></li>
+                    <% end %>
                     <li id='chat_item' class='this_stage_<%= c.stage_id == @stage.id%>'>
                         <div class="list_content">
-                            <!--유저에 이름 정보가 없어-->
-                            <p>스테이지 아이디 : <%=c.stage_id %> </p>
-                            <p class="author"><%=c.user.nickname %></p>
-                            <p class="content"><%=c.content%></p>
-                            
-                            <%=form_tag(chat_delete_path, { method: 'post'}) do %>
+                          
+                            <div class="ch_list">
+                            <span class="st">STAGE <%=c.stage_id %> </span>
+                            <span class="author"><%=c.user.nickname %></span> | 
+                            <span ><%=c.content%></span>
+                           
+                           <%=form_tag(chat_delete_path, { method: 'post'}) do %>
                                 <%= hidden_field_tag :room_id, @room.id %>
                                 <%= hidden_field_tag :stage_level, @stage_level %>
                                 <%= hidden_field_tag :chat_id, c.id %>
-                                <%=submit_tag("삭제")%>
+                                <%=submit_tag("삭제",class: "btn btn-warning", style: "position:absolute; right:0;" )%>
+                               
+                            </div>   
                             <% end %>
                         </div>
                     </li>
@@ -102,6 +115,7 @@ $(document).ready( function() {
       
   function toggleSidebar() {
     
+    $(".sidebar").toggleClass("active");
     $(".button").toggleClass("active");
     $("main").toggleClass("move-to-left");
     $(".sidebar-item").toggleClass("active");

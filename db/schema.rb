@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
     t.text "content", default: ""
     t.float "difficulty"
     t.integer "likes", default: 0
+    t.string "image"
     t.integer "user_id"
     t.integer "publish_stage_id", default: 0
     t.datetime "created_at", null: false
@@ -96,9 +97,9 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
     t.string "hint1"
     t.string "hint2"
     t.string "hint3"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
     t.index ["room_id"], name: "index_stages_on_room_id"
   end
 

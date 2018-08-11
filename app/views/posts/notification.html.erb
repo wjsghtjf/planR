@@ -7,7 +7,8 @@
 
 <% @invites.each do |inv| %>
 <% if inv.invite_accepted!=2 %>
-"<%=inv.team.user.nickname %>"님께서  [<%=inv.room.title%>] 게임에 초대했습니다. <%="수락 상태" if inv.invite_accepted==@INVITE_ACCEPT %> <%="대기상태" if inv.invite_accepted==@INVITE_WAIT %><%="거절했음" if inv.invite_accepted==@INVITE_DENY %>
+"<%=inv.team.user.nickname %>"님께서  [<%=inv.room.title%>] 게임에 초대했습니다. <%="수락 상태" if inv.invite_accepted==@INVITE_ACCEPT %> 
+<%="대기상태" if inv.invite_accepted==@INVITE_WAIT %><%="거절했음" if inv.invite_accepted==@INVITE_DENY %>
 
 <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
     <%=hidden_field_tag :invite_id, inv.id %>

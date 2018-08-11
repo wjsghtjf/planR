@@ -6,6 +6,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
       t.float :difficulty 
       t.integer :likes      , default: 0
       
+      t.string :image
       t.belongs_to :user
       t.integer :publish_stage_id , default: 0
       

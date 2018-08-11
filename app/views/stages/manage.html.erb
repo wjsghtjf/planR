@@ -5,51 +5,44 @@
 <div class="row">
 	<div class="col s2">
 		<div class="stage_list">
+	
+			
+	        <%= link_to "방정보 : #{@room.title}", stage_manage_each_path(@room.id, 0) , :class => "list-group-item #{"item-selected" if @stage_level ==0 }"%><hr class="list_line">
+	        
 	   		<% @stages.each_with_index do |s, i|%>
-	        <% if s.id == @stage.id %>
-	        	<% @stage_level= i+1 %>
-	            <%= link_to "Stage #{i+1} : #{s.title}", stage_manage_each_path(s.room_id, s.id) , :class => "list-group-item item-selected"%><hr class="list_line">
-	        <% else %>
-	            <%= link_to "Stage #{i+1} : #{s.title}",  stage_manage_each_path(s.room_id, s.id), :class => "list-group-item"%><hr class="list_line">
-	        <% end  %>
-	        <% end  %>
-	        <% if @stage_level != 20 %>
-	        <%= link_to "Add stage",  stage_create_path(@room.id) , :class => "list-group-item", method: :post  %>
+	            <%= link_to "Stage #{i+1} : #{s.title}", stage_manage_each_path(@room.id, i+1) , :class => "list-group-item #{"item-selected" if @stage_level == (i+1) }"%><hr class="list_line">
+        	<% end  %>
+        	
+	        <% if @stage_level!=20 %>
+	        	<%= link_to "Add stage",  stage_create_path(@room.id) , :class => "list-group-item", method: :post  %>
 	        <% end %><br>
   		</div>
    </div>
    <div class="col s8">
+   
       <h2>:: Stage <%=@stage_level%></h2>
-                <div class="make_room">
-                  <% if @stage %>
-                    <% if @edit_mode %>
-                        <%= render 'form_manage_edit', stage: @stage, :class => "form_manage" %>
-                    <% else %>
-                        <%= render 'form_manage', stage: @stage, :class => "form_manage" %>
-                    <% end %>
-                  
-                  
-                    <% if !@edit_mode %>
-                    
-                          <%if @room.publish_stage_id < @stage.id %>
-                            <%= link_to "수정하기",  stage_manage_edit_path(@room.id,@stage.id, edit_mode: true)  %>
-                          
-                            <form method='POST' action="<%=stage_delete_path(@stage.room_id) %>" style='display:inline'>
-                              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                              <input type='hidden' value='<%=@stage.id%>' name='stage_id'/>
-                              <input type='submit' value='삭제하기' class='btn btn-default'/>
-                            </form>
-                            <%= link_to "배포하기",  room_publish_path(@room.id,@stage.id), method: :post  %>
-                          <% end %>
-                    <% end %>
-                  <% end %>
+        <div class="make_room">
+          <% if @stage_level ==0 %>
+            <% if @edit_mode %>
+                <%= render 'form_manage_room_edit', stage: @room, :class => "form_manage" %>
+            <% else %>
+                <%= render 'form_manage_room', stage: @room, :class => "form_manage" %>
+            <% end %>
+          <% elsif %>
+            <% if @edit_mode %>
+                <%= render 'form_manage_edit', stage: @stage, :class => "form_manage" %>
+            <% else %>
+                <%= render 'form_manage', stage: @stage, :class => "form_manage" %>
+            <% end %>
+     	 <% end %>
+          
     
 
-                </div>
-      </div>
-      <!-- /.card -->
-      <div class="col s1"></div>
-      </div>   
+    </div>
+  </div>
+<!-- /.card -->
+<div class="col s1"></div>
+</div>   
 
 </center>
 

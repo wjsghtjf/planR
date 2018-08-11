@@ -87,7 +87,7 @@ Rails.application.routes.draw do
   post "rooms/:room_id/stages/show", to: "stages#show", as: 'stage_show'
   
   # 정답 체크를 위한 라우팅
-  post "rooms/:room_id/stages/check/:stage_id/:stage_level", to: "stages#check", as: 'stage_check'
+  post "rooms/:room_id/stages/check", to: "stages#check", as: 'stage_check'
   
   # 해당 레벨에 해당하는 스테이지 보기
   get "rooms/:room_id/stages/show/:stage_level" => "stages#show", as: 'stage_show_with_level'
@@ -96,19 +96,18 @@ Rails.application.routes.draw do
   get "rooms/:room_id/stages/manage" , to:"stages#manage", as: 'stage_manage_all'
   
   #[제작모드] 스테이지 보기 (stage_id에 해당하는 정보 띄우기)
-  get "rooms/:room_id/stages/manage/:stage_id" , to: "stages#manage", as: 'stage_manage_each'
+  get "rooms/:room_id/stages/manage/:stage_level" , to: "stages#manage", as: 'stage_manage_each'
   
-  #[제작모드] 스테이지 수정하기모드
-  get "rooms/:room_id/stages/manage/:stage_id" , to: "stages#manage", as: 'stage_manage_edit'
     
  
 #Stage-Action 관련 라우팅 ↓
+
   #[제작모드] 스테이지 새로 만들기
-  post 'rooms/:room_id/stages/create', to: 'stages#create', as: 'stage_create'
+  post 'stages/create', to: 'stages#create', as: 'stage_create'
   #[제작모드] 스테이지 수정하기
-  post 'rooms/:room_id/stages/update/:stage_id', to: 'stages#update', as: 'stage_update'
+  post 'stages/update', to: 'stages#update', as: 'stage_update'
   #[제작모드] 스테이지 삭제하기
-  post 'rooms/:room_id/stages/delete', to: 'stages#delete', as: 'stage_delete'
+  post 'stages/delete', to: 'stages#delete', as: 'stage_delete'
   
  
 #타임라인관련

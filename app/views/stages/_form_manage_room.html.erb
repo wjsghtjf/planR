@@ -1,0 +1,33 @@
+<input type='hidden' name='stage_id' value = '<%=@room.id%>'/>
+
+<div class='form-group'>
+  <label for='title'>방 제목</label>
+  <text  class='form-control' name='title' ><%=@room.title %></text>
+  
+</div>
+
+
+<div class='form-group '>
+  
+  <label for='content'>설명</label>
+  <p class='form-control' name='content' ><%=@room.content%> </p>
+
+</div>
+
+<!--이미지가 있는 경우에만 -->
+
+
+<% if @room.image.url.nil? %>
+    <%= image_tag 'mainpage_img.jpg'%>
+<% else %>
+<div>
+    <div class='form-group'>
+        <label>Uploaded Image</label><br/>
+         <%= image_tag @room.image.url(:main) , id: 'img-upload', class: 'img-main' if @room.image.url %>
+    </div>
+</div>
+<% end %>
+
+<%if @room.publish_stage_id == 0  %>
+  <%= link_to "수정하기",  stage_manage_each_path(@room.id,0, edit_mode: true) , class: 'btn btn-default' %>
+<% end %>

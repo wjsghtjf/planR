@@ -1,11 +1,11 @@
-@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css); .nanumgothic * { font-family: 'Nanum Gothic', sans-serif; }
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import "rooms.scss";
 @import "posts.scss";
 @import "stages.scss";
 @import "time_lines.scss";
 
 html {
-    font-family: 'Nanum Gothic';
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
@@ -17,18 +17,18 @@ body {
 
 nav {
     //background: RGBA(255, 255, 255, 1);
-    background: #020202;
+    background: #ffffff;
     position: fixed;
     z-index: 10;
 }
 
 nav ul li a {
     //color: RGB(97, 115, 140);
-    color: white;
+    color: black;
 }
 
 nav a:visited {
-    color: white;
+    color: black;
 }
 
 nav a i {

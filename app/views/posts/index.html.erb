@@ -2,16 +2,189 @@
     <title>플랜 R :: 만든다. 방탈출.</title>
 </head>
 <body>
-    <%= alert %>
-    <%= notice %>
-    <div class="mainpage_wrapper">
-        <div class="mainpage" >
-             <!--임시 주석처리 내가풀었어 ㅎ헷 -->
-            <center>
-                <!--여기 할일 툭-->
-            <div class="mainpage_button"><a href="<%= room_mine_path%>">메이커</a></div>  
-            <div class="mainpage_button"><a href="<%= room_index_path%>">플레이</a></div>
-            </center>
-        </div>
-    </div>
+
+<main role="main" class="main-content">
+    <canvas id="noise" class="noise mainpage"></canvas>
+    
+    <h1 class="main-title">
+        Plan R
+    </h1>
+</main>
 </body>
+
+
+
+<script>
+var isStop= false;
+$(document).ready( function() {
+let noise;
+  noise = () => {
+    let canvas, ctx;
+
+    let wWidth, wHeight;
+
+    let noiseData = [];
+    let noiseDataClicked = [];
+    let frame = 0;
+
+    let loopTimeout;
+
+
+    // Create Noise
+    const createNoise = () => {
+        
+         const idata = ctx.createImageData(wWidth, wHeight);
+    
+        for (var i=0;i<idata.data.length;i+=4)
+        { 
+            idata.data[i+0]=100;         //R (255,0,0,255)
+            idata.data[i+1]=100;       //G (0,255,0,255)
+            idata.data[i+2]=100;         //B (0,0,255,255)
+            idata.data[i+3]=0;        //A ALPHA투명도
+        }
+
+        const buffer32 = new Uint32Array(idata.data.buffer);
+        const len = buffer32.length;
+
+        for (let i = 0; i < len; i++) {
+            var r = Math.random() ;
+            if (r< 0.001) {// 몇퍼센트 확률로
+                buffer32[i] = 0xff2d2da2;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            }
+            
+            else if (r < 0.002) {// 몇퍼센트 확률로
+                buffer32[i] = 0xffB35949;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            }
+            
+            else if (r < 0.003) {// 몇퍼센트 확률로
+                buffer32[i] = 0xff3e8f3e;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            }
+        }
+
+        noiseData.push(idata);
+
+        
+    };
+
+
+ // Create Noise 이거 지워야함 껄껄
+    const createNoiseClicked = () => {
+     
+        const idata = ctx.createImageData(wWidth, wHeight);
+    
+        for (var i=0;i<idata.data.length;i+=4)
+        { 
+            idata.data[i+0]=100;         //R (255,0,0,255)
+            idata.data[i+1]=100;       //G (0,255,0,255)
+            idata.data[i+2]=100;         //B (0,0,255,255)
+            idata.data[i+3]=0;        //A ALPHA투명도
+        }
+
+        const buffer32 = new Uint32Array(idata.data.buffer);
+        const len = buffer32.length;
+
+        for (let i = 0; i < len; i++) {
+            var r = Math.random() ;
+            if (r< 0.01) {// 몇퍼센트 확률로
+                buffer32[i] = 0xff2d2da2;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            }
+            
+            else if (r < 0.02) {// 몇퍼센트 확률로
+                buffer32[i] = 0xff7f3e3e;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            }
+            
+            else if (r < 0.03) {// 몇퍼센트 확률로
+                buffer32[i] = 0xff3e8f3e;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            }
+        }
+
+
+        noiseDataClicked.push(idata);
+    };
+
+
+
+    // Play Noise
+    const paintNoise = () => {
+        if (frame === noiseData.length-1) {
+            frame = 0;
+        } else {
+            frame++;
+        }
+
+        if(isStop)
+        ctx.putImageData(noiseDataClicked[frame], 0, 0);
+        else 
+        ctx.putImageData(noiseData[frame], 0, 0);
+    };
+
+
+    // Loop
+    const loop = () => {
+        // if(isStop==true) return 
+        
+        paintNoise(frame);
+
+        loopTimeout = window.setTimeout(() => {
+            window.requestAnimationFrame(loop);
+            
+            
+        }, (1000 / 5)); // 노이즈 속도 1000/x ->1초의 X프레임
+    };
+
+
+    // Setup
+    const setup = () => {
+        wWidth = window.innerWidth; //입자 크기  innerWidth/x x가 커질수록 입자가 커짐.
+        wHeight = window.innerHeight; 
+
+        canvas.width = wWidth;
+        canvas.height = wHeight;
+
+        for (let i = 0; i < 10; i++) {
+            createNoise();
+              createNoiseClicked();
+        }
+
+        loop();
+    };
+
+
+    // Reset
+    let resizeThrottle;
+    const reset = () => {
+        window.addEventListener('resize', () => {
+            window.clearTimeout(resizeThrottle);
+
+            resizeThrottle = window.setTimeout(() => {
+                window.clearTimeout(loopTimeout);
+                setup();
+            }, 2000);
+        }, false);
+    };
+
+
+    // Init
+    const init = (() => {
+        canvas = document.getElementById('noise');
+        ctx = canvas.getContext('2d');
+        setup();
+    })();
+};
+ noise();
+});
+
+ 
+ $(document).on("click",function() {
+    isStop= (isStop==false);
+ });
+     
+     
+
+</script>

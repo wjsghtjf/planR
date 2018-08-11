@@ -1,6 +1,6 @@
 class StagesController < ApplicationController
   
-  before_action :set_stage, only: [:update, :delete, :check]
+  before_action :get_stage, only: [:update, :delete, :check]
   before_action :find_roomCal, only: [:show, :check, :hintpage]
   before_action :get_chats, only: [:show ]
   
@@ -70,34 +70,24 @@ class StagesController < ApplicationController
  
   
   def manage
-    
     @room=Room.find(params[:room_id])
-    puts "Stage/manage : @room = #{@room}"
+    
     # 스테이지 목록을 위한 stage의 배열
     @stages = Stage.where('room_id' => @room.id)
     
-    puts "Stage/manage : @stages = #{@stages}"
-    
-    #stage는 우측 화면에 정보를 보여줄 Stage 객체이다.
-      
-      
-    #parameter 중에서 stage_id가 있는 경우
-    if params[:stage_id] 
-      # stage_id에 해당하는 stage를 가져온다.
-      @stage = Stage.find(params[:stage_id])
-      puts "Stage/manage : @stage = #{@stage} from parameter"
+    #parameter 중에서 stage_level가 있는 경우
+    if params[:stage_level] 
+      @stage_level = [Integer(params[:stage_level]), @stages.length ].min
     # stage배열이 한개 이상일 경우 stage 배열에서 가장 마지막 stage를 화면에 띄어준다.
-    else @stages.length!=0
-        @stage = @stages.last
-      puts "Stage/manage : @stage = #{@stage} from last"
-    end
-    
-    #parameter 중에서 edit_mode가 있는 경우 @edit_mode를 참으로 설정한다.
-    if params[:edit_mode]
-      @edit_mode=true
     else
-      @edit_mode=false
+      @stage_level = @stages.length
     end
+    @stage = @stages[@stage_level - 1] if @stage_level > 0
+    
+    puts "Stage/manage : @stage = #{@stage} with Stage_level : #{@stage_level}"
+    #parameter 중에서 edit_mode가 있는 경우 @edit_mode를 참으로 설정한다.
+    
+    @edit_mode= params[:edit_mode].to_s == "true"
     puts "Stage/manage : @edit_mode = #{@edit_mode}"
     
     # 선택된 stage가 있으면서 선택된 스테이지의 image_url이 있는 경우 @stage_file_name에 파일명을 저장시킨다.
@@ -109,6 +99,12 @@ class StagesController < ApplicationController
       @stage_file_name = ""
     end
     
+    if  @room.image.url
+      @room_file_name = @room.image.url.split('/')[-1]
+      puts "Stage/manage : @room_file_name = #{@room_file_name}"
+    else
+      @room_file_name = ""
+    end
     
   end
   
@@ -123,7 +119,7 @@ class StagesController < ApplicationController
     @stage.save
     
     # 새로 만들어진 stage는 edit_mode로 redirect해준다.
-    redirect_to stage_manage_each_path(@stage.room_id,@stage.id, edit_mode: true)
+    redirect_to stage_manage_all_path(@stage.room_id, edit_mode: true)
   end
   
   def update
@@ -138,7 +134,7 @@ class StagesController < ApplicationController
     @stage.update(stage_params)
   
     @stage.save
-    redirect_to stage_manage_each_path(@stage.room_id,@stage.id)
+    redirect_to stage_manage_each_path(@stage.room_id,params[:stage_level])
   end
   
   def delete
@@ -221,13 +217,10 @@ class StagesController < ApplicationController
   end
 #기타 Method
 
-  def set_stage
+  def get_stage
     @stage = Stage.find(params[:stage_id])
   end
 
-  def stage_params
-      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,:image,:answer)
-  end
   
   
   def find_roomCal
@@ -240,8 +233,13 @@ class StagesController < ApplicationController
       @chats = Chat.where("team_id == :team_id", {:team_id => @roomCal.team_id})
     else
       # @chats = Chat.where("user_id == :user_id AND room_id == :room_id", {:user_id => current_user.id, :room_id => params[:room_id]})
-      @chats = Chat.where("user_id == :user_id", {:user_id => current_user.id})
+      @chats = Chat.where("user_id == :user_id", {:user_id => current_user.id} )
     end
     
+  end
+  
+  
+  def stage_params
+      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,:image,:answer)
   end
 end

@@ -2,20 +2,27 @@
 <br>
 <h3>새로운 방탈출</h3>
     <div class="container">
-      <form action='/rooms/create'class="form-horizontal", method="post">
-         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%=form_for :room, url: room_create_path , method: 'post', multipart: true  do |f| %>
+      
         <div class="form-group">
-          <label for="exampleInputName">게임 제목</label>
-          <input type="text" name="input_title" class="form-control" id="exampleInputName2" placeholder="게임의 제목을 입력하세요.">
+           
+          <!--<label for="exampleInputName">게임 제목</label>-->
+          <%= f.label :title , '게임 제목' %>
+          <%= f.text_field :title ,placeholder: '게임의 제목을 입력하세요.', class: 'form-control',id:"exampleInputName2" %>
+         
         </div>
         <div class="form-group ">
-          <label for="exampleInputText">설명</label>
-         <textarea name="input_content"  class="form-control" placeholder="방탈출을 소개할 문구를 입력해주세요." ></textarea> 
+          <%= f.label :content, '설명' %>
+          <%= f.text_area :content,placeholder:"방탈출을 소개할 문구를 입력해주세요.", class:"form-control" %>
+         <!-- <label for="exampleInputText">설명</label>-->
+         <!--<textarea name="input_content"  class="form-control"  ></textarea> -->
         </div>
-         <button type="submit" class="btn btn-default">만들기</button>
-       
+         <%= f.submit '만들기' , class: "btn btn-default" %>
+         <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
+         
+      
 
-         </form>
+     <%end%>
     </div>
     <hr>
     <div class="row align-items-center">

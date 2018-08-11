@@ -1,8 +1,9 @@
 
 <%=form_for :stage, url: stage_update_path , method: 'post', multipart: true  do |f| %>
-<!--<form class='form-horizontal'  action='/stages/update' method='post'>-->
 
+<%=hidden_field_tag :room_id, @room.id %>
 <%=hidden_field_tag :stage_id, @stage.id %>
+<%=hidden_field_tag :stage_level, @stage_level %>
 
 <div class='form-group'>
     <%= f.label :title, '스테이지 제목' %>

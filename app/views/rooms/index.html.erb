@@ -31,7 +31,12 @@
             <div class="card">
                 <!-- 이미지 유저가 올린걸로 바꿀 수 있게 해주세요 -->
                 <a href="<%=room_show_path(room.id) %>">
-                <img src="/assets/mainpage_img.jpg">
+                <% if room.image.url.nil? %>
+                  <%= image_tag 'mainpage_img.jpg'%>
+                <% else %>
+                  <%= image_tag room.image.url(:thumb )%>
+                <% end %>
+                
                 </a>
                 <p><%=truncate room.title, length: 20 %></p>
                 <!--<p><%=truncate room.content, length: 28  %></p>-->

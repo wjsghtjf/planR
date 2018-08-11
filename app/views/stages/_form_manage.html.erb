@@ -1,10 +1,12 @@
-<input type='hidden' name='stage_id' value = '<%=@stage.id%>'/>
+
+<%=hidden_field_tag :stage_level, params[:stage_level] %>
 
 <div class='form-group'>
   <label for='title'>스테이지 제목</label>
   <text  class='form-control' name='title' ><%=@stage.title %></text>
   
 </div>
+
 
 <div class='form-group '>
   
@@ -24,6 +26,8 @@
 </div>
 
 <!--이미지가 있는 경우에만 -->
+
+
 <% if @stage.image && @stage.image.length>0 %>
 <div>
     <div class='form-group'>
@@ -31,4 +35,15 @@
          <%= image_tag @stage.image.url(:main) , id: 'img-upload', class: 'img-main' if @stage.image.url %>
     </div>
 </div>
+<% end %>
+
+<%if @room.publish_stage_id < @stage.id %>
+  <%= link_to "수정하기",  stage_manage_each_path(@room.id,@stage_level, edit_mode: true) , class: 'btn btn-default' %>
+                          
+	<%=form_tag stage_delete_path(@stage.room_id), {method: 'post', style:'display:inline'} do %>
+		<%=hidden_field_tag :stage_id, @stage.id %>
+		<%=submit_tag '삭제하기', class: 'btn btn-default' %>
+	<% end %>
+  
+  <%= link_to "배포하기",  room_publish_path(@room.id,@stage.id), method: :post ,class: 'btn btn-default' %>
 <% end %>

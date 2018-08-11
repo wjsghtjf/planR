@@ -25,13 +25,18 @@ $(document).ready( function() {
               <div class='form-group'>
               <label for='answer'>정답 입력창 :: </label>
 
-              <form action='<%=stage_check_path(@room.id, @stage.id, @stage_level)%>' method="post" id='nextStage'>
-                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%=form_tag stage_check_path(@room.id), {methd: 'post', id:'nextStage'} do %>
+                    <%=text_field_tag :enter_answer, '', autocomplete: 'off' %>
+                    <%=hidden_field_tag :stage_level, @stage_level%>
+                    <%=hidden_field_tag :stage_id, @stage.id%>
+                    <%=submit_tag '제출', id: 'btn_check_answer', class: 'btn'%>
+                <% end %>
+              <!--<form action='<%#=stage_check_path%>' method="post" id='nextStage'>-->
     
-                  <input type="string" name="enter_answer"  autocomplete=off>
-                  <input type='hidden' value='<%= @stage_level%>' name='stage_level'/>
-                  <input type='submit' id='btn_check_answer'  class="btn"  value='제출'/>
-              </form>
+              <!--    <input type="string" name="enter_answer"  autocomplete=off>-->
+              <!--    <input type='hidden' value='<%#= @stage_level%>' name='stage_level'/>-->
+              <!--    <input type='submit' id='btn_check_answer'  class="btn"  value='제출'/>-->
+              <!--</form>-->
       
               </div>
             <% end %>

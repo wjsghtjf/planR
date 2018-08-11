@@ -16,6 +16,16 @@ main {
   transition: transform .5s ease-in-out;
 }
 
+.st {
+  text-align: left;
+  color: #81799B;
+}
+
+.author {
+  text-align: left;
+  color: #9E4B4B;
+}
+
 .sidebar {
   height: 85%;
   width: 400px;
@@ -23,7 +33,23 @@ main {
   top: 0;
   z-index: 1;
   right: 0;
-  background-color: transparentt;
+  background-color : transparent;
+  overflow-y: scroll;
+}
+
+.ch_list{
+  text_align: left;
+  
+}
+
+.sidebar.active{
+  height: 85%;
+  width: 400px;
+  position: fixed;
+  top: 0;
+  z-index: 0;
+  right: 0;
+  background-color : white;
   overflow-y: scroll;
 }
 

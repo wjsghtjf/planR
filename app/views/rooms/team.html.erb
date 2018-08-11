@@ -19,7 +19,6 @@
   <%=form_tag invite_create_path, {method: 'post' , class: 'form-horizontal' } do %>
     <%=hidden_field_tag :room_id , params[:room_id] %>
     <%=hidden_field_tag :team_id , params[:team_id] %>
-    <%=hidden_field_tag :host_id , params[:host_id] %>
     <%=text_field_tag :input_nick_name ,'' , class: 'form-control' , id: 'exampleInputName2', placeholder: '초대할 유저의 닉네임'%>
     <%=submit_tag '초대하기', class:  'btn btn-default' %>
   <% end %>

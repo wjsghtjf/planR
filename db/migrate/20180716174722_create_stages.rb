@@ -11,6 +11,7 @@ class CreateStages < ActiveRecord::Migration[5.2]
       t.string :hint1 
       t.string :hint2
       t.string :hint3
+      t.string :image
       
       t.timestamps
     end

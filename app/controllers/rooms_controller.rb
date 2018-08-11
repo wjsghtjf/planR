@@ -10,6 +10,7 @@ class RoomsController < ApplicationController
   
   @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
     
+    
     @dummy=0   # publish_stage_id값이 누적되어쌓임. 해결방안을위한 임시방편..나은방법있음추가요망
     @publish_stage_id=0
     if params[:sort] == "recent"
@@ -37,7 +38,6 @@ class RoomsController < ApplicationController
   
   
   def new
-    @rooms=Room.all
   end
 
   def edit
@@ -56,11 +56,7 @@ class RoomsController < ApplicationController
   #View 가 없는 Controller
     
   def create
-    @rooms=Room.all
-    @room=Room.new
-    @room.title=params[:input_title]
-    @room.content=params[:input_content]
-    
+    @room=Room.new(room_params)
     if @room.content.length==0
       @room.content="  "
     end
@@ -72,6 +68,9 @@ class RoomsController < ApplicationController
   
   def update
     
+    @room.update(room_params)
+    @room.save
+    redirect_to stage_manage_all_path(@room.id)
   end
   
   def delete
@@ -92,9 +91,6 @@ class RoomsController < ApplicationController
   
 #기타 Method
 
-  def room_params
-      params.require(:room).permit(:title,:content)
-  end
  
   
   def find_invites
@@ -103,5 +99,10 @@ class RoomsController < ApplicationController
   
   def find_roomCal
    @roomCal = RoomCal.find_by(user_id:  current_user.id, room_id: params[:room_id])
+  end
+  
+  
+  def room_params
+      params.require(:room).permit(:title,:content,:image)
   end
 end
