@@ -3,7 +3,7 @@
 
 <!-- Page Content -->
 <div class="row">
-	<div class="col s2">
+	<div class="col s2"> 
 		<div class="stage_list">
 	
 			
@@ -13,17 +13,21 @@
 	            <%= link_to "Stage #{i+1} : #{s.title}", stage_manage_each_path(@room.id, i+1) , :class => "list-group-item #{"item-selected" if @stage_level == (i+1) }"%><hr class="list_line">
         	<% end  %>
         	
-	        <% if @stage_level!=20 %>
+        	
+	        <% if !@stage || ( @stage_level!=20 && @stage.laststage == 0) %>
 	        	<%=form_tag stage_create_path, { method: 'post'} do %>
 				    <%= hidden_field_tag :room_id, @room.id %>		    
 				    <%=submit_tag 'Add Stage', class: "btn" %>
 				<% end %>
-	        <% end %><br>
+	        
+	        <% end %>
+	        
+	        <br>
   		</div>
    </div>
    <div class="col s8">
    
-      <h2>:: Stage <%=@stage_level%></h2>
+      <h2><%=(@stage_level ==0) ? ":: #{@room.title}" : ":: Stage #{@stage_level}" %></h2>
         <div class="make_room">
           <% if @stage_level ==0 %>
             <% if @edit_mode %>
@@ -92,7 +96,7 @@ $(document).ready( function() {
 		      //첨부 취소 버튼을 보여준다. 이때 inline는 한칸, block는 한줄로 인식되는 역할인다.
 		      $("#btn_cancel").css("display","inline");
 		      //미리보기 버튼을 보여준다.
-		      $("#btn_preview").css("display","block");
+		      $("#btn_preview").css("display","inline");
 		      //미리보기 이미지를 숨긴다.
 	       $("#img-upload").css("display","none");
 		    }
@@ -122,7 +126,7 @@ $(document).ready( function() {
 		    if("<%=@stage_file_name %>".length){
 		      //첨부 취소 버튼과 미리보기 버튼을 보여준다.
 		      $("#btn_cancel").css("display","inline");
-		      $("#btn_preview").css("display","block");
+		      $("#btn_preview").css("display","inline");
 		    }else{
 		      //등록된 파일이 없는 경우는 숨긴다.
 		      $("#btn_cancel").css("display","none");
@@ -135,6 +139,7 @@ $(document).ready( function() {
 	
 	//이미지 url을 받아서 img Tag의 src값을 바꿔준다.
 	function setImage(img_url){
+	  $("#img-upload").css("display","block");
 		  $('#img-upload').attr('src', img_url);
 	}
 	
@@ -173,6 +178,7 @@ $(document).ready( function() {
 	  $("#btn_cancel").css("display","none");
 	  //이미지 tag를 비운다.
 	  $('#img-upload').attr("src","");
+	  $("#img-upload").css("display","none");
 	  
 	  //기존에 있던 파일을 삭제했는지 여부를 갱신시켜준다.
 	  //이게 있는 이유는 원래 있던 파일을 삭제 한것인지 아닌지를 판단하기 위함이다.

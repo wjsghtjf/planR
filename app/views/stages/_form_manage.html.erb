@@ -7,6 +7,8 @@
   
 </div>
 
+        <%= render 'dialog_modal' %>
+        
 
 <div class='form-group '>
   
@@ -39,11 +41,13 @@
 
 <%if @room.publish_stage_id < @stage.id %>
   <%= link_to "수정하기",  stage_manage_each_path(@room.id,@stage_level, edit_mode: true) , class: 'btn btn-default' %>
-                          
-	<%=form_tag stage_delete_path(@stage.room_id), {method: 'post', style:'display:inline'} do %>
-		<%=hidden_field_tag :stage_id, @stage.id %>
-		<%=submit_tag '삭제하기', class: 'btn btn-default' %>
-	<% end %>
+  <button class='btn btn-default' data-toggle="modal" data-target="#delete">
+   삭제하기
+  </button>
+  <button class='btn btn-default' data-toggle="modal" data-target="#publish">
+    배포하기
+  </button>
   
-  <%= link_to "배포하기",  room_publish_path(@room.id,@stage.id), method: :post ,class: 'btn btn-default' %>
 <% end %>
+
+<p style="color:red;"><b>[주의] 한 번 배포 후에는 스테이지 수정이 불가능합니다.</b></p>

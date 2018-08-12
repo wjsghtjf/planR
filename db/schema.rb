@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_052304) do
+ActiveRecord::Schema.define(version: 2018_08_12_181902) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
   create_table "rooms", force: :cascade do |t|
     t.string "title", default: ""
     t.text "content", default: ""
-    t.float "difficulty"
+    t.float "difficulty", default: 0.0
     t.integer "likes", default: 0
     t.string "image"
     t.integer "user_id"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "stage_cals", force: :cascade do |t|
+    t.integer "room_cals_id"
+    t.integer "usedhint1"
+    t.integer "usedhint2"
+    t.integer "usedhint3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_cals_id"], name: "index_stage_cals_on_room_cals_id"
   end
 
   create_table "stages", force: :cascade do |t|
@@ -98,6 +108,8 @@ ActiveRecord::Schema.define(version: 2018_08_08_052304) do
     t.string "hint2"
     t.string "hint3"
     t.string "image"
+    t.integer "laststage", default: 0
+    t.float "partial_difficulty", default: 5.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_stages_on_room_id"

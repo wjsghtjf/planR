@@ -24,36 +24,45 @@
 <div class="col s10">
 <% @rooms.each do |room| %>
 <% @publish_stage_id=room.publish_stage_id%>  
-
 <div class="card_list" ontouchstart="this.classList.toggle('hover');">
   
   <div class="card">  
     <a href="<%=room_show_path(room.id) %>">
-      <% if room.image.url.nil? %>
-      <div class="card_front nonthumb">
-        <div class="card-symbol"><%=room.title%><hr>
-        </div>
+      <%# if room.image.url.nil? %>
+      <div class="card_front <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>"> 
+        
+        <% if @publish_stage_id!=0 && Stage.find(@publish_stage_id).laststage == 1 %>
+        <div class="card_fin"> <i class="material-icons">check_circle</i></div>
+        <% end %>
+        
+        
+        
+        
+        <div class="card-symbol"><%=room.title%>
+        [
+        
+        <%= room.difficulty.round(2) %>
+
+        
+        ]<hr></div>
       </div>
       <hr>
-      <div class="card_back nonthumb">
+      <div class="card_back <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">
          <div class="card-symbol"><%=room.title%><hr>
          <p><%=truncate room.content, length: 100 %></p>
         </div>
       </div>
-      <% else %>
-        <div class="card_front thumbnail">
-          <div class="card-symbol"><%=room.title%><hr>
-        </div>
-        </div>
-        <div class="card_back thumbnail">
-          <div class="card-symbol"><%=room.title%><hr>
-         <p><%=truncate room.content, length: 100 %></p>
-        </div>
-        <%= image_tag room.image.url(:thumb )%>
-        
-        </div>  
+      <!--<%#else %>-->
+      <!--  <div class="card_front <%#=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%#="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">-->
+      <!--    <div class="card-symbol"><%#=room.title%></div>-->
+      <!--  </div>-->
+      <!--  <div class="card_back thumbnail"  style='background-image: url(<%#=room.image.url(:thumb)%>)'>-->
+      <!--    <div class="card-symbol"><%#=room.title%><hr>-->
+      <!--   <p><%#=truncate room.content, length: 100 %></p>-->
+      <!--  </div>-->
+      <!--  </div>  -->
                   
-      <% end %>
+      <!--<%#end %>-->
   </a>
   </div>
 </div>

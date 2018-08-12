@@ -17,8 +17,32 @@
          <!-- <label for="exampleInputText">설명</label>-->
          <!--<textarea name="input_content"  class="form-control"  ></textarea> -->
         </div>
+        <div class='form-group'>
+          <label>Upload Image</label>
+            <div class='input-group'>
+                <span class='input-group-btn'>
+                    <span class='btn btn-default btn-file'>
+                        <label for='imgInp'>Browse… </label>
+                        <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
+                    </span>
+                </span>
+                
+                
+                <input type='text' class='input-form' name='image' readonly value='<%=@stage_file_name %>'>
+                
+                
+                
+                <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
+            
+                <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary btn-form'>미리보기</button>    
+            </div>
+            
+             <image id='img-upload' class='img-thumb'/>
+        </div>
+    
          <%= f.submit '만들기' , class: "btn btn-default" %>
-         <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
+         
+         
          
       
 
@@ -29,3 +53,115 @@
 </div>
 
 <br><br><hr><%=link_to "홈으로", '/' %>
+
+<!--여기서 부터 자바스크립트입니다 -->
+<script>
+
+    //파일 선택기를 통해서 추가된 파일을 임시 저장하는 변수
+	  var imgInput=null;
+  
+// html문서(document)가  준비(ready) 됬을때 중괄호 안에 내용을 실행해라. 즉 main함수와 같은 역할
+$(document).ready( function() {
+  
+    //html문서(document)에 change(event type중 하나) 이벹트를 바인드 시킨다.
+    // 두번쨰 parameter는 document의 자식중에서 .btn-file :file인 Element들에게만 이벤트를 바인딩 시킨다는 의미이다.
+    $(document).on('change', '.btn-file :file', function() {
+      var input = $(this),//여기는 나도 몰라 왜 ,일까
+      
+      //파일명중에서 특정 문자를 오류나지 않는 문자로 바꾼다.
+		  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		  
+		  //??
+		  input.trigger('fileselect', [label]);
+		});
+
+    //btn-file이라는 class를 가지고 :file인 element에  fileselect라는 이벤트를 바인딩 시킨다.
+		$('.btn-file :file').on('fileselect', function(event, label) {
+		  //input는 이 :file element(this)의 부모의 ???중에서 text를 찾고... ??모름
+		    var input = $(this).parents('.input-group').find(':text'), log = label;
+		    
+		    if( input.length ) {
+		      if(log.length)
+		        input.val(log);
+		    } else {
+		        if( log ) alert(log);
+		    }
+		}); 
+		
+		//imgInp의 내용이 바뀔경우 아래의 함수를 실행한다.
+		$("#imgInp").change(function(){
+		  //imgInp(this)가 file이 등록된 경우에만 실행한다.
+		    if (this.files && this.files[0]) {
+		      //입력된 file의 정보를 imgInput변수에 임시저장한다.
+		      imgInput = this;
+		      //첨부 취소 버튼을 보여준다. 이때 inline는 한칸, block는 한줄로 인식되는 역할인다.
+		      $("#btn_cancel").css("display","inline");
+		      //미리보기 버튼을 보여준다.
+		      $("#btn_preview").css("display","inline");
+		      //미리보기 이미지를 숨긴다.
+	       $("#img-upload").css("display","none");
+		    }
+		});
+		
+	});
+	
+	//이미지 url을 받아서 img Tag의 src값을 바꿔준다.
+	function setImage(img_url){
+	  $("#img-upload").css("display","block");
+		  $('#img-upload').attr('src', img_url);
+	}
+	
+	
+	//미리 보기 버튼을 눌렀을 때 발생하는 이벤트
+	function showImage(){
+	  //이미지 태그를 보여준다.
+	  $("#img-upload").css("display","block")
+	  
+	  //파일 선택기를 통해서 선택된 이미지가 있다면
+	  if(imgInput)
+	    //선택된 파일을 가지고 이미지를 보여준다.
+	    readURL(imgInput);
+	 //선택된 파일은 없지만 등록된 이미지 파일이 있을 경우는
+	  else if("<%=@stage_file_name %>".length){
+	    //등록된 이미지의 thumb 버전의 이미지 url을 가져오고 만약에 없을 경우는 빈 문자열'' 으로 지정된다.
+		  var img_url = "<%=@stage ? @stage.image.url(:thumb) : '' %>";
+	     //등록된 이미지 url을 이미지로 보여준다.
+  		  setImage(img_url);
+	  }
+	  //미리보기 버튼을 안보이게 한다.
+	  $("#btn_preview").css("display","none")ㄱㅁ
+	}
+	
+	//첨부된 이미지를 삭제하는 경우
+	function cancelImage(){
+	  //임시 저장된 파일을 비워준다.
+	  imgInput=null;
+	  //첨부된 파일의 이름을 보여주는 element를 비워분다.
+	  $('.btn-file :file').parents('.input-group').find(':text').val("");
+	  //첨부된 파일의 값을 비워준다.
+	  $("#imgInp").val('');
+	  //미리보기 버튼을 숨긴다.
+	  $("#btn_preview").css("display","none");
+	  //삭제 버튼을 숨긴다.
+	  $("#btn_cancel").css("display","none");
+	  //이미지 tag를 비운다.
+	  $('#img-upload').attr("src","");
+	  $("#img-upload").css("display","none");
+	  
+	  //기존에 있던 파일을 삭제했는지 여부를 갱신시켜준다.
+	  //이게 있는 이유는 원래 있던 파일을 삭제 한것인지 아닌지를 판단하기 위함이다.
+	  $('#is_delete').val(true);
+	}
+	
+	//파일 선택기로 선택된 이미지를 띄어준다.
+	function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    
+	    var reader = new FileReader();
+	    reader.onload = function (e) {
+	      $('#img-upload').attr('src', e.target.result);
+	    }
+		  reader.readAsDataURL(input.files[0]);
+	  }
+}
+</script>

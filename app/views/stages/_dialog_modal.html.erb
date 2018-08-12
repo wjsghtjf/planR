@@ -1,23 +1,104 @@
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal1" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">힌트 사용</h4>
+        <h4 class="modal-title">도움이 필요하십니까?</h4>
       </div>
       <div class="modal-body">
-        <p>힌트를 사용하시겠습니까? 사용 시 EP(Escape Point)가 감소될 수 있습니다. </p>
+        <p>힌트 사용 시 EP(Escape Point)가 감소될 수 있습니다.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Open</button>
-        
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        
+        <%= link_to '힌트 사용'.html_safe, stage_hintpage_path(@room.id,@stage.id,1), method: :post, :class => 'btn btn-default' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">힌트 미사용</button>
       </div>
     </div>
+  </div>
+</div>
 
+
+<!-- Modal -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">도움이 필요하십니까?</h4>
+      </div>
+      <div class="modal-body">
+        <p>힌트 사용 시 EP(Escape Point)가 감소될 수 있습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to '힌트 사용'.html_safe, stage_hintpage_path(@room.id,@stage.id,2), method: :post, :class => 'btn btn-default' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">힌트 미사용</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">도움이 필요하십니까?</h4>
+      </div>
+      <div class="modal-body">
+        <p>힌트 사용 시 EP(Escape Point)가 감소될 수 있습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to '힌트 사용'.html_safe, stage_hintpage_path(@room.id,@stage.id,3), method: :post, :class => 'btn btn-default' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">힌트 미사용</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="publish" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">정말로 배포하시겠습니까?</h4>
+      </div>
+      <div class="modal-body">
+        <p style="color:red;"><b>[주의]</b></p>
+        <p style="color:red;"><b>한 번 배포 후에는 방 정보 및 스테이지 수정이 불가합니다.</b></p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "배포하기", room_publish_path(@room.id,@stage.id), method: :post ,class: 'btn btn-default' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="delete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">정말로 삭제하시겠습니까?</h4>
+      </div>
+      <div class="modal-body">
+        <p>스테이지가 삭제됩니다.</p>
+      </div>
+      <div class="modal-footer">
+	<%=form_tag stage_delete_path(@stage.room_id), {method: 'post', style:'display:inline'} do %>
+		<%=hidden_field_tag :stage_id, @stage.id %>
+		<%=submit_tag '삭제하기', class: 'btn btn-default' %>
+	<% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+      </div>
+    </div>
   </div>
 </div>

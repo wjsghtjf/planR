@@ -44,7 +44,7 @@ $(document).ready( function() {
 
     
         <% if  @stage_level > 0 %>
-          <form method='POST' action="<%=stage_show_path(@room.id) %>" style='display:inline'>
+          <form method='POST' action="<%=stage_show_path(@room.id) %>" class='btn-form'>
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <input type='hidden' value='<%= @stage_level-1 %>' name='stage_level'/>
             <input type='submit' value='이전' class='btn btn-default'/>
@@ -53,7 +53,7 @@ $(document).ready( function() {
     
         <!-- 배포된 페이지 까지만 보여주기-->
         <% if (@stages.length)-1 > @stage_level && @stage_level<@roomCal.last_stage_level %>
-         <form method='POST' action="<%=stage_show_path(@room.id) %>" style='display:inline'>
+         <form method='POST' action="<%=stage_show_path(@room.id) %>" class='btn-form'>
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <input type='hidden' value='<%= @stage_level +1 %>' name='stage_level'/>
             <input type='submit' value='다음' class='btn btn-default'/>

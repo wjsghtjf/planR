@@ -15,10 +15,18 @@
 
 
 <script>
-var isStop= false;
+
+
+
 $(document).ready( function() {
+    
+    
+var frameByOneSec=5;    
+var isTurnOff=false;
+var isClicked= false;
+
 let noise;
-  noise = () => {
+noise = () => {
     let canvas, ctx;
 
     let wWidth, wHeight;
@@ -118,16 +126,16 @@ let noise;
             frame++;
         }
 
-        if(isStop)
-        ctx.putImageData(noiseDataClicked[frame], 0, 0);
+        if(isClicked)
+            ctx.putImageData(noiseDataClicked[frame], 0, 0);
         else 
-        ctx.putImageData(noiseData[frame], 0, 0);
+            ctx.putImageData(noiseData[frame], 0, 0);
     };
 
 
     // Loop
     const loop = () => {
-        // if(isStop==true) return 
+        if(isTurnOff == true) return 
         
         paintNoise(frame);
 
@@ -135,7 +143,7 @@ let noise;
             window.requestAnimationFrame(loop);
             
             
-        }, (1000 / 500)); // 노이즈 속도 1000/x ->1초의 X프레임
+        }, (1000 / frameByOneSec)); // 노이즈 속도 1000/x ->1초의 X프레임
     };
 
 
@@ -149,7 +157,7 @@ let noise;
 
         for (let i = 0; i < 10; i++) {
             createNoise();
-              createNoiseClicked();
+            createNoiseClicked();
         }
 
         loop();
@@ -178,13 +186,34 @@ let noise;
     })();
 };
  noise();
+
+
+ $(document).on("click",function() {
+    isClicked = (isClicked==false);
+    
+    const p0 = 0.5;
+    const p1 = 0.15 + p0;
+    const p2 = 0.01 + p1;
+    const p3 = 0.01 + p2;
+        
+    var r = Math.random() ;
+    if(r<p0){
+        frameByOneSec= Math.min(frameByOneSec+1, 1000); //50%확률
+    }else if(r<p1){
+        frameByOneSec= Math.max(frameByOneSec-5, 5); //15%확률
+    }else if(r<p2){
+        // alert("B Bang!");
+        frameByOneSec= Math.min(frameByOneSec+100, 1000); //5%확률
+    }else if(r<p3){    
+        // alert("Plan Your Room!");
+        frameByOneSec= Math.min(frameByOneSec-100, 1000); //5%확률
+    }
+ });
+ 
+ $("h1.main-title").on("click", function(){
+    isTurnOff=true; 
+ });
 });
 
- 
- $(document).on("click",function() {
-    isStop= (isStop==false);
- });
-     
-     
 
 </script>

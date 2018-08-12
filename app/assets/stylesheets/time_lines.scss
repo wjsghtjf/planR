@@ -16,6 +16,27 @@ main {
   transition: transform .5s ease-in-out;
 }
 
+.sidebar p{
+    padding: 10px 10px 10px 12px;
+    word-wrap: break-word;
+    border-bottom: 1px solid #f0f0f0;
+    border-top: 0;
+    position: relative;
+    margin: 0;
+}
+
+
+.chatText .chatheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chatHeader>.author{
+  margin-right: auto;
+}
+.chatHeader>.time{
+  margin-right: 20px;
+}
 .st {
   text-align: left;
   color: #81799B;
@@ -24,6 +45,7 @@ main {
 .author {
   text-align: left;
   color: #9E4B4B;
+  
 }
 
 .sidebar {
@@ -36,9 +58,29 @@ main {
   background-color : transparent;
   overflow-y: scroll;
 }
+.chatText .chatBorder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 3px solid white;
+    border-left-color: #26a69a;
+}
+
+.chatText>div {
+    padding: 10px 10px 10px 12px;
+    word-wrap: break-word;
+    border-bottom: 1px solid #f0f0f0;
+    border-top: 0;
+    position: relative;
+    margin: 0;
+    text-align: left;
+}
 
 .ch_list{
-  text_align: left;
+  
+    display: absolute;
   
 }
 

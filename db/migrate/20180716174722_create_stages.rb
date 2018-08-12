@@ -12,6 +12,11 @@ class CreateStages < ActiveRecord::Migration[5.2]
       t.string :hint2
       t.string :hint3
       t.string :image
+      t.integer :laststage , default: 0
+            # 0 : 안 마지막 // 1 : 마지막
+            
+      t.float :partial_difficulty , default: 5.00
+
       
       t.timestamps
     end

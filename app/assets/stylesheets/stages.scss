@@ -81,6 +81,11 @@ main {
   transition: all .7s ease;
 }
 
+
+.modal.fade{
+  z-index:200;
+}
+
 .button.active .top {
   -webkit-transform: translateY(15px) rotateZ(45deg);
   -moz-transform: translateY(15px) rotateZ(45deg);

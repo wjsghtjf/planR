@@ -1,14 +1,15 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
+  before_action :find_room, only: [:show, :update, :finish, :publish, :team]
   before_action :find_roomCal, only: [:show, :finish]  
   before_action :find_invites, only: [:team] 
   
+  
    
   def index
-  @rooms = Room.all
- 
-  
-  @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
+    @rooms = Room.all
+
+    @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
     
     
     @dummy=0   # publish_stage_id값이 누적되어쌓임. 해결방안을위한 임시방편..나은방법있음추가요망
@@ -22,16 +23,16 @@ class RoomsController < ApplicationController
     else
       @rooms=Room.all
     end
+    
+  
   end
   
   def show
-    @room = Room.find(params[:room_id])
    
     @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
   end
   
   def team
-    @room = Room.find(params[:room_id])
    
   end
   
@@ -50,7 +51,6 @@ class RoomsController < ApplicationController
   
     
   def finish
-    @room = Room.find(params[:room_id])
   end
     
   #View 가 없는 Controller
@@ -66,6 +66,8 @@ class RoomsController < ApplicationController
     redirect_to stage_manage_all_path(@room.id)
   end
   
+
+  
   def update
     
     @room.update(room_params)
@@ -79,7 +81,6 @@ class RoomsController < ApplicationController
 
 
   def publish
-    @room = Room.find(params[:room_id])
     @stage_id = Integer(params[:stage_id])
     if @room.publish_stage_id < @stage_id
       @room.publish_stage_id =  @stage_id
@@ -101,6 +102,9 @@ class RoomsController < ApplicationController
    @roomCal = RoomCal.find_by(user_id:  current_user.id, room_id: params[:room_id])
   end
   
+  def find_room
+    @room = Room.find(params[:room_id])
+  end
   
   def room_params
       params.require(:room).permit(:title,:content,:image)

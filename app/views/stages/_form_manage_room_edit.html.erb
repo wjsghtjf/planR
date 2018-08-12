@@ -20,28 +20,32 @@
 
 
 <div>
-    <div class='form-group'>
+  <div class='form-group'>
         <label>Upload Image</label>
         <div class='input-group'>
             <span class='input-group-btn'>
                 <span class='btn btn-default btn-file'>
-                    Browse… 
-                    <!--<input type='file' id='imgInp'>-->
+                    <label for='imgInp'>Browse… </label>
                     <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
                 </span>
             </span>
-            <input type='text' class='form-inline' name='image' readonly value='<%=@room_file_name %>'>
-            <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
             
+            
+            <input type='text' class='input-form' name='image' readonly value='<%=@stage_file_name %>'>
+            
+            
+            
+            <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
+        
+            <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary btn-form'>미리보기</button>    
         </div>
-        <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary'>미리보기</button>
+        
         <% if @room.image.url %>
              <%= image_tag @room.image.url(:thumb) , id: 'img-upload', class: 'img-thumb'  %>
          <% else %>
              <image id='img-upload' class='img-thumb'/>
          <% end %>
     </div>
-</div>
   <!-- /.card -->
   
 

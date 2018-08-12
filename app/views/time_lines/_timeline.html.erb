@@ -24,7 +24,7 @@
       <ul class="sidebar-list">
         
         <li class="sidebar-item">
-            <ul id='chat_list'>
+            <div class='chatText '>
                 <%@chats.each_with_index do |c,i| %>
                     <% if i==0 || @chats[i].stage_id!=@chats[i-1].stage_id %>
                     
@@ -34,30 +34,34 @@
                             break
                           end     
                       end       %>
-                        <li class='this_stage_false'>Stage <%=@c_level %></li>
+                    <div class='this_stage_false'>Stage <%=@c_level %></div>
                     <% end %>
-                    <li id='chat_item' class='this_stage_<%= c.stage_id == @stage.id%>'>
-                        <div class="list_content">
-                          
-                            <div class="ch_list">
-                            <span class="st">STAGE <%=@c_level %> </span>
-                            <span class="author"><%=c.user.nickname %></span> | 
-                            <span ><%=c.content%></span>
+                    
+                    <div class='this_stage_<%= c.stage_id == @stage.id%>'>
+                    
+                            <span class="chatBorder"></span>
+                            <!--<span class="st">STAGE <%#=@c_level %> </span>-->
+                            
+                            <div class="chatheader">
+                                <span class="author"><%=c.user.nickname %></span>
+                                <span class="time"><%=c.created_at.strftime("%Y-%m-%d")%></span>
+                                <%=form_tag(chat_delete_path, { method: 'post', class: 'btn-form' }) do %>
+                                    <%= hidden_field_tag :room_id, @room.id %>
+                                    <%= hidden_field_tag :stage_level, @stage_level %>
+                                    <%= hidden_field_tag :chat_id, c.id %>
+                                    <%=submit_tag("삭제",class: "btn btn-warning")%>
+                                <% end %>    
+                            </div>
+                            <span class="chatmessage"><%=c.content%></span>
+                            
                            
-                           <%=form_tag(chat_delete_path, { method: 'post'}) do %>
-                                <%= hidden_field_tag :room_id, @room.id %>
-                                <%= hidden_field_tag :stage_level, @stage_level %>
-                                <%= hidden_field_tag :chat_id, c.id %>
-                                <%=submit_tag("삭제",class: "btn btn-warning", style: "position:absolute; right:0;" )%>
-                               
-                            </div>   
-                            <% end %>
-                        </div>
-                    </li>
+                           
+                    </div>
 
                 <% end %>
                 
-            </ul>
+            </div>
+
             <%=form_for :chat, url: chat_create_path, method: 'post' do |f| %>
                 
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>

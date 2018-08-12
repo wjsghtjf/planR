@@ -7,9 +7,13 @@ class StagesController < ApplicationController
   # View가 있는 Controller
   
   def show
-   
+    
+    
+    
+
     @room=Room.find(params[:room_id]) 
     @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
+    
      
     @stage_level = 0
     
@@ -123,7 +127,10 @@ class StagesController < ApplicationController
   end
   
   def update
+
     
+    @stage.laststage = Integer(params[:last_check])  if params[:last_check]
+
     
     # 파라미터중에 is_delete_origin_image 가 있을 경우에는 디비에 저장된 이미지 파일을 삭제한다.
     if params[:is_delete_origin_image] 
@@ -174,6 +181,7 @@ class StagesController < ApplicationController
   end
 
   def check
+
     @stage_level = Integer(params[:stage_level])
     # @hintCal = RoomCal.find_by("user_id = ? AND room_id=?", current_user.id, params[:room_id])
     # before_action으로 @roomCal에 값 가져옵니당
@@ -187,6 +195,9 @@ class StagesController < ApplicationController
       
       @roomCal.last_stage_level = (@roomCal.last_stage_level + 1)
       @roomCal.save
+      @stage.pass = @stage.pass + 1
+      @stage.try = @stage.try + 1
+      #@stage.save
       @stage_level = 1 + Integer(params[:stage_level])
       @is_wrong_answer=false
       
@@ -206,6 +217,8 @@ class StagesController < ApplicationController
     else
       if @roomCal.last_stage_level == @stage_level
         @roomCal.try = @roomCal.try + 1
+        @stage.try = @stage.try + 1
+        #@stage.save
         @roomCal.save
         puts "Stage/check : 오답, try 1증가  -> #{@roomCal.try}"
       else
@@ -214,7 +227,26 @@ class StagesController < ApplicationController
       
     end
     
-  end
+    
+    @stage.partial_difficulty = 5.00 * ((Float(@stage.try)-Float(@stage.pass))/Float(@stage.try))
+    @stage.save
+    
+    @room = Room.find(params[:room_id])
+    @room.difficulty = 0
+    
+    @stages = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => @room.publish_stage_id, :room_id => @room.id})
+
+    @stages.each do |s|
+      @room.difficulty = @room.difficulty + s.partial_difficulty
+    end
+    
+    @room.difficulty = @room.difficulty / Float(@stages.length)
+    @room.save
+    
+   end 
+  
+  
+  
 #기타 Method
 
   def get_stage

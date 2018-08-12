@@ -5,6 +5,10 @@
   <label for='title'>스테이지 제목 :: </label>
   <p><%=@stage.title %></p>
   </div>
+  
+<% if @stage.laststage == 1 %>
+마지막 스테이지입니다.
+<% end %>
 
 <div class='form-group'>
   <label for='content'>내용 :: </label>
@@ -14,21 +18,54 @@
 <br><br>
 
 <div class='form-group'>
+  
   <label for='content'>힌트 개방 :: </label>
   
+  <% if !(@stage.hint1.nil?) && @stage.hint1.length > 0 %>
+  <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal1">
+    <i class="material-icons left">vpn_key</i>
+  </button>
+  <% end %>
+  
+  
+  <% if @roomCal.usedhint == 1 || @roomCal.usedhint ==2 %>
+      <% if !(@stage.hint2.nil?) && @stage.hint2.length > 0 %>
+       <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal2">
+        <i class="material-icons left">vpn_key</i>
+      </button>
+      <% end %>
+  <% else %>
+        <% if !(@stage.hint2.nil?) && @stage.hint2.length > 0 %>
+       <button class='btn-floating disabled' >
+        <i class="material-icons left">vpn_key</i>
+      </button>
+      <% end %>
+      
+        
+        
+    <% if @roomCal.usedhint == 2 %>
+  <% if !(@stage.hint3.nil?) && @stage.hint3.length > 0 %>
+   <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal3">
+    <i class="material-icons left">vpn_key</i>
+  </button>
+  <% end %>
+  <% else %>
+          <% if !(@stage.hint3.nil?) && @stage.hint3.length > 0 %>
+       <button class='btn-floating disabled' >
+        <i class="material-icons left">vpn_key</i>
+      </button>
+      <% end %>
+  <% end %>
+      
+      
+      
+  <% end %>
+  
 
-
   
-  
-  <!--<button class='btn-floating pulse' data-toggle="modal" data-target="#myModal" >-->
-  <!--  <i class="material-icons left">vpn_key</i>-->
-  <!--</button>-->
-  
-  
-  
-  <%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,1), method: :post, :class => 'btn-floating pulse',data: {confirm: "힌트를 사용하시겠습니까? 랭킹포인트가 차감됩니다." } %>
-  <%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,2), method: :post, :class => 'btn-floating pulse' %>
-  <%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,3), method: :post, :class => 'btn-floating pulse' %>
+  <!--<#%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,1), method: :post, :class => 'btn-floating pulse',data: {confirm: "힌트를 사용하시겠습니까? 랭킹포인트가 차감됩니다." } %>-->
+  <!--<#%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,2), method: :post, :class => 'btn-floating pulse',data: {confirm: "힌트를 사용하시겠습니까? 랭킹포인트가 차감됩니다." }%>-->
+  <!--<#%= link_to '<i class="material-icons left">vpn_key</i>'.html_safe, stage_hintpage_path(@room.id,@stage.id,3), method: :post, :class => 'btn-floating pulse',data: {confirm: "힌트를 사용하시겠습니까? 랭킹포인트가 차감됩니다." }%>-->
 </div>
 
 

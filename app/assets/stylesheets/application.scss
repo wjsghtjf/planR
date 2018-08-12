@@ -63,7 +63,7 @@ footer {
     overflow: hidden;
 }
 .btn-file input[type=file] {
-    position: relative;
+    position: absolute;
     top: 0;
     right: 0;
     filter: alpha(opacity=0);
@@ -81,4 +81,14 @@ footer {
 
 .item-selected  {
   color : red !important; 
+}
+
+
+.input-form{
+    display: inline !important;
+    width: auto !important;
+}
+.btn-form{
+    display: inline;
+    margin: auto 0;
 }

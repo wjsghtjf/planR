@@ -1,6 +1,15 @@
 <br>
 <br>
-<h3>당신을 돕기 위해 누군가 찾아왔습니다.</h3><br>
+<br>
+
+<% if Integer(@hint_num) == 1 %>
+<h3>누군가가 쪽지를 남겼습니다.</h3><br>
+<% elsif Integer(@hint_num) == 2 %>
+<h3>실마리가 좀 보이시나요?</h3><br>
+<% else %>
+<h3>여기까지 오셨군요.</h3><br>
+<% end %>
+
 <hr>
 <br>
 

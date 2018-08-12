@@ -3,7 +3,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
     create_table :rooms do |t|
       t.string :title  , default: ""
       t.text :content  , default: ""
-      t.float :difficulty 
+      t.float :difficulty , default: 0.00
       t.integer :likes      , default: 0
       
       t.string :image

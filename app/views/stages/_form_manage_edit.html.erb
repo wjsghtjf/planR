@@ -5,10 +5,21 @@
 <%=hidden_field_tag :stage_id, @stage.id %>
 <%=hidden_field_tag :stage_level, @stage_level %>
 
+
+    <p>
+      <label>
+        <input type="checkbox" class="filled-in" name="last_check" value="1" <%="checked" if @stage.laststage==1 %>/>
+        <span>마지막 스테이지입니다.</span>
+      </label>
+    </p>
+    <br>
+    
+
 <div class='form-group'>
     <%= f.label :title, '스테이지 제목' %>
     <%= f.text_field :title ,placeholder: '제목을 입력하세요.', class: 'form-control', :autocomplete => :off  %>
 </div>
+
 
 <div class='form-group '>
     <%= f.label :content , '내용'%>
@@ -41,16 +52,21 @@
         <div class='input-group'>
             <span class='input-group-btn'>
                 <span class='btn btn-default btn-file'>
-                    Browse… 
-                    <!--<input type='file' id='imgInp'>-->
+                    <label for='imgInp'>Browse… </label>
                     <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
                 </span>
             </span>
-            <input type='text' class='form-inline' name='image' readonly value='<%=@stage_file_name %>'>
-            <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
             
+            
+            <input type='text' class='input-form' name='image' readonly value='<%=@stage_file_name %>'>
+            
+            
+            
+            <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
+        
+            <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary btn-form'>미리보기</button>    
         </div>
-        <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary'>미리보기</button>
+        
         <% if @stage.image.url %>
              <%= image_tag @stage.image.url(:thumb) , id: 'img-upload', class: 'img-thumb'  %>
          <% else %>
@@ -63,6 +79,8 @@
 
     <%=hidden_field_tag :is_delete_origin_image, false, id: 'is_delete' %>
     <!--TODO f.submit 버튼 inline으로 바뀌어야 되요-->
+    
+    
     <%= f.submit '저장', class: 'btn btn-default'   %>
   <% end %>
 <!--</form>-->

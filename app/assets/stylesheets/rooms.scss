@@ -28,12 +28,19 @@
 }
 
 .nonthumb{
-    background: url(/assets/mainpage_img.jpg) no-repeat;
+    background-image: url(/assets/mainpage_img.jpg);
+    background-size:     cover;     
+    background-repeat:   no-repeat;
+    background-position: center center;   
     background-size: 100% 100%;
 }
 
 .thumbnail {
-    background: url(:thumb) no-repeat;
+    background-image: url(:thumb);
+    background-size:     cover;     
+    background-repeat:   no-repeat;
+    background-position: center center;   
+    background-size: 100% 100%;
 }
 
 
@@ -55,9 +62,12 @@
   } 
   
   .card_front .card-symbol {  
-    margin: 0 0.15em;
+    // margin: 0 0.15em;
     font-size: 2em;
-    height: 90%;
+    // height: 90%;
+    height: 15%; //희성
+    position: absolute; //희성
+    bottom: 5%; //희성
   }
 }
 
@@ -74,6 +84,7 @@
 .card_back > * {
   background-color: white;
   background-color: rgba(245, 245, 245, 0.6);  
+  height: 100%; //희성
 }
 
 .card-text {
@@ -113,6 +124,11 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.card_fin {
+  height:10%;
+ 
 }
 
 .card_front {
@@ -176,3 +192,9 @@
 }
     
 /* mine.html.erb 끝 */
+
+
+img{
+  width: 100%;
+  height: auto;
+}
