@@ -7,7 +7,7 @@
 		<div class="stage_list">
 	
 			
-	        <%= link_to "방정보 : #{@room.title}", stage_manage_each_path(@room.id, 0) , :class => "list-group-item #{"item-selected" if @stage_level ==0 }"%><hr class="list_line">
+	        <%= link_to "Room Info : #{@room.title}", stage_manage_each_path(@room.id, 0) , :class => "list-group-item #{"item-selected" if @stage_level ==0 }"%><hr class="list_line">
 	        
 	   		<% @stages.each_with_index do |s, i|%>
 	            <%= link_to "Stage #{i+1} : #{s.title}", stage_manage_each_path(@room.id, i+1) , :class => "list-group-item #{"item-selected" if @stage_level == (i+1) }"%><hr class="list_line">

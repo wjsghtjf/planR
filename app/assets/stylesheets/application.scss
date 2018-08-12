@@ -52,38 +52,6 @@ nav a i {
 
 /* 메인페이지 */
 
-.mainpage {
-    height: 98vh;
-    width: 100vw;
-    background-image: image-url('mainpage_img.jpg');
-    background-size: 100vw 98vh;
-    background-repeat: no-repeat;
-}
-
-.mainpage_wrapper {
-    height: 98vh;
-    width: 100vw;
-    background-color: black;
-    opacity: 0.9;
-    z-index: 10;
-}
-
-
-.mainpage_button {
-    display: inline-block;
-    width: 100px;
-    padding:5px;
-    border: 1px solid white;
-    border-radius: 10px;
-    color: grey;
-    outline: none;
-    text-decoration: none;
-    text-align: center;
-    margin-top: 60vh;
-    margin-left: 10px;
-    margin-right: 10px;
-    box-shadow: 0px 0px 20px #000;
-}
 
 footer {
     color: #B6ACCC;

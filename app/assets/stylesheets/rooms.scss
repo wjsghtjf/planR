@@ -7,44 +7,121 @@
 
 /* 카드 목록 CSS */
 
-.index-content{
-    margin-bottom:20px;
-    padding:30px 0px;
-    width: 26vw;
-    display: inline-block;
-    
+/* CARD STYLING */
+
+.card_list{
+  margin-top: 2em;
+  width: 26em;
 }
 
-.index-content a{
-    color: black;
+.card,
+.card_front,
+.card_back {
+  width: 20em;
+  height: 25em;
 }
 
-.index-content .card{
-    padding:5px;
-    border: 1px solid #e9e9e9;
+.card_front,
+.card_back {  
+/*   height: 100%; */
+  box-shadow: 0px 5px 25px 0px rgba(51,51,51,0.28); 
 }
 
-.index-content .card:hover{
-    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
-    color:black;
-    //opacity: 0.4;
+.nonthumb{
+    background: url(/assets/mainpage_img.jpg) no-repeat;
+    background-size: 100% 100%;
 }
 
-.card .btn {
-    color: white;
-}
-
-.index-content .card img{
-    width:100%;
-    height:35vh;
+.thumbnail {
+    background: url(:thumb) no-repeat;
 }
 
 
-@media (max-width: 768px) {
+.card-symbol {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 1em;  
+  mix-blend-mode: lighten;
+}
 
-    .index-content .col-lg-4 {
-        margin-top: 20px;
-    }
+@supports(display:flex){
+ .card_front {  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  } 
+  
+  .card_front .card-symbol {  
+    margin: 0 0.15em;
+    font-size: 2em;
+    height: 90%;
+  }
+}
+
+.card_front {
+  position: relative;
+  padding: 0 1em;
+}
+
+.card_back {
+  padding: 1em;
+}
+
+.card_front > *,
+.card_back > * {
+  background-color: white;
+  background-color: rgba(245, 245, 245, 0.6);  
+}
+
+.card-text {
+  padding: 0 4.5em 1em;
+  line-height: 1.4;
+  color: black;
+  height: 75%;
+}
+
+.card_line {    
+  margin-top: 0;
+  padding: 2em 0 0;
+  border-top: 8px solid #333;
+}
+
+
+/* FLIP CARD STYLING */
+.card_list {
+  perspective: 1000px;
+  display:inline-block;
+}
+
+.card_list:hover .card, 
+.card_list.hover {
+  transform: rotateY(-180deg);
+}
+
+.card {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card_front,
+.card_back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card_front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card_back {
+  transform: rotateY(-180deg);
 }
 
 /* 카드 목록 CSS 끝 */
