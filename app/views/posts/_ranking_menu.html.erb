@@ -1,0 +1,12 @@
+    <br><br>
+      <h3 style="text-align: center;">랭킹</h3><hr>
+      <div class="list-group">
+
+  
+  
+  <%= link_to '<i class="fas fa-address-card fa-lg"></i>   나의 랭킹 정보'.html_safe, post_ranking_path, :class => 'list-group-item list-group-item-action' %>
+  <%= link_to '<i class="fas fa-info-circle fa-lg"></i>   프리 시즌 정보'.html_safe, post_ranking_season0info_path, :class => 'list-group-item list-group-item-action' %>
+  <%= link_to '<i class="fas fa-trophy fa-lg"></i>   프리 시즌 랭킹'.html_safe, post_ranking_season0place_path, :class => 'list-group-item list-group-item-action' %>
+
+  <!--  #{ @invite_new_count if @invite_new_count>0 } 부분 현재 생략 됨 (부트스트랩문제) -->
+  </div>

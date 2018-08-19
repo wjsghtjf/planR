@@ -1,9 +1,10 @@
+<div class="content">
+<br>
+<br>
 <center>
-<br>
-<br>
 <div class="row">
-    <div class="col s2"></div>
-    <div class="col s8">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
         <br>
         <h3><%=@room.title %></h3>
         <hr>
@@ -25,22 +26,27 @@
             <% if @roomCal.nil? || @roomCal.mode == 0 %>
                 <p><b>플레이 모드를 선택해주세요.</b></p>
                 <p style="color: red;"><b>[주의] 한 번 선택한 모드는 클리어 시까지 변경할 수 없습니다.</b></p>
-            <% elsif @roomCal.mode == 1 %>
+            <% elsif @roomCal.mode == 1 || @roomCal.mode == 3 %>
                 <p><b>싱글플레이 모드를 진행 중입니다.</b></p>
-            <% elsif @roomCal.mode == 2 %>
+            <% elsif @roomCal.mode == 2 || @roomCal.mode == 4 %>
                 <p><b>멀티플레이 모드를 진행 중입니다.</b></p>
             <% end %>
             
             <% if @roomCal.nil? || @roomCal.mode == 0 %> <!-- 대기중 -->
-                <%= link_to '<i class="material-icons left">person</i>싱글플레이 시작하기'.html_safe, room_cal_create_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
-                <%= link_to '<i class="material-icons left">group</i>멀티플레이 시작하기'.html_safe, team_create_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
+                <%= link_to '싱글플레이 시작하기'.html_safe, room_cal_create_path(@room.id, 1), method: :post, :class => 'btn btn-blueblack btn-lg' %>
+                <%= link_to '멀티플레이 시작하기'.html_safe, room_cal_create_path(@room.id, 2), method: :post, :class => 'btn btn-blueblack btn-lg' %>
             <% else %>
-                <% if @roomCal.mode==1 %><!--싱글플레이 -->
-                    <%= link_to '<i class="material-icons left">person</i>싱글플레이 계속하기'.html_safe, stage_show_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
-                    <a class="btn disabled"><i class="material-icons left">group</i>멀티플레이 계속하기</a>
-                <% elsif @roomCal.mode==2 %><!--멀티플레이 -->
-                    <a class="btn disabled"><i class="material-icons left">person</i>싱글플레이 계속하기</a>
-                    <%= link_to '<i class="material-icons left">person</i>멀티플레이 계속하기'.html_safe, stage_show_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
+                <% if @roomCal.mode==1 || @roomCal.mode == 3 %><!--싱글플레이 -->
+                    <%= link_to '싱글플레이 계속하기'.html_safe, stage_show_path(@room.id), method: :post, :class => 'btn btn-blueblack btn-lg' %>
+                    <button type="button" class="btn btn-secondary btn-lg" disabled>멀티플레이 계속하기</button>
+                <% elsif @roomCal.mode==2 || @roomCal.mode == 4 || @roomCal.mode ==5 %><!--멀티플레이 -->
+                    <% if @roomCal.mode == 5 %>
+                    <button type="button" class="btn btn-secondary btn-lg" disabled>싱글플레이 계속하기</button>
+                    <%= link_to '멀티플레이 팀구성 계속하기'.html_safe, room_team_path(@room.id,@team.id), method: :get, :class => 'btn btn-blueblack btn-lg' %>
+                    <% else %>
+                    <button type="button" class="btn btn-secondary btn-lg" disabled>싱글플레이 계속하기</button>
+                    <%= link_to '멀티플레이 계속하기'.html_safe, stage_show_path(@room.id), method: :post, :class => 'btn btn-blueblack btn-lg' %>
+                    <% end %>
                 <%end%>
             <% end %>
         <% end %>
@@ -49,24 +55,22 @@
         
         <br><br>
         <br><br>
-        <%= link_to '<i class="material-icons left">person</i>RoomCal초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'waves-effect waves-light btn' %>
+        <%= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>
          <br><br>
          
         <p>
           <strong>Like:</strong>
           <%= @room.likes.size %> 명이 좋아합니다. 
         </p>
-     
     <p>
-      
+        
       <%=form_tag like_toggle_path, method: 'post' do %>
         <%=hidden_field_tag :room_id, @room.id %>
         <%=submit_tag ((current_user.is_like? (@room)) ? '좋아요 취소' : '좋아요')%>
       <% end %>
-      
-      
+     
+     
     </p>
-        
         <br><br><hr>
         
                     
@@ -74,8 +78,7 @@
             
         <br><br><br><br>
     </div>
-    <div class="col s2">
-
-    </div> 
+    <div class="col-md-1"></div> 
 </div>
 </center>
+</div>

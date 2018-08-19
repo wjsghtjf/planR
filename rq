@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ec2-user/environment/planR/app/controllers/stages_controller.rb @ line 375 StagesController#checkAnswer:
+
+    [1;34m368[0m: [32mdef[0m [1;34mcheckAnswer[0m(stage, input_answer)
+    [1;34m369[0m: 
+    [1;34m370[0m:   [32mif[0m stage.mode==[1;34m4[0m
+    [1;34m371[0m:     [1;34m# TODO 구현 해야함[0m
+    [1;34m372[0m:     [32mreturn[0m [1;36mfalse[0m 
+    [1;34m373[0m:   [32melse[0m
+    [1;34m374[0m:     binding.pry
+ => [1;34m375[0m:     [32mreturn[0m stage.answer == params[[33m:stage_answer[0m] || @mode3_Ans == [1;34m1[0m 
+    [1;34m376[0m:   [32mend[0m
+    [1;34m377[0m:   
+    [1;34m378[0m: [32mend[0m
+

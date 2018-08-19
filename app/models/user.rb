@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :teams
   has_many :invitations
+  has_many :stage_cals
   
   def is_like? (room)
     Like.find_by(user_id: self.id, room_id: room.id).present?

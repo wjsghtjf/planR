@@ -1,9 +1,20 @@
 
-
 <body>
+  <div class="content">
+  <div class="row">
+  <div class="col-md-2">
+    
+      <%=render './posts/mypage_menu' %>
+  </div>
+  <div class="col-md-9">
+
+
 <br>
 <br>
-<h3>회원정보 수정</h3>
+<p style="font-size:30px;"><b>계정 수정</b></p>
+<br>
+<br>
+<hr>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -40,4 +51,7 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
+</div>
+</div>
 </body>

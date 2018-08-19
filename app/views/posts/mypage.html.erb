@@ -1,33 +1,87 @@
+<div class="content">
+<div class="row">
+    <div class="col-md-2">
+      <%=render 'mypage_menu' %>
+    </div>
+    <div class="col-md-9">
+      
 <br>
 <br>
-<h3>마이페이지</h3><br>
-<hr>
+<p style="font-size:30px;"><b>플레이 중인 방탈출</b></p>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">플레이 모드</th>
+      <th scope="col">방탈출 이름</th>
+      <th scope="col">스테이지 진행도</th>
+      <th scope="col">바로가기</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @room_cals.each do |room_cal| %>
+    <% if room_cal.mode != 0 && (room_cal.mode == 1 || room_cal.mode == 2) %>
+    <tr>
+      <td>
+          <% if room_cal.mode == 1 %>
+          싱글
+          <% elsif room_cal.mode == 2%>
+          멀티
+          <% end %>
+      </td>
+      <td><%= room_cal.room.title %></td>
+      <td><%= (room_cal.last_stage_level) %> / <%= (room_cal.room.stages.length) %> [진행중]</td>
+      <td><%= link_to '바로가기', room_show_path(room_cal.room.id)%></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
 <br>
-<!--<%=@user.rank_point%>-->
+<br>
+<p style="font-size:30px;"><b>플레이 완료한 방탈출</b></p>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">플레이 모드</th>
+      <th scope="col">방탈출 이름</th>
+      <th scope="col">스테이지 진행도</th>
+      <th scope="col">바로가기</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @room_cals.each do |room_cal| %>
+    <% if room_cal.last_stage_level == room_cal.room.stages.length %>
+    <% if room_cal.mode == 3 || room_cal.mode == 4 %>
+    <tr>
+      <td>
+          <% if room_cal.mode == 3 %>
+          싱글
+          <% elsif room_cal.mode == 4 %>
+          멀티
+          <% end %>
+      </td>
+      <td><%= room_cal.room.title %></td>
+      <td><%= (room_cal.last_stage_level) %> / <%= (room_cal.room.stages.length) %> [완료]</td>
+      <td><%= link_to '바로가기', room_show_path(room_cal.room.id)%></td>
+    </tr>
+    <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
 
 
-            
-<% @room_cals.each do |room_cal| %>
-   <% if room_cal.mode != 0 %>
-        <% if room_cal.mode == 1 %>
-        [싱글]<%= room_cal.room.title %> || <%= room_cal.room.content%>
-        <%= link_to '바로가기', room_show_path(room_cal.room.id)%><br>
-        <% elsif room_cal.mode == 2 %>
-        [멀티]<%= room_cal.room.title %> || <%= room_cal.room.content%>
-        <%= link_to '바로가기', room_show_path(room_cal.room.id)%><br>
-        <% end %>
-   <% end%>
-<% end %>
 
+
+<br>
+<br>
 <br>
 <br>
 
 
 
-<%= link_to '<i class="material-icons left">build</i>계정 수정'.html_safe, edit_user_registration_path, :class => 'waves-effect waves-light btn' %>
-<br>
-<br>
-<%= link_to "<i class='material-icons left'>drafts</i>멀티플레이 초대 수락 #{ @invite_new_count if @invite_new_count>0 }".html_safe, post_notification_path, method: :get, :class => 'waves-effect waves-light btn' %>
 
-
-<br><br><hr><%=link_to "홈 화면으로", '/'%>
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>

@@ -1,18 +1,21 @@
 
-<%=form_for :stage, url: stage_update_path , method: 'post', multipart: true  do |f| %>
+<%=form_for :stage, url: stage_update_path , method: 'post', multipart: true ,html: {id: 'form'} do |f| %>
 
-<%=hidden_field_tag :room_id, @room.id %>
-<%=hidden_field_tag :stage_id, @stage.id %>
-<%=hidden_field_tag :stage_level, @stage_level %>
+    <%=hidden_field_tag :room_id, @room.id %>
+    <%=hidden_field_tag :stage_id, @stage.id %>
+    <%=hidden_field_tag :stage_level, @stage_level %>
 
 
-    <p>
-      <label>
-        <input type="checkbox" class="filled-in" name="last_check" value="1" <%="checked" if @stage.laststage==1 %>/>
-        <span>마지막 스테이지입니다.</span>
-      </label>
-    </p>
+    
     <br>
+    <br>
+    
+    <label>테마 설정</label>
+    
+    <p>
+        <%= render 'themechoice' , f: f%>
+    </p>
+
     
 
 <div class='form-group'>
@@ -23,66 +26,276 @@
 
 <div class='form-group '>
     <%= f.label :content , '내용'%>
-    <%= f.text_area :content ,placeholder: '내용을 입력하세요', class: 'form-control' , :autocomplete => :off %>
+    <%= f.text_area :content ,placeholder: '내용을 입력하세요',  class: 'form-control' , :autocomplete => :off %>
 
 </div>
 <div class='form-group'>
     <%= f.label :hint1, '힌트 1' %>
-    <%= f.text_field :hint1 ,placeholder: '1번 힌트를 기록하세요.(추천 : 가장 약한 힌트)', class: 'form-control'  , :autocomplete => :off %>
+    <%= f.text_field :hint1 ,placeholder: '첫번째 힌트를 기록하세요.', class: 'form-control'  , :autocomplete => :off %>
+    <small class="form-text text-muted">추천 : 가장 약한 힌트</small>
 </div>
 <div class='form-group'>
     <%= f.label :hint2, '힌트 2' %>
-    <%= f.text_field :hint2, placeholder: '2번 힌트를 기록하세요.(추천 : 좀 강한 힌트)', class: 'form-control', :autocomplete => :off %>
+    <%= f.text_field :hint2, placeholder: '두번째 힌트를 기록하세요.', class: 'form-control', :autocomplete => :off %>
+    <small class="form-text text-muted">추천 : 첫번째 힌트보다 강한 힌트</small>
 </div>
 <div class='form-group'>
     <%= f.label :hint3, '힌트 3' %>
-    <%= f.text_field :hint3, placeholder: '3번 힌트를 기록하세요.(추천 : 매우 강한 힌트)', class:'form-control', :autocomplete => :off %>
+    <%= f.text_field :hint3, placeholder: '세번째 힌트를 기록하세요.', class:'form-control', :autocomplete => :off %>
+    <small class="form-text text-muted">추천 : 두번째 힌트보다 강한 '정답에 가장 근접한' 힌트</small>
 </div>
 
 
-<div class='form-group'>
-    <%= f.label :answer, '정답' %>
-    <%= f.text_field :answer ,placeholder: '정답을 입력해주세요.', class: 'form-control', :autocomplete => :off  %>
+<div class='form-group' id = 'theme_lock' style='display: none' >
+    <%=render 'theme_lock' %>
+</div>
+
+
+
+<div class='form-group' id = 'theme_pattern' style='display: none'>
+    <div class='form-group'>
+        <%= f.label :pattern_num1, '항목 A' %>
+        <%= f.text_field :pattern_num2 ,placeholder: 'A 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :pattern_num2, '항목 B' %>
+        <%= f.text_field :pattern_num2 ,placeholder: 'B 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :pattern_num3, '항목 C' %>
+        <%= f.text_field :pattern_num3 ,placeholder: 'C 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+        <div class='form-group'>
+        <%= f.label :pattern_num4, '항목 D' %>
+        <%= f.text_field :pattern_num4 ,placeholder: 'D 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+        <div class='form-group'>
+        <%= f.label :pattern_num5, '항목 E' %>
+        <%= f.text_field :pattern_num5 ,placeholder: 'E 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <br>
+    <%=render 'theme_pattern' %>
+</div>
+
+
+
+<div class='form-group' id ='theme_selection' style='display: none'>
+    
+    <%=render 'theme_selection' %>
+    <br><br>
+    <p style="font-size:25px;"><b>선택지 작성</b></p>
+    <div class='form-group'>
+        <%= f.label :selection_num1, '1번 항목' %>
+        <%= f.text_field :selection_num1 ,placeholder: '1번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num2, '2번 항목' %>
+        <%= f.text_field :selection_num2 ,placeholder: '2번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num3, '3번 항목' %>
+        <%= f.text_field :selection_num3 ,placeholder: '3번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num4, '4번 항목' %>
+        <%= f.text_field :selection_num4 ,placeholder: '4번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num5, '5번 항목' %>
+        <%= f.text_field :selection_num5 ,placeholder: '5번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    
+    
     
 </div>
 
-<div>
+
+<div class='form-group' id = 'theme_image' style='display: none' >
+    <%=render 'theme_image' %>
+</div>
+
+
+<div class='form-group' id='div_answer_1'>
+    <%= f.label :answer, '정답1' %>
+    <%= f.text_field :answer ,placeholder: '정답을 입력해주세요.', class: 'form-control' %>
+</div>
+
+<div id='theme_ori'>
     <div class='form-group'>
+        <%= f.label :answer2, '정답2' %>
+        <%= f.text_field :answer2 ,placeholder: '제2의 정답 인정을 원할시 입력하세요.', class: 'form-control' %>
+    </div>
+    
+    <div class='form-group'>
+        <%= f.label :answer3, '정답3' %>
+        <%= f.text_field :answer3 ,placeholder: '제3의 정답 인정을 원할시 입력하세요.', class: 'form-control' %>
+    </div>
+
+</div>
+<div>
+  
+</div>
+  <!-- /.card -->
+  
+
+    <p>
+      <label>
+        <input type="checkbox" class="filled-in" name="last_check" value="1" <%="checked" if @stage.laststage==1 %>/>
+        <span>마지막 스테이지입니다.</span>
+      </label>
+      
+      
+    </p>
+    
+    
+    
+    <%#= f.submit '완료', class: 'btn btn-default' %>
+    
+<!--</form>-->
+
+  <div class='form-group'>
+        
+
         <label>Upload Image</label>
         <div class='input-group'>
             <span class='input-group-btn'>
                 <span class='btn btn-default btn-file'>
-                    <label for='imgInp'>Browse… </label>
+                    <label for='imgInp'>업로드</label>
                     <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
                 </span>
             </span>
             
             
-            <input type='text' class='input-form' name='image' readonly value='<%=@stage_file_name %>'>
+            <input type='text' class='input-form' name='input_image' readonly value='<%=@stage_file_name %>'>
             
             
             
             <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
         
-            <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary btn-form'>미리보기</button>    
-        </div>
+            <%=hidden_field_tag :is_delete_origin_image, false, id: 'is_delete' %>
         
-        <% if @stage.image.url %>
-             <%= image_tag @stage.image.url(:thumb) , id: 'img-upload', class: 'img-thumb'  %>
-         <% else %>
-             <image id='img-upload' class='img-thumb'/>
-         <% end %>
+        
     </div>
-</div>
-  <!-- /.card -->
-  
-
-    <%=hidden_field_tag :is_delete_origin_image, false, id: 'is_delete' %>
-    <!--TODO f.submit 버튼 inline으로 바뀌어야 되요-->
+        
+  <div class='form-group'>
+        <div class='image' style='position:relative' >
+            
+            <img src='<%=@stage.image.url if @stage.image.blank?%>' class='img-main' id='img-upload'/>
+         
+             <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
+             <span id = 'img-area' style = "position:absolute; height:50px; width:50px;   pointer-events: none; display:none;"></span>
+         </div>
+         
+             <button type="button" onClick = "sizeUp();" class = 'btn btn-default' id='btn_size_up' style =" display:none;">▲</button>
+             <button type="button" onClick = "sizeDown();" class = 'btn btn-default' id='btn_size_down' style =" display:none;">▼</button>
+        
+    </div>
+    
+    <button type="button" onClick="checkValid();" class= 'btn btn-default'>완료</button>
     
     
-    <%= f.submit '저장', class: 'btn btn-default'   %>
+    
   <% end %>
-<!--</form>-->
-
+ <script>
  
+ 
+$(document).ready(function(){
+    setTheme(<%=@stage.mode%>);
+    
+    $('input[type="radio"]').on('change', function(e) {
+       setTheme(e.target.value);
+    });
+    
+
+});
+    
+ function checkValid(){
+     if($('#stage_answer').val().length==0){
+         alert('정답을 입력하세요.');
+     }else{
+         $('#form').submit();
+     }
+     
+ }
+ 
+
+function setTheme(mode){
+    if(mode==<%=@stage.mode%>)
+     document.getElementById("stage_answer").value = "<%=@stage.answer%>";
+    else 
+     document.getElementById("stage_answer").value = "";
+     if(mode==0){
+         document.getElementById('theme_ori').style.display='block';
+        $('#stage_answer').removeAttr("readonly");
+     }
+    else{
+      document.getElementById('theme_ori').style.display='none';
+        $('#stage_answer').prop('readOnly', true);
+      
+    } 
+    
+   if(mode==1){
+        document.getElementById('theme_lock').style.display='block';
+        if(mode==<%=@stage.mode%>)
+            play_num="<%=@stage.answer%>";
+   }
+    else{
+        document.getElementById('theme_lock').style.display='none';
+        
+        play_num="";
+    }
+    
+    if(mode==2){
+        document.getElementById('theme_pattern').style.display='block';
+        
+        if(mode==<%=@stage.mode%>)
+            play_string="<%=@stage.answer%>";
+    }
+    else{
+        document.getElementById('theme_pattern').style.display='none';
+        play_string='';
+    }
+    
+    if(mode==3){
+        document.getElementById('theme_selection').style.display='block';
+        
+        if(mode==<%=@stage.mode%>){
+            
+            play_num2 = "<%=@stage.answer%>";
+            
+            chkNum=new Array(0,0,0,0,0,0);
+            var jbString = play_num2.split(",");
+            for(var i in jbString){
+                chkNum[(parseInt(jbString[i]))]=1;
+            }
+            
+        }
+    }
+    else{
+        document.getElementById('theme_selection').style.display='none';
+        
+        chkNum= new Array(0,0,0,0,0,0);
+        play_num2='';
+    }
+    
+    if(mode==4){
+        document.getElementById('theme_image').style.display='block';
+        document.getElementById('btn_size_up').style.display='inline';
+        document.getElementById('btn_size_down').style.display='inline';
+         document.getElementById("div_answer_1").style.display = 'none';
+        
+      
+    }
+    else{
+        document.getElementById('theme_image').style.display='none';
+        document.getElementById('img-area').style.display='none';
+        document.getElementById('img-border').style.display='none';
+        document.getElementById('btn_size_up').style.display='none';
+        document.getElementById('btn_size_down').style.display='none';
+         document.getElementById("div_answer_1").style.display = 'block';
+    }
+        
+    
+}
+
+ </script>

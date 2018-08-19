@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+<br>
+<br>
+<br>
+
+<% if Integer(@hint_num) == 1 %>
+  <h3 style="font-size:red;">아이템을 사용하였습니다.</h3><br>
+  <h3>누군가가 쪽지를 남겼습니다.</h3><br>
+<% elsif Integer(@hint_num) == 2 %>
+  <h3 style="font-size:red;">아이템을 사용하였습니다.</h3>
+  <h3>실마리가 좀 보이시나요?</h3><br>
+<% else %>
+  <h3 style="fontsize:red;">아이템을 사용하였습니다.</h3>
+  <h3>여기까지 오셨군요.</h3><br>
+<% end %>
+
+<hr>
+<br>
+
+
+<% if Integer(@hint_num) == 1 %>
+  <h5>힌트 1 :: <%=@hintlist.hint1%></h5>
+<% elsif Integer(@hint_num) == 2 %>
+  <h5>힌트 2 :: <%=@hintlist.hint2%></h5>
+<% else %>
+  <h5>힌트 3 :: <%=@hintlist.hint3%></h5>
+<% end %>
+
+<%=link_to "문제로 돌아가기", stage_show_with_level_path(params[:room_id],params[:stage_level]) %>
+
+</div>
+<div class="col-md-1"></div>
+</div>
+

@@ -1,41 +1,142 @@
-<!--이 파일은 Room말고 Post에 있으면 좋을거 같아요-->
+<div class="content">
+<div class="row">
+    <div class="col-md-2">
+      <%=render 'mypage_menu' %>
+    </div>
+    <div class="col-md-9">
 <br>
 <br>
-<h3>멀티플레이 초대 수락 페이지</h3><br>
+<p style="font-size:30px;"><b>초대받은 방탈출</b></p>
 <hr>
 <br>
 
+<% @holder = 0 %>
 <% @invites.each do |inv| %>
-<% if inv.invite_accepted!=2 %>
-"<%=inv.team.user.nickname %>"님께서  [<%=inv.room.title%>] 게임에 초대했습니다. <%="수락 상태" if inv.invite_accepted==@INVITE_ACCEPT %> 
-<%="대기상태" if inv.invite_accepted==@INVITE_WAIT %><%="거절했음" if inv.invite_accepted==@INVITE_DENY %>
-
-<%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
-    <%=hidden_field_tag :invite_id, inv.id %>
-    
-    <%=hidden_field_tag :invite_accepted, 1 %>
-    <%=submit_tag '수락하기', class: 'btn btn-default' %>
-<%end %>
-
- <form method='POST' action="<%=invite_update_path %>" style='display:inline'>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <input type='hidden' value='<%=inv.id%>' name='invite_id'/>
-      
-      <input type='hidden' value='2' name='invite_accepted'/>
-      <input type='submit' value='거절하기' class='btn btn-default'/>
-</form>
- 
-<br/>
-
+<% @holder = @holder + 1 %>
+<% if inv.invite_accepted!= 2 %>
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">방탈출 제목</th>
+      <th scope="col">팀 리더</th>
+      <th scope="col">상태</th> <!-- 대기중, 바로가기 -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @holder %></th>
+      <td><%= inv.room.title %></td>
+      <td><%= inv.team.user.nickname%></td>
+      <td>
+          <% if inv.invite_accepted == @INVITE_ACCEPT %>
+              <% if RoomCal.find_by(user_id: inv.team.user_id, team_id: inv.team_id).mode == 2 %>
+                  시작 상태
+              <% else %>
+                  준비 상태
+              <% end %>
+          <% elsif inv.invite_accepted == @INVITE_WAIT %>
+                <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
+                    <%=hidden_field_tag :invite_id, inv.id %>
+                    <%=hidden_field_tag :invite_accepted, 1 %>
+                <%=submit_tag '수락', class: 'btn btn-primary btn-lg' %>
+                <% end %>
+                
+                <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
+                    <%=hidden_field_tag :invite_id, inv.id %>
+                    <%=hidden_field_tag :invite_accepted, 2 %>
+                <%=submit_tag '거절', class: 'btn btn-danger btn-lg' %>
+                <% end %>
+          <% end%>
+      </td>
+      <td>
+          
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end%>
 <% end %>
+<br>
+<br>
+
+<p style="font-size:30px;"><b>초대중인 방탈출</b></p>
+<hr>
+<br>
+
+<% @holder = 0 %>
+<% @invites.each do |inv| %>
+<% @holder = @holder + 1 %>
+<% if inv.invite_accepted!= 2 %>
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">방탈출 제목</th>
+      <th scope="col">팀원</th>
+      <th scope="col">상태 수</th> <!-- 대기중, 바로가기 -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @holder %></th>
+      <td><%= inv.room.title %></td>
+      <td><%= inv.team.user.nickname%></td>
+      <td>
+          <% if inv.invite_accepted == @INVITE_ACCEPT %>
+              <% if RoomCal.find_by(user_id: inv.team.user_id, team_id: inv.team_id).mode == 2 %>
+                  시작 상태
+              <% else %>
+                  준비 상태
+              <% end %>
+          <% elsif inv.invite_accepted == @INVITE_WAIT %>
+                <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
+                    <%=hidden_field_tag :invite_id, inv.id %>
+                    <%=hidden_field_tag :invite_accepted, 1 %>
+                <%=submit_tag '수락', class: 'btn btn-primary btn-lg' %>
+                <% end %>
+                
+                <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
+                    <%=hidden_field_tag :invite_id, inv.id %>
+                    <%=hidden_field_tag :invite_accepted, 2 %>
+                <%=submit_tag '거절', class: 'btn btn-danger btn-lg' %>
+                <% end %>
+          <% end%>
+      </td>
+      <td>
+          
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end%>
 <% end %>
+
+
+
 
 
 <form method='POST' action="<%=invite_update_path %>" style='display:inline'>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <input type='hidden' value='-1' name='invite_id'/>
-      
-      <input type='submit' value='대기상태로 초기화하기 ㅋㅋ' class='btn btn-default'/>
+      <input type='submit' value='대기상태로 초기화' class='btn btn-default'/>
 </form>
 
-<br><br><hr><%=link_to "홈 화면으로", '/'%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+<div class="col-md-1"></div>
+
+</div>
+</div>

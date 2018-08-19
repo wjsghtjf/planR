@@ -1,0 +1,39 @@
+<div class='theme_pattern'>
+    <br>
+    <br>
+<p style="font-size:25px;"><b>클릭해야 하는 순서를 지정해주십시오.</b></p>
+    
+<button type="button" onclick="pattern_click('A')" class="btn btn-primary btn-lg">A</button>
+<button type="button" onclick="pattern_click('B')" class="btn btn-primary btn-lg">B</button>
+<button type="button" onclick="pattern_click('C')" class="btn btn-primary btn-lg">C</button>
+<button type="button" onclick="pattern_click('D')" class="btn btn-primary btn-lg">D</button>
+<button type="button" onclick="pattern_click('E')" class="btn btn-primary btn-lg">E</button>
+<br>
+<button type="button" onclick="backspace()" class="btn btn-danger btn-lg"><-</button>
+<button type="button" onclick="pattern_clear()" class="btn btn-danger btn-lg">초기화</button>
+
+<script>
+
+var play_string='';
+ 
+ function backspace(){
+   play_string = play_string.substr(0,play_string.length-1);
+   document.getElementById("stage_answer").value = play_string;
+     
+ }
+ 
+ function pattern_click(num){
+     play_string = play_string + ""+ num;
+     
+     document.getElementById("stage_answer").value = play_string;
+     
+ }
+ function pattern_clear(){
+   play_string = '';
+   document.getElementById("stage_answer").value = play_string;
+ }
+ 
+ 
+ </script>
+ 
+ </div>

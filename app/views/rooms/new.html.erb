@@ -1,27 +1,35 @@
+<div class="content">
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 <br>
 <br>
-<h3>새로운 방탈출</h3>
+<br>
+
+<h1><b>새로운 방탈출</b></h1>
+<br>
+<br>
+
     <div class="container">
       <%=form_for :room, url: room_create_path , method: 'post', multipart: true  do |f| %>
       
         <div class="form-group">
-           
-          <!--<label for="exampleInputName">게임 제목</label>-->
-          <%= f.label :title , '게임 제목' %>
-          <%= f.text_field :title ,placeholder: '게임의 제목을 입력하세요.', class: 'form-control',id:"exampleInputName2" %>
+          
+          <%= f.label :title , '방탈출 이름', for: "roomname" %>
+          <%= f.text_field :title ,placeholder: '방탈출의 이름을 입력하세요.', class: 'form-control', :id => "roomname" %>
          
         </div>
         <div class="form-group ">
-          <%= f.label :content, '설명' %>
-          <%= f.text_area :content,placeholder:"방탈출을 소개할 문구를 입력해주세요.", class:"form-control" %>
+          <%= f.label :content, '방탈출 소개', for: "roominfo" %>
+          <%= f.text_area :content,placeholder:"방탈출을 소개할 문구를 입력하세요.", class:"form-control", :id => "roominfo" %>
          <!-- <label for="exampleInputText">설명</label>-->
          <!--<textarea name="input_content"  class="form-control"  ></textarea> -->
         </div>
         <div class='form-group'>
-          <label>Upload Image</label>
+          <label>방탈출 썸네일 업로드</label>
             <div class='input-group'>
                 <span class='input-group-btn'>
-                    <span class='btn btn-default btn-file'>
+                    <span class='btn btn-blueblack btn-file'>
                         <label for='imgInp'>Browse… </label>
                         <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
                     </span>
@@ -40,7 +48,7 @@
              <image id='img-upload' class='img-thumb'/>
         </div>
     
-         <%= f.submit '만들기' , class: "btn btn-default" %>
+         <%= f.submit '만들기' , class: "btn btn-blueblack" %>
          
          
          
@@ -49,10 +57,11 @@
      <%end%>
     </div>
     <hr>
-    <div class="row align-items-center">
+    
 </div>
-
-<br><br><hr><%=link_to "홈으로", '/' %>
+<div class="col-md-1"></div>
+</div>
+</div>
 
 <!--여기서 부터 자바스크립트입니다 -->
 <script>
@@ -129,7 +138,7 @@ $(document).ready( function() {
   		  setImage(img_url);
 	  }
 	  //미리보기 버튼을 안보이게 한다.
-	  $("#btn_preview").css("display","none")ㄱㅁ
+	  $("#btn_preview").css("display","none");
 	}
 	
 	//첨부된 이미지를 삭제하는 경우

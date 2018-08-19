@@ -1,13 +1,16 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 <br>
 <br>
 <br>
 
 <% if Integer(@hint_num) == 1 %>
-<h3>누군가가 쪽지를 남겼습니다.</h3><br>
+  <h3>누군가가 쪽지를 남겼습니다.</h3><br>
 <% elsif Integer(@hint_num) == 2 %>
-<h3>실마리가 좀 보이시나요?</h3><br>
+  <h3>실마리가 좀 보이시나요?</h3><br>
 <% else %>
-<h3>여기까지 오셨군요.</h3><br>
+  <h3>여기까지 오셨군요.</h3><br>
 <% end %>
 
 <hr>
@@ -22,4 +25,9 @@
   <h5>힌트 3 :: <%=@hintlist.hint3%></h5>
 <% end %>
 
-<br><br><hr><%=link_to "홈 화면으로", '/'%>
+<%=link_to "문제로 돌아가기", stage_show_with_level_path(params[:room_id],params[:stage_level]) %>
+
+</div>
+<div class="col-md-1"></div>
+</div>
+

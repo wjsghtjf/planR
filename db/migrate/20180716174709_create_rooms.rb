@@ -5,6 +5,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
       t.text :content  , default: ""
       t.float :difficulty , default: 0.00
       t.integer :likes      , default: 0
+      t.integer :clearcount , default: 0
       
       t.string :image
       t.belongs_to :user

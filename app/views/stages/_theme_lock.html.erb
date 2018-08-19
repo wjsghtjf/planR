@@ -1,0 +1,58 @@
+<div class='theme_lock'>
+<table>
+    <% for i in 1..9 do%> 
+        <%if i%3==1 %>
+            <tr>
+        <%end%>
+        <td>
+            <button type='button' onclick="num_click(<%=i%>);" ><%=i%></button>
+        </td>
+        <%if i%3==0 %>
+            </tr>
+        <%end%>
+    <% end %>
+    
+    <tr>
+        <td>
+            <button  type='button' onclick="backspace_lock();" > ←</button>
+        </td>
+        <td>
+            <button type='button'  onclick="num_click(0);" >0</button>
+        </td>
+        <td>
+            <button type='button' onclick="num_clear()" >C</button>
+        </td>
+    </tr>
+</table>
+
+
+
+
+<script>
+
+ var play_num='';
+ 
+ function backspace_lock(){
+   play_num = play_num.substr(0,play_num.length-1);
+   document.getElementById("stage_answer").value = play_num;
+     
+ }
+ 
+ function num_click(num){
+     play_num = play_num + ""+ num;
+     
+     document.getElementById("stage_answer").value = play_num;
+     
+ }
+ function num_clear(){
+   play_num = '';
+   
+   document.getElementById("stage_answer").value = play_num;
+   
+ }
+ 
+ 
+ </script>
+ 
+ </div>
+ 

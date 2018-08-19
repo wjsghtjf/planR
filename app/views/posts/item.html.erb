@@ -1,0 +1,42 @@
+<div class="content">
+<div class="row">
+    <div class="col-md-2">
+      <%=render 'mypage_menu' %>
+    </div>
+    <div class="col-md-9">
+<br>
+<br>
+<p style="font-size:30px;"><b>아이템 관리</b></p>
+<hr>
+<br>
+<br>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">아이템 이름</th>
+      <th scope="col">아이템 설명</th>
+      <th scope="col">보유 개수</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+      <td><span><i class="fas fa-first-aid"></i></span>   힌트 사용권</td>
+      <td>랭킹 포인트 차감 없이 힌트를 확인할 수 있게 해주는 아이템</td>
+      <td><%= @user.item_freehint%>개</td>
+      </tr>
+      
+      <tr>
+      <td><span><i class="fas fa-gift"></i></span>   멋쟁이처럼 탈출하기 칭호 교환권</td>
+      <td>2018 해커톤 참가자들을 위한 특별 칭호를 교환하게 해주는 아이템
+      <br>(아이템 보유 시, 자동으로 칭호를 획득합니다.)</td>
+      <td><%= @user.item_2018likelion%>개</td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="col-md-1"></div>
+
+</div>
+</div>

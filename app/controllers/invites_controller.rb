@@ -55,9 +55,7 @@ class InvitesController < ApplicationController
     @invite.invite_accepted = Integer(params[:invite_accepted])
     @invite.save
     
-    if @invite.invite_accepted==@@INVITE_ACCEPT
-      redirect_to room_team_path(@invite.room_id, @invite.team.id)
-    else
+    if @invite.invite_accepted == @@INVITE_ACCEPT
       redirect_to post_notification_path
     end
   

@@ -1,11 +1,12 @@
+<div class="content">
 <center>
 <br><br><br>
 
 <div class="row">
-    <div class="col s1"></div>
-    <div class="col s10">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
         <p style="font-size: 20pt">:: 제작 중 방탈출</p>
-        <a href="<%= room_new_path%>" class="btn new_room">새로운 방탈출 만들기</a>
+        <a href="<%= room_new_path%>" class="btn btn-blueblack new_room">새로운 방탈출 만들기</a>
         <br><br><hr>
     <% @rooms.each do |room| %>
     <% @publish_stage_id=room.publish_stage_id%>  
@@ -20,12 +21,13 @@
                         
                         <% if @publish_stage_id== 0 || Stage.find(@publish_stage_id).laststage == 0 %>
                             <p><b><%=truncate room.title, length: 20 %></b></p>
-                            <p>미완결된 방탈출 <i class="material-icons">loop</i></p>
+                            <p>미완결된 방탈출 <i class="fas fa-sync fa-spin fa-2x"></i></p>
                             <p>스테이지수 <%=@publish_length %> /  <%=room.stages.length %>  </p>
                             <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-outline-success">계속해서 수정 </a>
                         <% elsif @publish_stage_id!= 0 && Stage.find(@publish_stage_id).laststage == 1 %>
+                        
                             <p><b><%=truncate room.title, length: 20 %></b></p>
-                            <p>완결된 방탈출 <i class="material-icons">done</i></p>
+                            <p>완결된 방탈출 <i class="fas fa-check fa-2x"></i></p>
                             <p>스테이지수 <%=@publish_length%> / <%=room.stages.length %>  </p>
                             <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-outline-success">확인하기</a>
                         <% end %>
@@ -40,8 +42,9 @@
     <% end %>
     <hr>
     </div>
-    <div class="col s1"></div>
+    <div class="col-md-1"></div>
 </div>
 
 <br><br>
 </center>
+</div>

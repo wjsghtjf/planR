@@ -4,37 +4,28 @@
 @import "stages.scss";
 @import "time_lines.scss";
 
+
 html {
     font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
 body {
-    padding: 0px;
+    padding-top: 0px;
     margin: 0px;
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+.content {
+    position: relative;
+    min-height: 100%;
 }
 
 /* 내비게이션 시작 */
 
-nav {
-    //background: RGBA(255, 255, 255, 1);
-    background: #ffffff;
-    position: fixed;
-    z-index: 10;
+#navbarNav {
+    text-align: center;
 }
-
-nav ul li a {
-    //color: RGB(97, 115, 140);
-    color: black;
-}
-
-nav a:visited {
-    color: black;
-}
-
-nav a i {
-    color: black;
-}
-
 
 /* 내비게이션 CSS 끝, 풋터 CSS 시작 */
 
@@ -51,7 +42,10 @@ nav a i {
 }
 
 /* 메인페이지 */
-
+.row {
+    margin-left:15px;
+    margin-right:15px;
+}
 
 footer {
     color: #B6ACCC;
@@ -91,4 +85,18 @@ footer {
 .btn-form{
     display: inline;
     margin: auto 0;
+}
+
+
+// devise
+
+
+.login-wrapper {
+    border: 1px solid lightgrey;
+    background-color: RGBA(225, 225, 225, 0.6);
+}
+
+.login-input {
+    width: 70%;
+    border-radius: 10px;
 }

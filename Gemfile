@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+
 #ec2 secret_key 관리
 gem 'figaro'
 

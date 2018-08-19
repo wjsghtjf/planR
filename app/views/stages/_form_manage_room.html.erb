@@ -1,7 +1,7 @@
 <input type='hidden' name='stage_id' value = '<%=@room.id%>'/>
 
 <div class='form-group'>
-  <label for='title'>방 제목</label>
+  <label for='title'>방탈출 제목</label>
   <text  class='form-control' name='title' ><%=@room.title %></text>
   
 </div>
@@ -9,7 +9,7 @@
 
 <div class='form-group '>
   
-  <label for='content'>설명</label>
+  <label for='content'>방탈출 소개</label>
   <p class='form-control' name='content' ><%=@room.content%> </p>
 
 </div>
@@ -18,17 +18,30 @@
 
 
 <% if @room.image.url.nil? %>
-    <%= image_tag 'mainpage_img.jpg'%>
+    <img onclick="IMGclick();" src="<%=image_path 'mainpage_img.jpg'%>">
+    
+    
 <% else %>
 <div>
     <div class='form-group'>
         <label>Uploaded Image</label><br/>
-         <%= image_tag @room.image.url(:main) , id: 'img-upload', class: 'img-main' if @room.image.url %>
+         <%= image_tag @room.image.url , id: 'img-upload', class: 'img-main' if @room.image.url %>
     </div>
 </div>
 <% end %>
 
 
 <%if @room.publish_stage_id == 0  %>
-  <%= link_to "수정하기",  stage_manage_each_path(@room.id,0, edit_mode: true) , class: 'btn btn-default' %>
+  <%= link_to "수정하기",  stage_manage_each_path(@room.id,0, edit_mode: true) , class: 'btn btn-blueblack' %>
 <% end %>
+
+<script>
+    function IMGclick(){
+        var offX = event.offsetX;
+     var offY = event.offsetY;
+  
+     alert("이미지의 X좌표는 " + offX + ", Y좌표는 " + offY + " 입니다.");
+    }
+    
+    
+</script>

@@ -1,0 +1,763 @@
+<div class="content">
+<div class="row">
+  <div class="col-md-2">
+    
+      <%=render 'mypage_menu' %>
+  </div>
+
+  <div class="col-md-9">
+    
+    <br>
+    <br>
+    
+<p style="font-size:30px;"><b>칭호 관리</b></p>
+<p style="font-size:20px;"><b>적용중인 칭호 : [ <%= @user.applying_award %> ]</b></p>
+<hr>
+<br>
+
+<p style="font-size:20px; color:red;"><b>
+'플랜 R'의 다양한 곳에서 일정 조건을 만족하면 칭호를 획득하실 수 있습니다.
+</b></p>
+
+<br>
+
+<p style="font-size:30px;"><b>내가 획득한 칭호</b></p>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">분류</th>
+      <th scope="col">칭호 이름</th>
+      <th scope="col">칭호 소개</th>
+      <th scope="col">적용하기</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @user.awardtitle_Z1 == 1 %>
+      <% if @user.applying_award != '멋쟁이처럼 탈출하기' %>
+        <tr> <td>스폐셜</td> <td>멋쟁이처럼 탈출하기</td> 
+        <td>2018 멋사 해커톤 참가자를 위한 특별 칭호
+        <br>(칭호 적용 시, 랭킹 포인트 획득량이 1.5배가 됩니다.)</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '멋쟁이처럼 탈출하기' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>스폐셜</td> <td>멋쟁이처럼 탈출하기</td> 
+        <td>2018 멋사 해커톤 참가자를 위한 특별 칭호
+        <br>(칭호가 적용되어 랭킹 포인트 획득량이 1.5배가 됩니다.)</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_A1 == 1 %>
+      <% if @user.applying_award != '탈출을 시도한 자' %>
+        <tr> <td>탈출</td> <td>탈출을 시도한 자</td> <td>정답 제출 시도 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '탈출을 시도한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>탈출</td> <td>탈출을 시도한 자</td> <td>정답 제출 시도 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_A2 == 1 %>
+      <% if @user.applying_award != '탈출에 숙련된 자' %>
+        <tr> <td>탈출</td> <td>탈출에 숙련된 자</td> <td>정답 제출 시도 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '탈출에 숙련된 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>탈출</td> <td>탈출에 숙련된 자</td> <td>정답 제출 시도 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_A3 == 1 %>
+      <% if @user.applying_award != '탈출을 깨우친 자' %>
+        <tr> <td>탈출</td> <td>탈출을 시도한 자</td> <td>정답 제출 시도 100회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '탈출을 깨우친 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>탈출</td> <td>탈출을 깨우친 자</td> <td>정답 제출 시도 100회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_A4 == 1 %>
+      <% if @user.applying_award != '탈출의 귀재' %>
+        <tr> <td>탈출</td> <td>탈출을 시도한 자</td> <td>정답 제출 시도 200회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '탈출의 귀재' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>탈출</td> <td>탈출의 귀재</td> <td>정답 제출 시도 200회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_H1 == 1 %>
+      <% if @user.applying_award != '레전드 레이서' %>
+        <tr> <td>기타</td> <td>레전드 레이서</td> <td>정답 제출 시도 10000회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '레전드 레이서' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>기타</td> <td>레전드 레이서</td> <td>정답 제출 시도 10000회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_B1 == 1 %>
+      <% if @user.applying_award != '실패를 경험한 자' %>
+        <tr> <td>실패</td> <td>실패를 경험한 자</td> <td>오답 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '실패를 경험한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>실패</td> <td>실패를 경험한 자</td> <td>오답 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_B2 == 1 %>
+      <% if @user.applying_award != '실패에 익숙한 자' %>
+        <tr> <td>실패</td> <td>실패를 경험한 자</td> <td>오답 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '실패에 익숙한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>실패</td> <td>실패에 익숙한 자</td> <td>오답 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    <% if @user.awardtitle_B3 == 1 %>
+      <% if @user.applying_award != '실패를 두려워하지 않는 자' %>
+        <tr> <td>실패</td> <td>실패를 경험한 자</td> <td>오답 100회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '실패를 두려워하지 않는 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>실패</td> <td>실패를 두려워하지 않는 자</td> <td>오답 100회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_B4 == 1 %>
+      <% if @user.applying_award != '실패를 극복해낸 자' %>
+        <tr> <td>실패</td> <td>실패를 경험한 자</td> <td>오답 200회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '실패를 극복해낸 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>실패</td> <td>실패를 극복해낸 자</td> <td>오답 200회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_C1 == 1 %>
+      <% if @user.applying_award != '브론즈 방탈출러' %>
+        <tr> <td>성공</td> <td>브론즈 방탈출러</td> <td>클리어 방탈출 갯수 1개 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '브론즈 방탈출러' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>성공</td> <td>브론즈 방탈출러</td> <td>클리어 방탈출 갯수 1개 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_C2 == 1 %>
+      <% if @user.applying_award != '실버 방탈출러' %>
+        <tr> <td>성공</td> <td>실버 방탈출러</td> <td>클리어 방탈출 갯수 10개 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '실버 방탈출러' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>성공</td> <td>실버 방탈출러</td> <td>클리어 방탈출 갯수 10개 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_C3 == 1 %>
+      <% if @user.applying_award != '골드 방탈출러' %>
+        <tr> <td>성공</td> <td>골드 방탈출러</td> <td>클리어 방탈출 갯수 25개 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '골드 방탈출러' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>성공</td> <td>골드 방탈출러</td> <td>클리어 방탈출 갯수 25개 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_C4 == 1 %>
+      <% if @user.applying_award != '플래티넘 방탈출러' %>
+        <tr> <td>성공</td> <td>플래티넘 방탈출러</td> <td>클리어 방탈출 갯수 50개 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '플래티넘 방탈출러' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>성공</td> <td>플래티넘 방탈출러</td> <td>클리어 방탈출 갯수 50개 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_C5 == 1 %>
+      <% if @user.applying_award != '다이아몬드 방탈출러' %>
+        <tr> <td>성공</td> <td>다이아몬드 방탈출러</td> <td>클리어 방탈출 갯수 100개 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '다이아몬드 방탈출러' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>성공</td> <td>다이아몬드 방탈출러</td> <td>클리어 방탈출 갯수 100개 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_H2 == 1 %>
+      <% if @user.applying_award != '레전드 이스케이퍼' %>
+        <tr> <td>기타</td> <td>레전드 이스케이퍼</td> <td>클리어 방탈출 갯수 1000개 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '레전드 이스케이퍼' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>기타</td> <td>레전드 이스케이퍼</td> <td>클리어 방탈출 갯수 1000개 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_D1 == 1 %>
+      <% if @user.applying_award != '방탈출 메이커 : 기본' %>
+        <tr> <td>메이킹</td> <td>방탈출 메이커 : 기본</td> <td>제작 방탈출 갯수 1개 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '방탈출 메이커 : 기본' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>메이킹</td> <td>방탈출 메이커 : 기본</td> <td>제작 방탈출 갯수 1개 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_D2 == 1 %>
+      <% if @user.applying_award != '방탈출 메이커 : 숙련' %>
+        <tr> <td>메이킹</td> <td>방탈출 메이커 : 숙련</td> <td>제작 방탈출 갯수 5개 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '방탈출 메이커 : 숙련' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>메이킹</td> <td>방탈출 메이커 : 숙련</td> <td>제작 방탈출 갯수 5개 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_D3 == 1 %>
+      <% if @user.applying_award != '방탈출 메이커 : 실력' %>
+        <tr> <td>메이킹</td> <td>방탈출 메이커 : 실력</td> <td>제작 방탈출 갯수 20개 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '방탈출 메이커 : 실력' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>메이킹</td> <td>방탈출 메이커 : 실력</td> <td>제작 방탈출 갯수 20개 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_D4 == 1 %>
+      <% if @user.applying_award != '전설의 메이커' %>
+        <tr> <td>메이킹</td> <td>전설의 메이커</td> <td>제작 방탈출 갯수 50개 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '전설의 메이커' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>메이킹</td> <td>전설의 메이커</td> <td>제작 방탈출 갯수 50개 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E1 == 1 %>
+      <% if @user.applying_award != '수정의 장인' %>
+        <tr> <td>편집</td> <td>수정의 장인</td> <td>자신의 방탈출 수정횟수 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '수정의 장인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>수정의 장인</td> <td>자신의 방탈출 수정횟수 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E2 == 1 %>
+      <% if @user.applying_award != '수정의 명인' %>
+        <tr> <td>편집</td> <td>수정의 명인</td> <td>자신의 방탈출 수정횟수 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '수정의 명인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>수정의 명인</td> <td>자신의 방탈출 수정횟수 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E3 == 1 %>
+      <% if @user.applying_award != '수정의 달인' %>
+        <tr> <td>편집</td> <td>수정의 달인</td> <td>자신의 방탈출 수정횟수 100회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '수정의 달인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>수정의 달인</td> <td>자신의 방탈출 수정횟수 100회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E4 == 1 %>
+      <% if @user.applying_award != '삭제의 장인' %>
+        <tr> <td>편집</td> <td>삭제의 장인</td> <td>자신의 방탈출 삭제횟수 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '삭제의 장인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>삭제의 장인</td> <td>자신의 방탈출 삭제횟수 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E5 == 1 %>
+      <% if @user.applying_award != '삭제의 명인' %>
+        <tr> <td>편집</td> <td>삭제의 명인</td> <td>자신의 방탈출 삭제횟수 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '삭제의 명인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>삭제의 명인</td> <td>자신의 방탈출 삭제횟수 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E6 == 1 %>
+      <% if @user.applying_award != '삭제의 달인' %>
+        <tr> <td>편집</td> <td>삭제의 달인</td> <td>자신의 방탈출 삭제횟수 100회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '삭제의 달인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>삭제의 달인</td> <td>자신의 방탈출 삭제횟수 100회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E7 == 1 %>
+      <% if @user.applying_award != '배포의 장인' %>
+        <tr> <td>편집</td> <td>배포의 장인</td> <td>자신의 방탈출 배포횟수 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '배포의 장인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>배포의 장인</td> <td>자신의 방탈출 배포횟수 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E8 == 1 %>
+      <% if @user.applying_award != '배포의 명인' %>
+        <tr> <td>편집</td> <td>배포의 명인</td> <td>자신의 방탈출 배포횟수 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '배포의 명인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>배포의 명인</td> <td>자신의 방탈출 배포횟수 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_E9 == 1 %>
+      <% if @user.applying_award != '배포의 달인' %>
+        <tr> <td>편집</td> <td>배포의 달인</td> <td>자신의 방탈출 배포횟수 100회 달성 시 획득</td>
+        <td>
+          <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '배포의 달인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>편집</td> <td>배포의 달인</td> <td>자신의 방탈출 배포횟수 100회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_F1 == 1 %>
+      <% if @user.applying_award != '홀로서 시작한 자' %>
+        <tr> <td>싱글플레이</td> <td>홀로서 시작한 자</td> <td>싱글플레이 시작횟수 1회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '홀로서 시작한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>싱글플레이</td> <td>홀로서 시작한 자</td> <td>싱글플레이 시작횟수 1회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_F2 == 1 %>
+      <% if @user.applying_award != '홀로서 탈출한 자' %>
+        <tr> <td>싱글플레이</td> <td>홀로서 탈출한 자</td> <td>싱글플레이 시작횟수 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '홀로서 탈출한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>싱글플레이</td> <td>홀로서 탈출한 자</td> <td>싱글플레이 시작횟수 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_F3 == 1 %>
+      <% if @user.applying_award != '홀로서도 탈출의 고수' %>
+        <tr> <td>싱글플레이</td> <td>홀로서도 탈출의 고수</td> <td>싱글플레이 시작횟수 25회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '홀로서도 탈출의 고수' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>싱글플레이</td> <td>홀로서도 탈출의 고수</td> <td>싱글플레이 시작횟수 25회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_F4 == 1 %>
+      <% if @user.applying_award != '홀로 탈출의 귀인' %>
+        <tr> <td>싱글플레이</td> <td>홀로 탈출의 귀인</td> <td>싱글플레이 시작횟수 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '홀로 탈출의 귀인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>싱글플레이</td> <td>홀로 탈출의 귀인</td> <td>싱글플레이 시작횟수 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_G1 == 1 %>
+      <% if @user.applying_award != '함께 시작한 자' %>
+        <tr> <td>멀티플레이</td> <td>함께 시작한 자</td> <td>멀티플레이 시작횟수 1회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '함께 시작한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>멀티플레이</td> <td>함께 시작한 자</td> <td>멀티플레이 시작횟수 1회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_G2 == 1 %>
+      <% if @user.applying_award != '함께 탈출한 자' %>
+        <tr> <td>멀티플레이</td> <td>함께 탈출한 자</td> <td>멀티플레이 시작횟수 10회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '함께 탈출한 자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>멀티플레이</td> <td>함께 탈출한 자</td> <td>멀티플레이 시작횟수 10회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_G3 == 1 %>
+      <% if @user.applying_award != '함께라면 두렵지 않아' %>
+        <tr> <td>멀티플레이</td> <td>함께라면 두렵지 않아</td> <td>멀티플레이 시작횟수 25회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '함께라면 두렵지 않아' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>멀티플레이</td> <td>함께라면 두렵지 않아</td> <td>멀티플레이 시작횟수 25회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    <% if @user.awardtitle_G4 == 1 %>
+      <% if @user.applying_award != '함께 탈출의 귀인' %>
+        <tr> <td>멀티플레이</td> <td>함께 탈출의 귀인</td> <td>멀티플레이 시작횟수 50회 달성 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '함께 탈출의 귀인' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>멀티플레이</td> <td>함께 탈출의 귀인</td> <td>멀티플레이 시작횟수 50회 달성 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_S0_1 == 1 %>
+      <% if @user.applying_award != '프리시즌 참가자' %>
+        <tr> <td>랭킹</td> <td>프리시즌 참가자</td> <td>프리시즌 기간동안 한번이라도 방탈출 플레이 시 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '프리시즌 참가자' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>랭킹</td> <td>프리시즌 참가자</td> <td>프리시즌 기간동안 한번이라도 방탈출 플레이 시 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_S0_2 == 1 %>
+      <% if @user.applying_award != '프리시즌 트라이어' %>
+        <tr> <td>랭킹</td> <td>프리시즌 트라이어</td> <td>프리시즌 기간동안 숙련자 등급에 도달하면 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '프리시즌 트라이어' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>랭킹</td> <td>프리시즌 트라이어</td> <td>프리시즌 기간동안 숙련자 등급에 도달하면 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_S0_3 == 1 %>
+      <% if @user.applying_award != '프리시즌 챌린저' %>
+        <tr> <td>랭킹</td> <td>프리시즌 챌린저</td> <td>프리시즌 기간동안 실력자 등급에 도달하면 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '프리시즌 챌린저' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>랭킹</td> <td>프리시즌 챌린저</td> <td>프리시즌 기간동안 실력자 등급에 도달하면 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_S0_4 == 1 %>
+      <% if @user.applying_award != '프리시즌 랭커' %>
+        <tr> <td>랭킹</td> <td>프리시즌 랭커</td> <td>프리시즌 기간동안 마스터 등급에 도달하면 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '프리시즌 랭커' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>랭킹</td> <td>프리시즌 랭커</td> <td>프리시즌 기간동안 마스터 등급에 도달하면 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <% if @user.awardtitle_S0_5 == 1 %>
+      <% if @user.applying_award != '프리시즌 그랜드랭커' %>
+        <tr> <td>랭킹</td> <td>프리시즌 그랜드랭커</td> <td>프리시즌 기간동안 그랜드마스터 등급에 도달하면 획득</td>
+        <td>
+        <%= form_tag post_awardapplying_path, { method: 'post' } do %>
+          <%= hidden_field_tag :apply_this, '프리시즌 그랜드랭커' %>
+          <br><%= submit_tag '적용하기', class:'btn btn-primary' %>
+        <% end %>
+        </td>
+        </tr>
+      <% else %>
+        <tr> <td>랭킹</td> <td>프리시즌 그랜드랭커</td> <td>프리시즌 기간동안 그랜드마스터 등급에 도달하면 획득</td>
+          <td><button class='btn btn-danger'>적용됨</button></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+
+  </tbody>
+</table>
+
+<br>
+<br>
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>

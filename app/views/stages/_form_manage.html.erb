@@ -1,13 +1,32 @@
 
 <%=hidden_field_tag :stage_level, params[:stage_level] %>
 
+
+<div class='form-group'>
+  <label for='mode'>스테이지 테마</label>
+  <text  class='form-control' name='title' >
+    
+    <% if @stage.mode ==0 %>
+      기본 테마
+    <% elsif @stage.mode == 1 %>
+      자물쇠 테마
+    <% elsif @stage.mode == 2 %>
+      순서 테마
+    <% elsif @stage.mode == 3 %>
+      선택지 테마
+    <% else %>
+      이미지 클릭 테마
+    <% end %>
+    
+    </text>
+</div>
+
 <div class='form-group'>
   <label for='title'>스테이지 제목</label>
   <text  class='form-control' name='title' ><%=@stage.title %></text>
-  
 </div>
 
-        <%= render 'dialog_modal' %>
+<%= render 'dialog_modal' %>
         
 
 <div class='form-group '>
@@ -23,8 +42,21 @@
 </div>
 
 
-  <label for='answer'>정답</label>
+  <% if @stage.mode!=4 %>
+  <label for='answer'>정답1</label>
   <text  class='form-control' name='answer'><%=@stage.answer%></text>
+  <%end%>
+  
+  <% if @stage.answer2 && @stage.answer2.length>0 %>
+    <label for='answer2'>정답2</label>
+    <text  class='form-control' name='answer2'><%=@stage.answer2%></text>
+  <% end %>
+  
+  
+  <% if @stage.answer3 && @stage.answer3.length>0 %>
+    <label for='answer3'>정답3</label>
+    <text  class='form-control' name='answer3'><%=@stage.answer3%></text>
+  <% end %>
 </div>
 
 <!--이미지가 있는 경우에만 -->
@@ -34,20 +66,59 @@
 <div>
     <div class='form-group'>
         <label>Uploaded Image</label><br/>
-         <%= image_tag @stage.image.url(:main) , id: 'img-upload', class: 'img-main' if @stage.image.url %>
+        <div class = 'image' style = "position: relative;">
+          
+           <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main' if @stage.image.url %>
+
+
+          <% if @stage.mode==4 %>
+             <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
+          <% end %>
+         
+        </div>
+
     </div>
 </div>
 <% end %>
 
+
+
 <%if @room.publish_stage_id < @stage.id %>
-  <%= link_to "수정하기",  stage_manage_each_path(@room.id,@stage_level, edit_mode: true) , class: 'btn btn-default' %>
-  <button class='btn btn-default' data-toggle="modal" data-target="#delete">
+  <%= link_to "수정하기",  stage_manage_each_path(@room.id,@stage_level, edit_mode: true) , class: 'btn btn-blueblack' %>
+  <button class='btn btn-blueblack' data-toggle="modal" data-target="#delete">
    삭제하기
   </button>
-  <button class='btn btn-default' data-toggle="modal" data-target="#publish">
+  <button class='btn btn-blueblack' data-toggle="modal" data-target="#publish">
     배포하기
   </button>
   
 <% end %>
 
 <p style="color:red;"><b>[주의] 한 번 배포 후에는 스테이지 수정이 불가능합니다.</b></p>
+
+<script>
+<% if @stage.image.url  %>
+
+ var img = document.getElementsByTagName("img")[0];
+img.onload=function(){
+    drawImageTheme(img);
+}
+
+
+function drawImageTheme(img){
+  if(4==<%=@stage.mode%>){
+    
+    
+        var ansSize = <%=@Ans_img && @Ans_img[2] ? @Ans_img[2] : 0%>*img.width/100;
+        var ansX = <%=@Ans_img && @Ans_img[0] ? @Ans_img[0] : 0%>*img.width/100 - ansSize/2;
+        var ansY = <%=@Ans_img && @Ans_img[1] ? @Ans_img[1] : 0%>*img.height/100 - ansSize/2;
+        document.getElementById('img-border').style.display='inline';
+        document.getElementById('img-border').style.width=ansSize;
+        document.getElementById('img-border').style.height=ansSize;
+        document.getElementById('img-border').style.left=ansX;
+        document.getElementById('img-border').style.top=ansY;
+    }
+}
+<% end %>
+  
+</script>

@@ -84,6 +84,7 @@ main {
 
 .modal.fade{
   z-index:200;
+  
 }
 
 .button.active .top {
@@ -282,3 +283,37 @@ main {
     margin-left: 3vw;
 }
 // manage.html.erb 끝
+
+
+// modal 위치 
+
+.modal {
+  margin-top: 20em;
+  
+}
+.modal-backdrop {
+  opacity: 0.7;
+}
+
+#img-upload {
+  top:0px;
+  left:0px;  
+  position: relative;
+
+}
+
+
+#img-area{    //aa
+  z-index: 201;
+  background-color: skyblue;
+  border: 2px dotted blue;
+  opacity: 0.2;
+  
+}
+
+#img-border{     //bb
+  
+  background-color: rgba(255, 0, 0, 0.25);
+  border: 5px solid red;
+  
+}

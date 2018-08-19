@@ -27,15 +27,16 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 이미지를 저장할 사이즈 조정
   # Process files as they are uploaded:
-  # process scale: [200, 300]
-  #
+  # process scale: [400, 600]
+  # #
   # def scale(width, height)
-  #   # do something
+  #   # do somethingc
+  #   image = MiniMagick::Image.open(self.file.file)
   # end
 
   # 여러가지 이미지의 버전 설정
   # Create different versions of your uploaded files:
-  process :resize_to_limit => [600, 768]
+  # process :resize_to_limit => [600, 768]
 
 
 
@@ -47,9 +48,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #resize_to_fit 같은 경우 600 혹은 1000중에 하나의 값에 맞추고 나머지는 비율에 맞게 조정한다.
   #resize_to_fill 의 경우는 비율을 무시하고 특정 크기로 조절한다.
      
-  version :main do
-    process resize_to_fit: [600, 1000]
-  end
+  process resize_to_fit: [600, 1000]
 
   
   version :thumb do

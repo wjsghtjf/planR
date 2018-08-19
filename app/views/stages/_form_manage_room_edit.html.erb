@@ -31,13 +31,12 @@
             </span>
             
             
-            <input type='text' class='input-form' name='image' readonly value='<%=@stage_file_name %>'>
+            <input type='text' class='input-form' name='image' readonly value='<%=@room_file_name %>'>
             
             
             
             <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
         
-            <button type='button' id='btn_preview'  onClick='showImage()' class='btn btn-outline-primary btn-form'>미리보기</button>    
         </div>
         
         <% if @room.image.url %>

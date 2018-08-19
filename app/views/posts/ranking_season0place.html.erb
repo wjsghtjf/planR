@@ -1,0 +1,120 @@
+<div class="content">
+<div class="row">
+    <div class="col-md-2">
+      <%= render 'ranking_menu' %>
+    </div>
+    
+    <div class="col-md-9">
+
+
+<br>
+<br>
+<h3><b>현재 진행중 :: 프리시즌(Pre-Season)</b></h3>
+
+<br>
+<br>
+
+
+<table class="table">
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col">순위</th> <!-- 여기여기여기~~ 열하나 만들었엉 -->
+      <th scope="col">닉네임</th>
+      <th scope="col">등급</th>
+      <th scope="col">EP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ordered_users = @users.sort_by{ |u| u[:rank_point]}.reverse %>
+    <% @place = 0 %>
+    <% @ordered_users.each do |user| %>  
+    
+    <% @place = @place + 1 %>
+    <% if user.nickname == @player.nickname %>
+    <tr class="table-info">
+      <td>
+        <%= @place %>
+      </td>
+      
+      <td><%=user.nickname%> 
+        <% if user.applying_award == '' %>
+        [칭호 미설정]
+        <% else %>
+        [<%=user.applying_award%>]
+        <% end %>
+      </td>
+      <td>
+        <% if user.rank_point.round(2) >= 10.00 %>
+            그랜드마스터 <i class="fas fa-trophy fa-lg" style="color:#353a3f;"></i>
+        <% elsif user.rank_point.round(2) >= 9.00 %>
+            마스터 <i class="fas fa-trophy fa-lg" style="color:#d36065;"></i>
+        <% elsif user.rank_point.round(2) >= 6.00 %>
+            실력자 <i class="fas fa-trophy fa-lg" style="color:#f7cb60;"></i>
+        <% elsif user.rank_point.round(2) >= 3.00 %>
+            숙련자 <i class="fas fa-trophy fa-lg" style="color:#65aec0;"></i>
+        <% else %>
+            뉴비 <i class="fas fa-trophy fa-lg" style="color:#6db26b;"></i>
+        <% end %>  
+      </td>
+      <td>
+        <% if user.rank_point.round(2) >= 10.00 %>
+        10.0
+        <% else %>
+        <%=user.rank_point.round(2)%>
+        <% end %>
+      </td>
+    </tr>
+    <% else %>
+        <tr>
+      <td>
+        <%= @place %>
+      </td>
+      <td><%=user.nickname%>
+      <% if user.applying_award == "" %>
+        [칭호 미설정]
+        <% else %>
+        [<%=user.applying_award%>]
+        <% end %></td>
+      <td>
+        <% if user.rank_point.round(2) >= 10.00 %>
+            그랜드마스터 <i class="fas fa-trophy fa-lg" style="color:#353a3f;"></i>
+        <% elsif user.rank_point.round(2) >= 9.00 %>
+            마스터 <i class="fas fa-trophy fa-lg" style="color:#d36065;"></i>
+        <% elsif user.rank_point.round(2) >= 6.00 %>
+            실력자 <i class="fas fa-trophy fa-lg" style="color:#f7cb60;"></i>
+        <% elsif user.rank_point.round(2) >= 3.00 %>
+            숙련자 <i class="fas fa-trophy fa-lg" style="color:#65aec0;"></i>
+        <% else %>
+            뉴비 <i class="fas fa-trophy fa-lg" style="color:#6db26b;"></i>
+        <% end %>  
+      </td>
+      <td>
+        <% if user.rank_point.round(2) >= 10.00 %>
+        10.0
+        <% else %>
+        <%=user.rank_point.round(2)%>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+    
+
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+<div class="col-md-1">
+</div>
+</div>
+</div>

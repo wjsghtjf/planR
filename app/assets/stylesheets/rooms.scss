@@ -87,6 +87,17 @@
   height: 100%; //희성
 }
 
+.card_front > *,
+.card_back > * {
+  background-color: white;
+  background-color: rgba(245, 245, 245, 0.6);  
+  height: 100%; //희성
+}
+
+.card_fin{
+  background-color: transparent
+}
+
 .card-text {
   padding: 0 4.5em 1em;
   line-height: 1.4;
@@ -144,35 +155,22 @@
 
 /* show.html.erb */
 
-.s8 h2 {
-    text-align: center;
-}
-
-.s8 h5 {
-    text-align: left;
-}
-
-.content_box {
-    border: 1px solid #e9e9e9;
-}
-
-
-.btn {
+.btn-blueblack {
     background-color: #1F2344; 
     color: #FFFFFF;
 }
 
-.btn:visited {
+.btn-blueblack:visited {
     background-color: #1F2344;
     color: #FFFFFF;
 }
 
-.btn:hover {
+.btn-blueblack:hover {
     background-color: grey;
     color: #FFFFFF;
 }
 
-.btn:click {
+.btn-blueblack:click {
     background-color: #1F2344;
     color: #FFFFFF;
 }

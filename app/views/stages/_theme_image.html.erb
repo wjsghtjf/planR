@@ -1,0 +1,71 @@
+
+<script>
+var size =50;
+var boardX, boardY;
+$(function(){
+  $('#img-upload').mousemove(function(e) {
+    if($('input[type="radio"]')[4].checked==false) return
+    mouseX = e.offsetX;
+    mouseY = e.offsetY;
+    $('#img-area').css('display','inline');
+    $('#img-area').css('width',size).css('height',size);
+    $('#img-area').css("left", mouseX-(size/2)).css("top", mouseY-(size/2)).html(null);
+ });
+});
+
+
+$(document).ready(function () {
+      
+   $("#img-upload").click(function(){
+    if($('input[type="radio"]')[4].checked==false) return
+    boardX = event.offsetX;
+    boardY = event.offsetY;
+    
+    redraw(boardX,boardY,size);
+  });
+  });
+function sizeUp(){
+    if($('input[type="radio"]')[4].checked==false) return
+    size= Math.min(size + 10,200) ;
+    redraw(boardX,boardY,size);
+    
+}function sizeDown(){
+    if($('input[type="radio"]')[4].checked==false) return
+    size= Math.max(size - 10,10) ;
+    redraw(boardX,boardY,size);
+}
+function redraw(x,y,size){
+    if($('input[type="radio"]')[4].checked==false) return
+    $('#img-border').css('display','inline');
+    $('#img-border').css('width',size).css('height',size);
+    $('#img-border').css("left", x-(size/2)).css("top", y-(size/2)).html(null);
+    
+    let imgW= $('#img-upload').width();
+    let imgH= $('#img-upload').height();
+    
+    let ans_size = (size*100/imgW);//.toFixed(2);
+    let ans_Y = (y*100/imgH);//.toFixed(2);
+    let ans_X = (x*100/imgW);//.toFixed(2);
+    
+    document.getElementById("stage_answer").value = ans_X+","+ans_Y+","+ans_size;
+}
+
+ var img = document.getElementsByTagName("img")[0];
+img.onload=function(){
+    drawImageTheme(img);
+}
+
+function drawImageTheme(img){
+  if(4==<%=@stage.mode%>){
+          var ansSize = <%=@Ans_img && @Ans_img[2] ? @Ans_img[2] : 0%>*img.width/100;
+          var ansX = <%=@Ans_img && @Ans_img[0] ? @Ans_img[0] : 0%>*img.width/100 - ansSize/2;
+          var ansY = <%=@Ans_img && @Ans_img[1] ? @Ans_img[1] : 0%>*img.height/100 - ansSize/2;
+        document.getElementById('img-border').style.display='inline';
+        document.getElementById('img-border').style.width=ansSize;
+        document.getElementById('img-border').style.height=ansSize;
+        document.getElementById('img-border').style.left=ansX;
+        document.getElementById('img-border').style.top=ansY;
+    }
+}
+
+</script>

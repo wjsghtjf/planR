@@ -1,0 +1,41 @@
+<div class='theme_selection'>
+    <br>
+    <br>
+<p style="font-size:25px;"><b>정답인 항목을 선택하십시오.</b></p>
+<table>
+    <% for i in 1..5 do%> 
+        
+        <td>
+            <!--<%#radio_button :mode, onclick="num_click2(#{i});", checked: true%> <%#=i%>번문항</li><br>-->
+            <button type='button' class="btn btn-info" onclick="num_click2(<%=i%>);" ><%=i%>번문항이 정답</button>
+        </td>
+        
+    <% end %>
+    
+     
+</table>
+
+<script>
+
+var chkNum= new Array(0,0,0,0,0,0);
+ var play_num2='';
+function num_click2(num){
+    chkNum[num]=1-chkNum[num];
+    
+    
+    play_num2='';
+    
+    for(var i in chkNum){
+        if(chkNum[i]==1){
+            if(play_num2.length==0) play_num2=i+"";
+            else play_num2 = play_num2+","+i;
+        }
+    }
+    
+     document.getElementById("stage_answer").value = play_num2;
+     
+     
+ }
+ </script>
+ 
+ </div>

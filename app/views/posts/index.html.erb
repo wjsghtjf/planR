@@ -1,10 +1,13 @@
 <head>
     <title>플랜 R :: 만든다. 방탈출.</title>
+   
 </head>
 <body>
 
 <main role="main" class="main-content">
-    <canvas id="noise" class="noise mainpage"></canvas>
+    <canvas id="noise" class="noise"></canvas>
+    <canvas id="event_canvas" class="noise"></canvas>
+   
     
     <h1 class="main-title">
         Plan R
@@ -57,7 +60,7 @@ noise = () => {
         for (let i = 0; i < len; i++) {
             var r = Math.random() ;
             if (r< 0.001) {// 몇퍼센트 확률로
-                buffer32[i] = 0xff2d2da2;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+                buffer32[i] = 0xff2d2a2d;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
                 // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
             }
             
@@ -141,8 +144,6 @@ noise = () => {
 
         loopTimeout = window.setTimeout(() => {
             window.requestAnimationFrame(loop);
-            
-            
         }, (1000 / frameByOneSec)); // 노이즈 속도 1000/x ->1초의 X프레임
     };
 
@@ -184,12 +185,16 @@ noise = () => {
         ctx = canvas.getContext('2d');
         setup();
     })();
+        
 };
  noise();
+ 
 
-
- $(document).on("click",function() {
+  
+ $(document).on("click",function(e) {
     isClicked = (isClicked==false);
+    
+    
     
     const p0 = 0.5;
     const p1 = 0.15 + p0;
@@ -212,8 +217,58 @@ noise = () => {
  
  $("h1.main-title").on("click", function(){
     isTurnOff=true; 
- });
+ }); 
+ 
+let cv = document.getElementById("event_canvas");
+cv.width =  window.innerWidth;
+cv.height = window.innerHeight;
+
+
+cv.onmousemove = function(e) {
+    // Get the current mouse position
+    var r = cv.getBoundingClientRect(),
+        x = e.clientX- r.left, y = e.clientY - r.top;
+
+    
+
+    var ctx = cv.getContext("2d");
+    
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    
+    let size=Math.min(frameByOneSec*10,100);
+    makeParticle(ctx,x,y,size,size);
+}
+
+function makeParticle(ctx,x,y,w, h){
+     const idata = ctx.createImageData(w, h);
+
+    const buffer32 = new Uint32Array(idata.data.buffer);
+    const len = buffer32.length;
+
+    for (let i = 0; i < len; i++) {
+        var r = Math.random() ;
+        if (r< 0.01) {// 몇퍼센트 확률로
+            buffer32[i] = 0xff2d2da2;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+        }
+        
+        else if (r < 0.02) {// 몇퍼센트 확률로
+            buffer32[i] = 0xff7f3e3e;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+        }
+        
+        else if (r < 0.03) {// 몇퍼센트 확률로
+            buffer32[i] = 0xff3e8f3e;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+            // buffer32[i] = 0xff310c1a;  //ALPHA GREEN(0xff00ff00) BLUE(0xfff0000)  RED(0xff0000ff)
+        }
+    }
+    ctx.putImageData(idata, x-w/2, y-h/2);
+
+}
 });
+     
+    
+    
 
 
 </script>
