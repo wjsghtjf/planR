@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2018_08_12_181902) do
     t.integer "usedhint2", default: 0
     t.integer "usedhint3", default: 0
     t.integer "useditem", default: 0
+    t.integer "selection_try"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_cal_id"], name: "index_stage_cals_on_room_cal_id"

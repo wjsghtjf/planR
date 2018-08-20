@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :find_user, only: [:publish]
   before_action :find_room, only: [:show, :update, :finish, :publish, :team]
   before_action :find_roomCal, only: [:show, :finish, :team]  
-  before_action :find_invites, only: [:team] 
+  before_action :find_invites, only: [:team, :confirm] 
   
   
    
@@ -35,11 +35,19 @@ class RoomsController < ApplicationController
   end
   
   def team
-    @roomCal.team_id= Integer(params[:team_id])
+    @roomCal.team_id= params[:team_id]
     @roomCal.save
   end
   
-  
+  def confirm
+    @team = Team.find(params[:team_id])
+    @room_cals = RoomCal.where('team_id' => @team.id)
+    @room_cals.each do |room_cal|
+      room_cal.mode = 2
+      room_cal.save
+    end
+    redirect_to stage_show_path(params[:room_id])
+  end
   
   def new
   end
@@ -92,6 +100,7 @@ class RoomsController < ApplicationController
     
   end
 
+  
 
   def publish
     @stage_id = Integer(params[:stage_id])

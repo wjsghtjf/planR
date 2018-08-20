@@ -1,2 +1,9 @@
-<h1>Invites#update</h1>
-<p>Find me in app/views/invites/update.html.erb</p>
+<%=form_tag room_cal_create_invited_path(@room_id, 5), { method: 'post', id: 'teamCreate'} do %>
+<% end %>
+
+<script>
+$(document).ready( function() {
+
+        document.getElementById("teamCreate").submit();
+});
+</script>

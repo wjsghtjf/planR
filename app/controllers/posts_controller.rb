@@ -2,12 +2,12 @@ class PostsController < ApplicationController
     
   before_action :find_user, only: [:award, :awardapplying, :ranking, :ranking_season0place, :item]
   before_action :find_invites, only: [:notification] 
-  
+  before_action :find_roomCal, only: [:notification]
   def index 
   end
   
   def notification
-     @INVITE_WAIT = 0
+    @INVITE_WAIT = 0
     @INVITE_ACCEPT = 1
     @INVITE_DENY = 2
   end
@@ -176,14 +176,18 @@ class PostsController < ApplicationController
     @player = User.find(current_user.id)
   end
   
-  
   def find_invites
     @invites = current_user.invitations
-    
   end
+  
+ 
   
   def find_user
     @user=User.find(current_user.id)
+  end
+  
+  def find_roomCal
+    @roomCal = RoomCal.find_by(user_id: current_user.id, room_id: params[:room_id])
   end
   
 end

@@ -10,10 +10,7 @@
 <hr>
 <br>
 
-<% @holder = 0 %>
-<% @invites.each do |inv| %>
-<% @holder = @holder + 1 %>
-<% if inv.invite_accepted!= 2 %>
+
 <table class="table table-hover">
   <thead class="thead-light">
     <tr>
@@ -24,6 +21,10 @@
     </tr>
   </thead>
   <tbody>
+    <% @holder = 0 %>
+    <% @invites.each do |inv| %>
+    <% @holder = @holder + 1 %>
+    <% if inv.invite_accepted!= 2 && RoomCal.find_by(user_id: inv.team.user_id, team_id: inv.team_id).mode != 2 %>
     <tr>
       <th scope="row"><%= @holder %></th>
       <td><%= inv.room.title %></td>
@@ -35,28 +36,28 @@
               <% else %>
                   준비 상태
               <% end %>
-          <% elsif inv.invite_accepted == @INVITE_WAIT %>
+          <% elsif inv.invite_accepted == @INVITE_WAIT%>
                 <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
+                    <%=hidden_field_tag :room_id, inv.room_id %>
                     <%=hidden_field_tag :invite_id, inv.id %>
                     <%=hidden_field_tag :invite_accepted, 1 %>
-                <%=submit_tag '수락', class: 'btn btn-primary btn-lg' %>
+                <%=submit_tag '수락', class: 'btn btn-primary' %>
                 <% end %>
                 
                 <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
+                    <%=hidden_field_tag :room_id, inv.id %>
                     <%=hidden_field_tag :invite_id, inv.id %>
                     <%=hidden_field_tag :invite_accepted, 2 %>
-                <%=submit_tag '거절', class: 'btn btn-danger btn-lg' %>
+                <%=submit_tag '거절', class: 'btn btn-danger' %>
                 <% end %>
           <% end%>
       </td>
-      <td>
-          
-      </td>
     </tr>
+    <% end%>
+<% end %>
   </tbody>
 </table>
-<% end%>
-<% end %>
+
 <br>
 <br>
 
@@ -64,53 +65,39 @@
 <hr>
 <br>
 
-<% @holder = 0 %>
-<% @invites.each do |inv| %>
-<% @holder = @holder + 1 %>
-<% if inv.invite_accepted!= 2 %>
+
+
+
+
 <table class="table table-hover">
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col">방탈출 제목</th>
-      <th scope="col">팀원</th>
-      <th scope="col">상태 수</th> <!-- 대기중, 바로가기 -->
+      <th scope="col">팀원 수</th>
+      <th scope="col">바로가기</th> <!-- 대기중, 바로가기 -->
     </tr>
   </thead>
   <tbody>
+    <% @holder2 = 0 %>
+    <% @room_cals.each do |room_cal| %>
+    <% @holder2 = @holder2 + 1 %>
+    <% if room_cal.mode == 5 %>
     <tr>
-      <th scope="row"><%= @holder %></th>
-      <td><%= inv.room.title %></td>
-      <td><%= inv.team.user.nickname%></td>
+      <th scope="row"><%= @holder2 %></th>
+      <td><%= room_cal.room.title %></td>
+      <td><%= %></td>
       <td>
-          <% if inv.invite_accepted == @INVITE_ACCEPT %>
-              <% if RoomCal.find_by(user_id: inv.team.user_id, team_id: inv.team_id).mode == 2 %>
-                  시작 상태
-              <% else %>
-                  준비 상태
-              <% end %>
-          <% elsif inv.invite_accepted == @INVITE_WAIT %>
-                <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
-                    <%=hidden_field_tag :invite_id, inv.id %>
-                    <%=hidden_field_tag :invite_accepted, 1 %>
-                <%=submit_tag '수락', class: 'btn btn-primary btn-lg' %>
-                <% end %>
-                
-                <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
-                    <%=hidden_field_tag :invite_id, inv.id %>
-                    <%=hidden_field_tag :invite_accepted, 2 %>
-                <%=submit_tag '거절', class: 'btn btn-danger btn-lg' %>
-                <% end %>
-          <% end%>
+          <%=form_tag(room_team_path(room_cal.room_id, room_cal.team_id), { method: 'get', style: 'display:inline'}) do %>
+            <%=submit_tag '팀 구성 페이지 바로가기', class: 'btn btn-info btn-lg' %>
+          <% end %>
       </td>
-      <td>
-          
-      </td>
+
     </tr>
+    <% end %>
+    <% end %>
   </tbody>
 </table>
-<% end%>
-<% end %>
 
 
 

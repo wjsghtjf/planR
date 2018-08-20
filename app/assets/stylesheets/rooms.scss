@@ -9,146 +9,18 @@
 
 /* CARD STYLING */
 
-.card_list{
-  margin-top: 2em;
-  width: 26em;
-}
-
-.card,
-.card_front,
-.card_back {
-  width: 20em;
-  height: 25em;
-}
-
-.card_front,
-.card_back {  
-/*   height: 100%; */
-  box-shadow: 0px 5px 25px 0px rgba(51,51,51,0.28); 
-}
-
-.nonthumb{
-    background-image: url(/assets/mainpage_img.jpg);
-    background-size:     cover;     
-    background-repeat:   no-repeat;
-    background-position: center center;   
-    background-size: 100% 100%;
-}
-
-.thumbnail {
-    background-image: url(:thumb);
-    background-size:     cover;     
-    background-repeat:   no-repeat;
-    background-position: center center;   
-    background-size: 100% 100%;
-}
-
-
-.card-symbol {
-  margin: 0;
-  width: 100%;
-  text-align: center;
-  color: #000;
-  font-size: 1em;  
-  mix-blend-mode: lighten;
-}
-
-@supports(display:flex){
- .card_front {  
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  } 
-  
-  .card_front .card-symbol {  
-    // margin: 0 0.15em;
-    font-size: 2em;
-    // height: 90%;
-    height: 15%; //희성
-    position: absolute; //희성
-    bottom: 5%; //희성
-  }
-}
-
-.card_front {
-  position: relative;
-  padding: 0 1em;
-}
-
-.card_back {
-  padding: 1em;
-}
-
-.card_front > *,
-.card_back > * {
-  background-color: white;
-  background-color: rgba(245, 245, 245, 0.6);  
-  height: 100%; //희성
-}
-
-.card_front > *,
-.card_back > * {
-  background-color: white;
-  background-color: rgba(245, 245, 245, 0.6);  
-  height: 100%; //희성
-}
-
-.card_fin{
-  background-color: transparent
-}
-
-.card-text {
-  padding: 0 4.5em 1em;
-  line-height: 1.4;
-  color: black;
-  height: 75%;
-}
-
-.card_line {    
-  margin-top: 0;
-  padding: 2em 0 0;
-  border-top: 8px solid #333;
-}
-
-
-/* FLIP CARD STYLING */
-.card_list {
-  perspective: 1000px;
-  display:inline-block;
-}
-
-.card_list:hover .card, 
-.card_list.hover {
-  transform: rotateY(-180deg);
-}
-
 .card {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
+  border-radius: 0;
+  padding: 5px;
 }
 
-.card_front,
-.card_back {
-  backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
+.card img {
+  border-radius: 0;  
 }
 
-.card_fin {
-  height:10%;
- 
-}
-
-.card_front {
-  z-index: 2;
-  transform: rotateY(0deg);
-}
-
-.card_back {
-  transform: rotateY(-180deg);
+.btn-play {
+  border: 1px solid navy;
+  border-radius: 5px;
 }
 
 /* 카드 목록 CSS 끝 */

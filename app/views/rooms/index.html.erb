@@ -11,48 +11,43 @@
 <% @rooms.each do |room| %>
 <% @publish_stage_id=room.publish_stage_id%> 
 
-<div class="card_list" ontouchstart="this.classList.toggle('hover');">
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/assets/mainpage_img.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%=room.title%></h5>
+    <p class="card-text"><%=truncate room.content, length: 50 %></p>
+    <a href="<%=room_show_path(room.id) %>" class="btn btn-play">플레이 하기</a>
+  </div>
+</div>
+
+
+
+
+<!--<div class="card_list" ontouchstart="this.classList.toggle('hover');">-->
   
-  <a href="<%=room_show_path(room.id) %>">
-  <div class="card">  
+<!--  <a href="<%=room_show_path(room.id) %>">-->
+<!--  <div class="card">  -->
       <%# if room.image.url.nil? %>
-      <div class="card_front <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>"> 
+<!--      <div class="card_front <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>"> -->
         
-        <!--<#% if @publish_stage_id!=0 && Stage.find(@publish_stage_id).laststage == 1 %>-->
-        <!--<div class="card_fin"> <i class="material-icons">check_circle</i></div>-->
-        <!--<#% end %>-->
+<!--        <div class="card-symbol"><%=room.title%>-->
+<!--        [-->
         
-        
-        
-        
-        <div class="card-symbol"><%=room.title%>
-        [
-        
-        <%= room.difficulty.round(2) %>
+<!--        <%= room.difficulty.round(2) %>-->
 
         
-        ]<hr></div>
-      </div>
-      <hr>
-      <div class="card_back <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">
-         <div class="card-symbol"><%=room.title%><hr>
-         <p><%=truncate room.content, length: 100 %></p>
-        </div>
-      </div>
-      <!--<%#else %>-->
-      <!--  <div class="card_front <%#=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%#="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">-->
-      <!--    <div class="card-symbol"><%#=room.title%></div>-->
-      <!--  </div>-->
-      <!--  <div class="card_back thumbnail"  style='background-image: url(<%#=room.image.url(:thumb)%>)'>-->
-      <!--    <div class="card-symbol"><%#=room.title%><hr>-->
-      <!--   <p><%#=truncate room.content, length: 100 %></p>-->
-      <!--  </div>-->
-      <!--  </div>  -->
-                  
-      <!--<%#end %>-->
-  </div>
-    </a>
-</div>
+<!--        ]<hr></div>-->
+<!--      </div>-->
+<!--      <hr>-->
+<!--      <div class="card_back <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">-->
+<!--         <div class="card-symbol"><%=room.title%><hr>-->
+<!--         <p><%=truncate room.content, length: 100 %></p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--    </a>-->
+<!--</div>-->
 
 <% end %>
 

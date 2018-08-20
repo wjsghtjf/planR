@@ -13,8 +13,8 @@ class InvitesController < ApplicationController
       @invite = Invitation.find_by(room_id: params[:room_id],  team_id: params[:team_id],  user_id: @invite_user.id )
       if @invite.nil?
           @invite = Invitation.new
-          @invite.room_id = params[:room_id] 
-          @invite.team_id = params[:team_id]
+          @invite.room_id = Integer(params[:room_id])
+          @invite.team_id = Integer(params[:team_id])
           @invite.user_id = @invite_user.id
           @invite.save
           puts "Invite 생성 : @invite"
@@ -40,6 +40,9 @@ class InvitesController < ApplicationController
 
   def update
     
+    
+    
+    
     # 이거는 그저 임시용
     if Integer(params[:invite_id])== -1
       @invites = current_user.invitations
@@ -49,24 +52,32 @@ class InvitesController < ApplicationController
       end
       redirect_to post_notification_path
     else
-    
-    
+  
     @invite  = Invitation.find(params[:invite_id])
+    @room_id = Room.find(@invite.room_id)
     @invite.invite_accepted = Integer(params[:invite_accepted])
     @invite.save
     
-    if @invite.invite_accepted == @@INVITE_ACCEPT
+    if @invite.invite_accepted == @@INVITE_DENY
       redirect_to post_notification_path
     end
+    
+  end
   
-    end
+    
   end
   
   def deleteAll
-    
     @invites = Invitation.where("room_id = :room_id AND team_id = :team_id", { :room_id => params[:room_id], :team_id => params[:team_id]})
+    @invites.each do |invites|
+      @room_cal= RoomCal.find_by(user_id: invites.user_id, room_id: params[:room_id])
+      @room_cal.destroy
+    end
     @invites.delete_all
     
-    redirect_to room_team_path(params[:room_id], params[:team_id])
+    @roomcal = RoomCal.find_by(user_id: current_user.id, room_id: params[:room_id])
+    @roomcal.destroy
+    
+    redirect_to room_show_path(params[:room_id])
   end
 end

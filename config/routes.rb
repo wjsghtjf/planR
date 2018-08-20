@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   #팀원 초대 다 삭제하기
   post 'invites/deleteAll', as: 'invite_delete_all'
 
+  #팀원과 함께 시작하기
+  post 'rooms/:room_id/team/:team_id/confirm', to: 'rooms#confirm', as:'room_confirm'
   
   #[플레이] 방탈출 전체 목록 보기
   get 'rooms/index' , as: 'room_index'  
@@ -92,6 +94,9 @@ Rails.application.routes.draw do
   
   #RoomCal 생성하기
   post 'rooms/:room_id/room_cals/create/:mode', to: 'room_cals#create', as: 'room_cal_create'
+  
+  #RoomCal_Invited 생성하기
+  post 'rooms/:room_id/room_cals/create_invited/:mode', to: 'room_cals#create_invited', as: 'room_cal_create_invited' 
   
   #RoomCal 삭제하기
   post 'rooms/:room_id/room_cals/delete', to: 'room_cals#delete', as: 'room_cal_delete'

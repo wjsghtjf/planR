@@ -1,9 +1,26 @@
 class RoomCalsController < ApplicationController
   before_action :delete_room_cal, only: [ :create, :delete]
   before_action :find_user, only: [:create]
+  before_action :find_invites, only: [:create_invited]
   
   def index 
   end
+  
+  def create_invited
+    @roomCal = RoomCal.new
+    @roomCal.user_id = current_user.id
+    
+    
+    @roomCal.room_id = Integer(params[:room_id])
+    @roomCal.team_id = Invitation.find_by(user_id: current_user.id,  room_id: @roomCal.room_id).team_id
+    @roomCal.last_stage_level = 0
+    
+    @roomCal.mode = 0
+    @roomCal.save
+    
+    redirect_to post_notification_path
+  end
+  
   
   def create
     
@@ -51,5 +68,9 @@ class RoomCalsController < ApplicationController
   
   def find_user
     @user = User.find(current_user.id)
+  end
+  
+  def find_invites
+    @invites = current_user.invitations
   end
 end
