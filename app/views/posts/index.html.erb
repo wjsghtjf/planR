@@ -6,7 +6,7 @@
 
 <main role="main" class="main-content">
     <canvas id="noise" class="noise"></canvas>
-    <canvas id="event_canvas" class="noise"></canvas>
+    <!--<canvas id="event_canvas" class="noise"></canvas>-->
    
     
     <h1 class="main-title">
@@ -187,7 +187,7 @@ noise = () => {
     })();
         
 };
- noise();
+//  noise();
  
 
   
@@ -219,25 +219,25 @@ noise = () => {
     isTurnOff=true; 
  }); 
  
-let cv = document.getElementById("event_canvas");
-cv.width =  window.innerWidth;
-cv.height = window.innerHeight;
+// let cv = document.getElementById("event_canvas");
+// cv.width =  window.innerWidth;
+// cv.height = window.innerHeight;
 
 
-cv.onmousemove = function(e) {
-    // Get the current mouse position
-    var r = cv.getBoundingClientRect(),
-        x = e.clientX- r.left, y = e.clientY - r.top;
+// cv.onmousemove = function(e) {
+//     // Get the current mouse position
+//     var r = cv.getBoundingClientRect(),
+//         x = e.clientX- r.left, y = e.clientY - r.top;
 
     
 
-    var ctx = cv.getContext("2d");
+//     var ctx = cv.getContext("2d");
     
-    ctx.clearRect(0, 0, cv.width, cv.height);
+//     ctx.clearRect(0, 0, cv.width, cv.height);
     
-    let size=Math.min(frameByOneSec*10,100);
-    makeParticle(ctx,x,y,size,size);
-}
+//     let size=Math.min(frameByOneSec*10,100);
+//     makeParticle(ctx,x,y,size,size);
+// }
 
 function makeParticle(ctx,x,y,w, h){
      const idata = ctx.createImageData(w, h);

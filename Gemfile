@@ -41,7 +41,7 @@ gem 'rails', '~> 5.2.0'
 
 gem 'wysiwyg-rails'
 gem 'summernote-rails', '~> 0.8.10.0'
-gem 'simple_form'
+# gem 'simple_form'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
