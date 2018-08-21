@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # end
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+         validates_uniqueness_of :nickname
   has_many :room_cals , :dependent => :destroy 
   has_many :chats , :dependent => :destroy 
   
