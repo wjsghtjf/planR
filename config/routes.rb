@@ -78,10 +78,10 @@ Rails.application.routes.draw do
   #Room 만들기
   post 'rooms/create', to: 'rooms#create', as: 'room_create'
   #Room 수정하기
-  get 'rooms/update', to: 'rooms#update', as: 'room_update'
+  post 'rooms/update', to: 'rooms#update', as: 'room_update'
   #Room 삭제하기
   
-  post 'rooms/:room_id/delete', to: 'rooms#delete', as: 'room_delete'
+  get 'rooms/:room_id/delete', to: 'rooms#delete', as: 'room_delete'
   #Room 베포하기
   post 'rooms/:room_id/publish/:stage_id', to: 'rooms#publish', as: 'room_publish'
   
