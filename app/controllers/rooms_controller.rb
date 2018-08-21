@@ -62,6 +62,7 @@ class RoomsController < ApplicationController
   
   def mine
     @rooms=Room.where('user_id' => current_user.id)
+    @room
   end
   
     
@@ -101,13 +102,9 @@ class RoomsController < ApplicationController
   end
   
   def delete
-    @rooms=@user.rooms
-    @rooms.each do |room|
-      if room.id==params[:room_id]
-        room.destroy
-      end
-    end
-   
+   @room=Room.find(params[:room_id])
+   @room.destroy
+
     
     redirect_to room_mine_path
   end

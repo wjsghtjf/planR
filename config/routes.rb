@@ -81,7 +81,7 @@ Rails.application.routes.draw do
   post 'rooms/update', to: 'rooms#update', as: 'room_update'
   #Room 삭제하기
   
-  get 'rooms/:room_id/delete', to: 'rooms#delete', as: 'room_delete'
+  post 'rooms/:room_id/delete', to: 'rooms#delete', as: 'room_delete'
   #Room 베포하기
   post 'rooms/:room_id/publish/:stage_id', to: 'rooms#publish', as: 'room_publish'
   

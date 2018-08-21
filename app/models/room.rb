@@ -4,7 +4,6 @@ class Room < ApplicationRecord
     has_many :room_cals , :dependent => :destroy 
     has_many :invitations , :dependent => :destroy
     has_many :likes , :dependent => :destroy
-    has_many :users, :dependent => :destroy
     
     belongs_to :user
 end
