@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
-  before_action :find_user, only: [:publish, :confirm]
-  before_action :find_room, only: [:show, :update, :finish, :publish, :team]
+  before_action :find_user, only: [:publish, :confirm, :delete]
+  before_action :find_room, only: [:show, :update, :finish, :publish, :team, :delete ]
   before_action :find_roomCal, only: [:show, :finish, :team]  
   before_action :find_invites, only: [:team, :confirm] 
   
@@ -101,8 +101,9 @@ class RoomsController < ApplicationController
   end
   
   def delete
-    @room = Room.find(params[:room_id])
-    @room.destroy
+    @rooms=@user.rooms
+    @rooms.Where(room_id : params[:room_id]).destroy
+   
     
     redirect_to room_mine_path
   end

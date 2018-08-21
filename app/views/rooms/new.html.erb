@@ -72,7 +72,13 @@
 
 $(document).ready(function() {
   $('#summernote').summernote();
+  $("#summernote").code().replace(/<\/?[^>]+(>|$)/g, "")
+
 });
+
+
+
+
 
   
 // html문서(document)가  준비(ready) 됬을때 중괄호 안에 내용을 실행해라. 즉 main함수와 같은 역할

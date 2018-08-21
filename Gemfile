@@ -1,21 +1,27 @@
+
+ruby '2.4.1'
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.4.1'
 
 gem 'wysiwyg-rails'
 gem 'bootstrap', '~> 4.1.3'
 gem 'summernote-rails', '~> 0.8.10.0'
 gem 'simple_form', '~> 3.5.1'
 
+gem 'bundler', '~>1.16.3'
+
 #ec2 secret_key 관리
 gem 'figaro'
+gem 'fog'
+#Fog는 클라우드에파일의 저장을 쉽게할 수 있도록 도와주는 gem
+gem 'fog-aws' 
+
 
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 
-#Fog는 클라우드에파일의 저장을 쉽게할 수 있도록 도와주는 gem
-gem 'fog-aws' 
 #이미지 업로드하기
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 #이미지 크기 조정
