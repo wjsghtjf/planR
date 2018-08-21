@@ -15,8 +15,8 @@
             <div class="container">
                 <div class="col-lg-4">
                     <div class="card">
-                    <!-- 이미지 유저가 올린걸로 바꿀 수 있게 해주세요 -->
-                        <img src="/assets/mainpage_img.jpg">
+                    
+                        <img src="<%= room.image.url ? room.image.url  : '/assets/mainpage_img.jpg' %> "
                         
                         
                         <% if @publish_stage_id== 0 || Stage.find(@publish_stage_id).laststage == 0 %>

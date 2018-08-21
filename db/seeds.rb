@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-userHs = User.create(nickname: 'nick', email: 'heesung6701@naver.com', password: '12341234')
+userHs = User.create(nickname: 'nick', email: 'heesung6701@naver.com', password: '12341234', rank_point: 3.25)
 
-userHr = User.create(nickname: '키키', email: 'adfilm2@naver.com', password: 'asdfasdf')
+userHr = User.create(nickname: '키키', email: 'adfilm2@naver.com', password: 'asdfasdf', rank_point: 7.20, item_freehint:10)
 
-userJj = User.create(nickname: 'whale', email: 'jjlee0430@naver.com', password: 'jaejun', rank_point:10.00, item_freehint:100)
+userJj = User.create(nickname: 'whale', email: 'jjlee0430@naver.com', password: 'jaejun', rank_point: 6.91, item_freehint:20)
 
 room = Room.create(title: '오버액션탈취하기', user_id: userHr.id, content: '뀨?')
 stage1 = Stage.create(room_id: room.id, title: '메롱',content: '안되에에에', hint1: '나는 열여섯', hint2: '이제곳 열입곡')

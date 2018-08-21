@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
-  before_action :find_user, only: [:publish]
+  before_action :find_user, only: [:publish, :confirm]
   before_action :find_room, only: [:show, :update, :finish, :publish, :team]
   before_action :find_roomCal, only: [:show, :finish, :team]  
   before_action :find_invites, only: [:team, :confirm] 
@@ -46,6 +46,10 @@ class RoomsController < ApplicationController
       room_cal.mode = 2
       room_cal.save
     end
+
+    @user.award_multi = @user.award_multi + 1
+    @user.save
+    
     redirect_to stage_show_path(params[:room_id])
   end
   

@@ -13,8 +13,6 @@ class PostsController < ApplicationController
   end
   
   def item
-    @user.item_freehint = @user.item_freehint + 100
-    @user.save
   end
   
   def award

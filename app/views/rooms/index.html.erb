@@ -6,17 +6,18 @@
 
   
 <div class="row">
-<div class="col-md-1"></div>
-<div class="col-md-10">
+<div class="col-md-2"></div>
+<div class="col-md-8">
 <% @rooms.each do |room| %>
 <% @publish_stage_id=room.publish_stage_id%> 
 
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/assets/mainpage_img.jpg" alt="Card image cap">
+<div class="card">
+  
+  <img class="card-img-top" src="<%= room.image.url ? room.image.url  : '/assets/mainpage_img.jpg' %>" style="width:100%; height:53%;">
   <div class="card-body">
-    <h5 class="card-title"><%=room.title%></h5>
-    <p class="card-text"><%=truncate room.content, length: 50 %></p>
+    <h5 class="card-title"><%=truncate room.title, length: 15 %></h5>
+    <p class="card-text"><%=truncate room.content, length: 18 %></p>
     <a href="<%=room_show_path(room.id) %>" class="btn btn-play">플레이 하기</a>
   </div>
 </div>
@@ -59,7 +60,7 @@
 
 
 
-<div class="col-md-1"></div>
+<div class="col-md-2"></div>
 </div>
 <br>
 </center>

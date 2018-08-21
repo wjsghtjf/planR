@@ -86,7 +86,7 @@
     <tr>
       <th scope="row"><%= @holder2 %></th>
       <td><%= room_cal.room.title %></td>
-      <td><%= %></td>
+      <td><%= (@room_cals.length) - 1 %></td>
       <td>
           <%=form_tag(room_team_path(room_cal.room_id, room_cal.team_id), { method: 'get', style: 'display:inline'}) do %>
             <%=submit_tag '팀 구성 페이지 바로가기', class: 'btn btn-info btn-lg' %>
@@ -103,11 +103,11 @@
 
 
 
-<form method='POST' action="<%=invite_update_path %>" style='display:inline'>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <input type='hidden' value='-1' name='invite_id'/>
-      <input type='submit' value='대기상태로 초기화' class='btn btn-default'/>
-</form>
+<!--<form method='POST' action="<#%=invite_update_path %>" style='display:inline'>-->
+<!--      <#%= hidden_field_tag :authenticity_token, form_authenticity_token %>-->
+<!--      <input type='hidden' value='-1' name='invite_id'/>-->
+<!--      <input type='submit' value='대기상태로 초기화' class='btn btn-default'/>-->
+<!--</form>-->
 
 <br>
 <br>

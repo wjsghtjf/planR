@@ -32,8 +32,6 @@ gem 'cancancan'
 
 gem 'rolify'
 
-#rails_db 웹으로 보기 위해서
-gem 'rails_db', '2.0.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 
@@ -66,8 +64,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
   
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -83,6 +79,10 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
+  
+  
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 
 end
 
@@ -93,6 +93,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # To Show RAILS DB Website
+  gem 'rails_db', '2.0.2'
   
   
 end
@@ -106,6 +108,7 @@ group :test do
 end
 
 group :production do
+  gem 'pg'
 end
 
 

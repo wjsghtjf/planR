@@ -51,7 +51,7 @@ $(document).ready( function() {
                     <%=text_field_tag :stage_answer,  "", autocomplete: 'off' , readonly: ((@stage.mode==0) ? false : true)  %>
                     <%=hidden_field_tag :stage_level, @stage_level%>
                     <%=hidden_field_tag :stage_id, @stage.id%>
-                    <%=submit_tag '제출', id: 'btn_check_answer', class: 'btn'%>
+                    <%=submit_tag '제출', id: 'btn_check_answer', class: 'btn btn-blueblack'%>
                     <% end %>
                 <% end %>
             <% end %>
