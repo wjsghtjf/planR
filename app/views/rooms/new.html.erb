@@ -19,9 +19,9 @@
           <%= f.text_field :title ,placeholder: '방탈출의 이름을 입력하세요.', class: 'form-control', :id => "roomname" %>
          
         </div>
-        <div class="form-group ">
-          <%= f.label :content, '방탈출 소개', for: "roominfo" %>
-          <%= f.text_area :content,placeholder:"방탈출을 소개할 문구를 입력하세요.", class:"form-control", :id => "roominfo" %>
+        <div class="form-group" id="summernote">
+          <%= f.label :content, '방탈출 소개' %>
+          <%= f.text_area :content,placeholder:"방탈출을 소개할 문구를 입력하세요.", class:"form-control", :id => "summernote" %>
          <!-- <label for="exampleInputText">설명</label>-->
          <!--<textarea name="input_content"  class="form-control"  ></textarea> -->
         </div>
@@ -68,6 +68,12 @@
 
     //파일 선택기를 통해서 추가된 파일을 임시 저장하는 변수
 	  var imgInput=null;
+	  
+
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+
   
 // html문서(document)가  준비(ready) 됬을때 중괄호 안에 내용을 실행해라. 즉 main함수와 같은 역할
 $(document).ready( function() {

@@ -4,6 +4,26 @@
 @import "stages.scss";
 @import "time_lines.scss";
 
+@import "froala_editor.min";
+@import "froala_style.min";
+
+@import 'plugins/char_counter.min.css';
+@import 'plugins/code_view.min.css';
+@import 'plugins/colors.min.css';
+@import 'plugins/emoticons.min.css';
+@import 'plugins/file.min.css';
+@import 'plugins/fullscreen.min.css';
+@import 'plugins/help.min.css';
+@import 'plugins/image_manager.min.css';
+@import 'plugins/image.min.css';
+@import 'plugins/line_breaker.min.css';
+@import 'plugins/quick_insert.min.css';
+@import 'plugins/special_characters.min.css';
+@import 'plugins/table.min.css';
+@import 'plugins/video.min.css';
+
+@import 'third_party/embedly.min.css';
+@import 'third_party/spell_checker.min.css';
 
 html {
     font-family: 'Noto Sans KR', sans-serif;
@@ -24,6 +44,10 @@ body {
 
 /* 내비게이션 시작 */
 
+.navbar {
+    background-color: black;
+}
+
 #navbarNav {
     text-align: center;
 }
@@ -32,7 +56,7 @@ body {
 
 .page-footer{
   //background: linear-gradient(to right, RGB(97, 115, 140), RGB(237, 235, 223)); 그라데이션 배경색
-  background: #020202;
+  background: black;
   position: static;
   right: 0;
   bottom: 0;
@@ -49,7 +73,7 @@ body {
 }
 
 footer {
-    color: #B6ACCC;
+    background-color:black;
     text-align: center;
 }
 

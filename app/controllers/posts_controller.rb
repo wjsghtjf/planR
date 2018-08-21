@@ -111,13 +111,13 @@ class PostsController < ApplicationController
         @user.awardtitle_G4 = 1
       end
       
-      if @user.awardtitle_S0_1 == 0 && @user.rank_point > 0
+      if @user.awardtitle_S0_1 == 0 && @user.rank_point > 0 && @user.rank_point < Float(3)
         @user.awardtitle_S0_1 = 1
-      elsif @user.awardtitle_S0_2 == 0 && @user.rank_point >= Float(3)
+      elsif @user.awardtitle_S0_2 == 0 && @user.rank_point < Float(6)
         @user.awardtitle_S0_2 = 1
-      elsif @user.awardtitle_S0_3 == 0 && @user.rank_point >= Float(6)
+      elsif @user.awardtitle_S0_3 == 0 && @user.rank_point < Float(9)
         @user.awardtitle_S0_3 = 1
-      elsif @user.awardtitle_S0_4 == 0 && @user.rank_point >= Float(9)
+      elsif @user.awardtitle_S0_4 == 0 && @user.rank_point < Float(10)
         @user.awardtitle_S0_4 = 1
       elsif @user.awardtitle_S0_5 == 0 && @user.rank_point >= Float(10)
         @user.awardtitle_S0_5 = 1

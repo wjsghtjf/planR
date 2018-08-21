@@ -18,6 +18,7 @@
   <div class="card-body">
     <h5 class="card-title"><%=truncate room.title, length: 15 %></h5>
     <p class="card-text"><%=truncate room.content, length: 18 %></p>
+    <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <a href="<%=room_show_path(room.id) %>" class="btn btn-play">플레이 하기</a>
   </div>
 </div>

@@ -101,7 +101,10 @@ class RoomsController < ApplicationController
   end
   
   def delete
+    @room = Room.find(params[:room_id])
+    @room.destroy
     
+    redirect_to room_mine_path
   end
 
   

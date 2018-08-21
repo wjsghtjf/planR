@@ -291,6 +291,27 @@ class StagesController < ApplicationController
       end
     end    
     
+    if @stage.mode== 0
+      @Ans_arr=[@stage.answer,@stage.answer2,@stage.answer3]
+      @Ans_com1=params[:stage_answer]
+      @mode3_Ans=0
+      for i in 0..2 do
+           if (@Ans_arr[i]==@Ans_com1)
+             @mode3_Ans=1
+           end   
+      
+      end
+      
+    end
+    
+    if @stage.mode == 2
+      @Ans_com2=params[:stage_answer]
+      @Ans2=@stage.answer
+      @mode2_Ans=0
+      if(@Ans_com2==@Ans2)
+        @mode2_Ans=1
+      end
+    end
     
     if (checkAnswer(@stage, @input_ans))
       
@@ -424,7 +445,7 @@ class StagesController < ApplicationController
       
       
     else
-      return stage.answer == input_ans || @mode3_Ans == 1 
+      return stage.answer == input_ans || @mode3_Ans == 1 || @mode1_Ans==1 ||@mode2_Ans==1
     end
   end
   

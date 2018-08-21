@@ -13,8 +13,8 @@
   border-radius: 0;
   padding: 0;
   display: inline-block;
-  width: 20em;
-  height: 25em;
+  width: 20vw;
+  height: 50vh;
   margin-bottom: 1em;
 }
 
@@ -73,23 +73,23 @@
 /* show.html.erb */
 
 .btn-blueblack {
+    border:1px solid #1F2344; 
+    color: #1F2344;
+}
+
+.btn-blueblack:visited {
+    border:1px solid #1F2344; 
+    color: #1F2344;
+}
+
+.btn-blueblack:hover {
     background-color: #1F2344; 
     color: #FFFFFF;
 }
 
-.btn-blueblack:visited {
-    background-color: #1F2344;
-    color: #FFFFFF;
-}
-
-.btn-blueblack:hover {
-    background-color: grey;
-    color: #FFFFFF;
-}
-
 .btn-blueblack:click {
-    background-color: #1F2344;
-    color: #FFFFFF;
+   border:1px solid #1F2344; 
+   color: #1F2344;
 }
 
 /* show.html.erb 시작 */

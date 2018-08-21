@@ -3,22 +3,23 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+gem 'wysiwyg-rails'
 
 #ec2 secret_key 관리
 gem 'figaro'
 
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+
+#Fog는 클라우드에파일의 저장을 쉽게할 수 있도록 도와주는 gem
+gem 'fog-aws' 
 #이미지 업로드하기
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-
-#이미지 사이즈 조정
+#이미지 크기 조정
 gem "mini_magick"
 # minimagick을 사용하기 위해서는 image_magick도 설치
 #console에서 sudo yum update -> sudo yum install ImageMagick
  
-#Fog는 클라우드에파일의 저장을 쉽게할 수 있도록 도와주는 gem
-gem 'fog-aws' 
 #bootstrap 설치
 gem 'bootstrap-sass', '~> 3.3.7'
 #jQuery 설치
