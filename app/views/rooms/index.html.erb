@@ -16,8 +16,12 @@
   
   <img class="card-img-top" src="<%= room.image.url ? room.image.url  : '/assets/mainpage_img.jpg' %>" style="width:100%; height:53%;">
   <div class="card-body">
-    <h5 class="card-title"><%=truncate room.title, length: 15 %></h5>
-    <p class="card-text"><%=truncate room.content, length: 18 %></p>
+    <h5 class="card-title"><%=room.title%></h5>
+    <% if room.content!="  "%>
+    <p class="card-text"><%=room.content%></p>
+    <%else%>
+    <p class="card_text"><%=room.title%> </p>
+    <%end%>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <a href="<%=room_show_path(room.id) %>" class="btn btn-play">플레이 하기</a>
   </div>
@@ -44,7 +48,8 @@
 <!--      <hr>-->
 <!--      <div class="card_back <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">-->
 <!--         <div class="card-symbol"><%=room.title%><hr>-->
-<!--         <p><%=truncate room.content, length: 100 %></p>-->
+
+                  
 <!--        </div>-->
 <!--      </div>-->
 <!--  </div>-->

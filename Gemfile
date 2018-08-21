@@ -4,6 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.4.1'
 
 gem 'wysiwyg-rails'
+gem 'bootstrap', '~> 4.1.3'
+gem 'summernote-rails', '~> 0.8.10.0'
+gem 'simple_form', '~> 3.5.1'
 
 #ec2 secret_key 관리
 gem 'figaro'
@@ -23,7 +26,7 @@ gem "mini_magick"
 #bootstrap 설치
 gem 'bootstrap-sass', '~> 3.3.7'
 #jQuery 설치
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.3.1'
 #팝업기능
 gem 'magnific-popup-rails', '~> 1.1'
 
@@ -34,7 +37,7 @@ gem 'cancancan'
 gem 'rolify'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.0.rc1'
 
 
 

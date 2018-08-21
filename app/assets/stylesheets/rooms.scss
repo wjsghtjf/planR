@@ -13,7 +13,7 @@
   border-radius: 0;
   padding: 0;
   display: inline-block;
-  width: 20vw;
+  width: 18vw;
   height: 50vh;
   margin-bottom: 1em;
 }
@@ -24,10 +24,16 @@
 
 .card h5 {
   font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card h5, .card p {
   text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 
