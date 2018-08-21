@@ -103,7 +103,7 @@ class RoomsController < ApplicationController
   def delete
     @rooms=@user.rooms
     @rooms.each do |room|
-      room..Where(:room_id => params[:room_id]).destroy
+      room.Where(:room_id => params[:room_id]).destroy
     end
    
     
