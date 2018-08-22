@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!,   :except => [:index] 
   before_action :find_user, only: [:publish, :confirm, :delete]
-  before_action :find_room, only: [:show, :update, :finish, :publish, :team, :delete ]
+  before_action :find_room, only: [:show, :update, :finish, :publish, :team, :delete]
   before_action :find_roomCal, only: [:show, :finish, :team]  
   before_action :find_invites, only: [:team, :confirm] 
   

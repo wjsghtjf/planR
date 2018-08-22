@@ -19,7 +19,13 @@
     <h5 class="card-title"><%=room.title%></h5>
     <!--<p class="card-text"><%#=room.content%></p> 이거 카드 뒷면이나 마우스 올리면 보이게 합시다!~--> 
     <% @maker = User.find(room.user_id) %>
-    <h6 style="color: gray;">by <%= @maker.nickname %></h6>
+    <h6 style="color: gray;">by <%= @maker.nickname %></h6><br>
+    <% if room.difficulty.round(2) == 0 %>
+    <h5 style="color: black;"><center><b>난이도 -</b></center></h5>
+    <% elsif room.difficulty.round(2) > 0 %>
+    <h5 style="color: black;"><center><b>난이도 <%= room.difficulty.round(2) %></b></center></h5>
+    <% end %>
+    <!--<h5 style="color: red;"><center><b>좋아요 <#%= room.likes %></b></center></h5>-->
     <a href="<%=room_show_path(room.id) %>" class="btn btn-play">플레이 하기</a>
   </div>
 </div>

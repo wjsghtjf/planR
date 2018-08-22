@@ -1,30 +1,33 @@
 <div class='theme_lock'>
-<table>
-    <% for i in 1..9 do%> 
-        <%if i%3==1 %>
-            <tr>
-        <%end%>
-        <td>
-            <button type='button' onclick="num_click(<%=i%>);" ><%=i%></button>
-        </td>
-        <%if i%3==0 %>
-            </tr>
-        <%end%>
-    <% end %>
-    
-    <tr>
-        <td>
-            <button  type='button' onclick="backspace_lock();" > ←</button>
-        </td>
-        <td>
-            <button type='button'  onclick="num_click(0);" >0</button>
-        </td>
-        <td>
-            <button type='button' onclick="num_clear()" >C</button>
-        </td>
-    </tr>
-</table>
+   
 
+
+    <table>
+        <% for i in 1..9 do%> 
+            <%if i%3==1 %>
+                <tr>
+            <%end%>
+            <td>
+                <button type='button' onclick="num_click(<%=i%>);" class="btn-lg" ><%=i%></button>
+            </td>
+            <%if i%3==0 %>
+                </tr>
+            <%end%>
+        <% end %>
+        
+        <tr>
+            <td>
+                <button  type='button' onclick="backspace_lock();" class="btn-lg btn-default" > ←</button>
+            </td>
+            <td>
+                <button type='button'  onclick="num_click(0);" class="btn-lg" >0</button>
+            </td>
+            <td>
+                <button type='button' onclick="num_clear()" class="btn-lg btn-danger" >C</button>
+            </td>
+        </tr>
+    </table>
+    
 
 
 
