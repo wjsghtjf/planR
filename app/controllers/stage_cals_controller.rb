@@ -9,6 +9,7 @@ class StageCalsController < ApplicationController
     
      
     @stageCal = StageCal.new
+    @stageCal.selection_try=0
     @stageCal.save
     
     

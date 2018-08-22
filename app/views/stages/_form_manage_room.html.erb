@@ -10,7 +10,7 @@
 <div class='form-group '>
   
   <label for='content'>방탈출 소개</label>
-  <p class='form-control' name='content' ><%=@room.content%> </p>
+  <div class='form-control' name='content' ><%=@room.content.html_safe%> </div>
 
 </div>
 

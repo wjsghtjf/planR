@@ -14,6 +14,7 @@ class CreateStageCals < ActiveRecord::Migration[5.2]
       t.integer :selection_try, defualt: 0
 
       t.timestamps
+      
     end
   end
 end

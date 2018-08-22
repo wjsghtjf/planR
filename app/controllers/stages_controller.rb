@@ -286,7 +286,7 @@ class StagesController < ApplicationController
       @Ans= @stage.answer.split(",").map { |s| s.to_i }.sort.uniq
       @Ans_com=params[:stage_answer].split(",").map { |s| s.to_i }.sort.uniq
       
-      if (@Ans==@Ans_com)
+      if @Ans==@Ans_com
         @mode3_Ans=1
       end
     end    
@@ -296,7 +296,7 @@ class StagesController < ApplicationController
       @Ans_com1=params[:stage_answer]
       @mode3_Ans=0
       for i in 0..2 do
-           if (@Ans_arr[i]==@Ans_com1)
+           if @Ans_arr[i]==@Ans_com1
              @mode3_Ans=1
            end   
       
@@ -308,12 +308,12 @@ class StagesController < ApplicationController
       @Ans_com2=params[:stage_answer]
       @Ans2=@stage.answer
       @mode2_Ans=0
-      if(@Ans_com2==@Ans2)
+      if @Ans_com2==@Ans2
         @mode2_Ans=1
       end
     end
     
-    if (checkAnswer(@stage, @input_ans))
+    if checkAnswer(@stage, @input_ans) 
       
       puts "Stage/check : 정답"
       
@@ -321,7 +321,7 @@ class StagesController < ApplicationController
       @roomCal.save
       @stage.pass = @stage.pass + 1
       @stage.try = @stage.try + 1
-      if (@stage.mode == 3)
+      if @stage.mode == 3
         @stageCal.selection_try = @stageCal.selection_try + 1
         @stageCal.save
       end
@@ -340,7 +340,7 @@ class StagesController < ApplicationController
       if @roomCal.last_stage_level == @stage_level
         @roomCal.try = @roomCal.try + 1
         @stage.try = @stage.try + 1
-        if (@stage.mode == 3)
+        if @stage.mode == 3
           @stageCal.selection_try = @stageCal.selection_try + 1
           @stageCal.save
         end
@@ -401,6 +401,7 @@ class StagesController < ApplicationController
       @stageCal.user_id = current_user.id
       @stageCal.room_cal_id = @roomCal.id 
       @stageCal.stage_id = @stage.id
+      @stageCal.selection_try = 0
       @stageCal.save
     end
   end
@@ -451,34 +452,34 @@ class StagesController < ApplicationController
   
   def checkRanking_forStage()
     
-    if (@stage.mode == 0 || @stage.mode == 1 || @stage.mode == 2 || @stage.mode == 4)
-      if (@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1 && @stageCal.usedhint3 == 1)
-        if (@stageCal.useditem == 3)
+    if @stage.mode == 0 || @stage.mode == 1 || @stage.mode == 2 || @stage.mode == 4
+      if @stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1 && @stageCal.usedhint3 == 1
+        if @stageCal.useditem == 3
           @user.rank_point = @user.rank_point + 0.01*10
-        elsif (@stageCal.useditem == 2)
+        elsif @stageCal.useditem == 2
           @user.rank_point = @user.rank_point + 0.007*10
-        elsif (@stageCal.useditem == 1)
+        elsif @stageCal.useditem == 1
           @user.rank_point = @user.rank_point + 0.004*10
         else
           @user.rank_point = @user.rank_point + 0.001*10
         end
-      elsif (@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1)
-        if (@stageCal.useditem == 2)
+      elsif @stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1
+        if @stageCal.useditem == 2
           @user.rank_point = @user.rank_point + 0.01*10
-        elsif (@stageCal.useditem == 1)
+        elsif @stageCal.useditem == 1
           @user.rank_point = @user.rank_point + 0.007*10
         else
           @user.rank_point = @user.rank_point + 0.004*10
         end
-      elsif (@stageCal.usedhint1 == 1)
-        if (@stageCal.useditem == 1)
+      elsif @stageCal.usedhint1 == 1
+        if @stageCal.useditem == 1
           @user.rank_point = @user.rank_point + 0.01*10
         else 
           @user.rank_point = @user.rank_point + 0.007*10
         end
       end
       @user.save
-    elsif (@stage.mode == 3)
+    elsif @stage.mode == 3
         if(@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1 && @stageCal.usedhint3 == 1)
           if(@stageCal.selection_try >= 5)
             @user.rank_point = @user.rank_point + 0.001*10

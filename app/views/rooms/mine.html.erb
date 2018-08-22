@@ -24,7 +24,7 @@
     <p class="card_text">스테이지수 <%=@publish_length %> /  <%=room.stages.length %></p>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <%=link_to "계속해서 수정", stage_manage_all_path(room.id), class: 'btn btn-outline-success'  %>
-    <%= link_to "삭제", "#delete", @roomid , :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
+    <%= link_to "삭제", "#delete" , :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
     <%#=link_to "삭제", room_delete_path(room.id), class:'btn btn-outline-danger' data-toggle="modal" data-target="#delete" %>
   </div>
   

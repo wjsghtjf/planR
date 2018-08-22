@@ -62,7 +62,7 @@ class RoomsController < ApplicationController
   
   def mine
     @rooms=Room.where('user_id' => current_user.id)
-    @room
+    
   end
   
     
