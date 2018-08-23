@@ -176,6 +176,8 @@ class PostsController < ApplicationController
   
   def find_invites
     @invites = current_user.invitations
+    
+    # @invite_new_count = current_user.invitations.select { |invite| invite.invite_accepted == 0 }.size if current_user
   end
   
  
