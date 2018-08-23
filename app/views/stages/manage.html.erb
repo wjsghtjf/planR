@@ -35,7 +35,16 @@
 	        <br>
   		</div>
    </div>
-   <div class="col-md-8">
+   <div class="col-md-0.3"></div>
+   <div class="col-md-2">
+   <h5 style="text-align: center;">컨트롤러</h5>
+   		<div class="list-group">
+   			<%= link_to "<b>스테이지 정보</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level ==0 }"%>
+   			<%= link_to "<b>힌트</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level ==0 }"%>
+   			<%= link_to "<b>정답</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level ==0 }"%>
+   		</div>
+   </div>
+   <div class="col-md-5.7">
    
       <h2><center><%=(@stage_level ==0) ? ":: #{@room.title}" : ":: Stage #{@stage_level}" %></center></h2>
         <div class="make_room">

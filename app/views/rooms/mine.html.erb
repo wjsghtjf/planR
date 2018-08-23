@@ -15,7 +15,7 @@
     <% @publish_length = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => room.publish_stage_id, :room_id => room.id}).length%> 
         <div class="card">
   
-  <img class="card-img-top" src="<%= room.image.url ? room.image.url  : '/assets/mainpage_img.jpg' %>" style="width:100%; height:53%;">
+  <img class="card-img-top" src="<%= room.image.url ? room.image.url  : asset_path('mainpage_img.jpg') %>" style="width:100%; height:53%;">
   
  <% if @publish_stage_id== 0 || Stage.find(@publish_stage_id).laststage == 0 %>
   <div class="card-body">
