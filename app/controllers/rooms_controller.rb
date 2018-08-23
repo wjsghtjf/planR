@@ -18,12 +18,12 @@ class RoomsController < ApplicationController
     #   @rooms=Room.all
     # end
     
-    @page = params[:page] ? Integer(params[:page]) : 1
+    @page = Integer(params[:page] ? params[:page] : 1)
     @page_limit = 9
     if params[:query]
-      @rooms = Room.where("title like '%#{ params[:query] }%'")
+      @rooms = Room.where("title like '%#{ params[:query] }%'").reverse_order
     else
-      @rooms=Room.all
+      @rooms=Room.all.reverse_order
     end
     
 

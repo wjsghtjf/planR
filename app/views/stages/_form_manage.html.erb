@@ -1,10 +1,10 @@
-
+<div class="card-wrapper">
 <%=hidden_field_tag :stage_level, params[:stage_level] %>
 
 
-<div class='form-group'>
-  <label for='mode'>스테이지 테마</label>
-  <text  class='form-control' name='title' >
+<div class='card3'>
+  <h5>스테이지 테마</h5>
+  <p>
     
     <% if @stage.mode ==0 %>
       기본 테마
@@ -18,46 +18,64 @@
       이미지 클릭 테마
     <% end %>
     
-    </text>
+    </p>
 </div>
 
-<div class='form-group'>
-  <label for='title'>스테이지 제목</label>
-  <text  class='form-control' name='title' ><%=@stage.title %></text>
+<div class='card3'>
+  <h5>스테이지 제목</h5>
+  <p><%=@stage.title %></p>
 </div>
 
 <%= render 'dialog_modal' %>
         
 
-<div class='form-group '>
+<div class='card5'>
   
-  <label for='content'>내용</label>
-  <p class='form-control' name='content' ><%=@stage.content.html_safe %> </p>
+  <h5>내용</h5>
+  <p><%=@stage.content.html_safe %> </p>
+</div>
 
-</div>
-<div class='form-group'>
+<div class='card4'>
   
-  <label for='hint1'>힌트</label>
-  <text  class='form-control' name='hint1'><%=@stage.hint1%></text>
+  <h5><i class="far fa-lightbulb">&nbsp;힌트</i></h5>
+  <p><%=@stage.hint1%></p>
 </div>
+
+<div class='card4'>
+  
+  <h5><i class="far fa-lightbulb">&nbsp;힌트</i></h5>
+  <p><%=@stage.hint2%></p>
+</div>
+
+<div class='card4'>
+  
+  <h5><i class="far fa-lightbulb">&nbsp;힌트</i></h5>
+  <p><%=@stage.hint3%></p>
+</div>
+
 
 
   <% if @stage.mode!=4 %>
-  <label for='answer'>정답</label>
-  <text  class='form-control' name='answer'><%=@stage.answer%></text>
+  <div class="card4">
+    <h5><i class="fas fa-check">&nbsp;정답</i></h5>
+  <p><%=@stage.answer%></p>
+  </div>
   <%end%>
   
   <% if @stage.answer2 && @stage.answer2.length>0 %>
-    <label for='answer2'>복수정답 1</label>
-    <text  class='form-control' name='answer2'><%=@stage.answer2%></text>
+    <div class="card4">
+      <h5><i class="fas fa-check">&nbsp;복수정답 1</i></h5>
+    <p><%=@stage.answer2%></p>
+    </div>
   <% end %>
   
   
   <% if @stage.answer3 && @stage.answer3.length>0 %>
-    <label for='answer3'>복수정답 2</label>
-    <text  class='form-control' name='answer3'><%=@stage.answer3%></text>
+    <div class="card4">
+      <h5><i class="fas fa-check">&nbsp;복수정답 2</i></h5>
+    <p><%=@stage.answer3%></p>
   <% end %>
-</div>
+    </div>
 
 <!--이미지가 있는 경우에만 -->
 
@@ -80,7 +98,7 @@
     </div>
 </div>
 <% end %>
-
+</div>
 <br>
 <br>
 

@@ -1,26 +1,64 @@
-
+<center>
 
 <div class="content">
-<center>
 <br>
 <br>
 <br>
 
-
-<%="검색중인 문구 #{params[:query]}" if params[:query]%>
+<div class="row">
+<div class="col-md-5"></div>
+<div class="col-md-2">
+<p style="font-size:18pt;"><i class="fas fa-search"></i><b>  검색</b></p>
+<!--<#%="검색중인 문구 #{params[:query]}" if params[:query]%>-->
 <div class="form-inline">
-<%= form_tag room_index_path, class:'form-group mx-sm-3 mb-2', style:"text-align:center;", method: 'get' do %>
+<%= form_tag room_index_path, class:'form-group mx-sm-3 mb-2', method: 'get' do %>
 <%= hidden_field_tag :page, params[:page] ? params[:page]  : 1 %>
-<%= text_field_tag :query, nil, class:'form-control' %>
-<%= submit_tag "검색", class:'btn btn-outline-info' %>
+<%= text_field_tag :query, nil, class:'form-control col-lg-8' %>
+<%= submit_tag "검색", class:'btn btn-blueblack' %>
 <% end %>
+</div>
+</div>
+<div class="col-md-5"></div>
 </div>
 
 <br>
-<br>
-<br>
 
 
+<div class="row">
+  <div class="col-md-12">
+    <i class="fas fa-filter fa-lg"></i>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> 최신순
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option2" autocomplete="off"> 난이도순
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option3" autocomplete="off"> 좋아요순
+      </label>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+
+<% if params[:query] %>
+<div class="row">
+  <div class="col-md-12" style="font-size: 12pt;">
+  <center>
+  <b>
+"<%= "#{ params[:query] }" %>"로 검색하신 결과입니다.
+  </b>
+  </center>
+  </div>
+</div>
+<% end %>
+
+<br>
+<br>
   
 <div class="row">
 <div class="col-md-2"></div>
@@ -61,6 +99,11 @@
 
 <% end %>
 
+
+<div class="col-md-2"></div>
+</div>
+</div>
+
 <br>
 <br>
 <br>
@@ -70,16 +113,20 @@
 <br>
 <br>
 
-<div class="text-center">
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<div class="text-xs-center">
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
+  <ul class="pagination pagination-centered">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <% for i in 1 .. @rooms.size/@page_limit %>
+    <% for i in 1 .. (@rooms.size+@page_limit-1)/@page_limit %>
         <li class="page-item">
           <a class="page-link <%="item-selected" if @page==i %>" href="<%=room_index_path%>?query=<%=params[:query] ? params[:query] : ""%>&page=<%=i%>"><%=i %></a>
         </li>
@@ -94,15 +141,14 @@
   </ul>
 </nav>
 </div>
-
 </div>
-
-
-
-
 
 <div class="col-md-2"></div>
+
 </div>
+
+
+
 <br>
 </center>
-</div>
+

@@ -7,11 +7,9 @@
 
 
     
-    <br>
-    <br>
-    
-   
-        <%= render 'themechoice' , f: f%>
+<div class="row">
+<div class="col-md-12">
+        
     
 
   
@@ -20,7 +18,7 @@
     <%= f.label :title, '스테이지 제목' , class: 'control-label col-lg-4'%>
     <%= f.text_field :title ,placeholder: '제목을 입력하세요.', class: 'form-control', :autocomplete => :off  %>
 </div>
-
+<%= render 'themechoice' , f: f%>
 
 <div class='form-group form-inline '>
     <%= f.label :content , '내용', class: 'control-label col-lg-4'%>
@@ -170,7 +168,9 @@
     <button type="button" onClick="checkValid();" class= 'btn btn-default'>완료</button>
     
     
-    
+</div>
+</div>
+
   <% end %>
  <script>
  
@@ -178,10 +178,7 @@
 $(document).ready(function(){
     setTheme(<%=@stage.mode%>);
     
-    $('input[type="radio"]').on('change', function(e) {
-       setTheme(e.target.value);
-    });
-    
+
 
 });
     

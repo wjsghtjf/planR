@@ -2,8 +2,8 @@
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   z-index:2;
   color:#ffffff;
-  background-color:#2196f3;
-  border-color:#2196f3;
+  background-color:#2e2e2e;
+  border-color:#2e2e2e;
 }
 </style>
 
@@ -14,7 +14,7 @@
 <!-- Page Content -->
 <div class="row">
 	<div class="col-md-2"> 
-	<h5 style="text-align: center;">스테이지 리스트</h5><hr>
+	<h5 style="text-align: center;"><b>스테이지 리스트</b></h5><hr>
 		<div class="list-group"> <!-- 원래는 stage_list -->
 		
 	        <%= link_to "<b>방정보</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level ==0 }"%>
@@ -35,30 +35,23 @@
 	        <br>
   		</div>
    </div>
-   <div class="col-md-0.5"></div>
-   <div class="col-md-2">
-   <h5 style="text-align: center;">컨트롤러</h5><hr>
-   		<div class="list-group">
-   			<%= link_to "<b>스테이지 정보</b><br>".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action" %>
-   			<%= link_to "<b>힌트</b><br>".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action" %>
-   			<%= link_to "<b>정답</b><br>".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action" %>
-   		</div>
-   </div>
-   <div class="col-md-0.5"></div>
-   <div class="col-md-6">
+   <div class="col-md-9">
    
-      <h2><center><%=(@stage_level ==0) ? ":: #{@room.title}" : ":: Stage #{@stage_level}" %></center></h2>
         <div class="make_room">
           <% if @stage_level ==0 %>
             <% if @edit_mode %>
                 <%= render 'form_manage_room_edit', stage: @room, :class => "form_manage" %>
             <% else %>
+                <h2 style="font-size:30pt;"><b><center><%=(@stage_level ==0) ? "#{@room.title}" : ":: Stage #{@stage_level}" %></center></b></h2>
+                <br>
                 <%= render 'form_manage_room', stage: @room, :class => "form_manage" %>
             <% end %>
           <% elsif %>
             <% if @edit_mode %>
                 <%= render 'form_manage_edit', stage: @stage, :class => "form_manage" %>
             <% else %>
+                <h2 style="font-size:30pt;"><b><center><%=(@stage_level ==0) ? "#{@room.title}" : ":: Stage #{@stage_level}" %></center></b></h2>
+                <br>
                 <%= render 'form_manage', stage: @stage, :class => "form_manage" %>
             <% end %>
      	 <% end %>
@@ -66,12 +59,14 @@
     
 
     </div>
+    <div class="col-md-1"></div>
   </div>
   
 </div>
+
 <!-- /.card -->
-<div class="col-md-2"></div>
-</div>   
+
+
 
 </center>
 <!--여기서 부터 자바스크립트입니다 -->
