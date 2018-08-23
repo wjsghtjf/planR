@@ -1,18 +1,41 @@
+  <div class='form-group form-inline'>
+    <%= f.label :mode, '모드 선택' , class: 'control-label col-lg-4'%>
+    <ul class="list=group-item"><%= f.radio_button :mode ,"0",checked: true%> 기본</ul>
+    <ul class="list=group-item"><%= f.radio_button :mode ,"1"%> 자물쇠</ul>
+    <ul class="list=group-item"><%= f.radio_button :mode ,"2"%> 순서</ul>
+    <ul class="list=group-item"><%= f.radio_button :mode ,"3"%> 선택지</ul>
+    <ul class="list=group-item"><%= f.radio_button :mode ,"4"%> 이미지 선택</ul>
+</div>
+   
+   
+   
+   
+           
    <div class="row">
+           
            
        <div class="col-md-3"></div>
        
        
        <div class="col-md-6">
-         
-        <ul class="list-group">
-        <li class="list-group-item"><%=f.radio_button :mode, "0", checked: true%>  기본 테마</li>
-        <li class="list-group-item"><%=f.radio_button :mode, "1" %>  자물쇠 테마</li>
-        <li class="list-group-item"><%=f.radio_button :mode, "2" %>  순서형 테마</li>
-        <li class="list-group-item"><%=f.radio_button :mode, "3" %>  선택지 테마</li>
-        <li class="list-group-item"><%=f.radio_button :mode, "4" %>  이미지선택형 테마</li>
-        </ul>
+           
+           <ul class="list-group">
+           <div class="row">
+               <li class="list-group-item"><%=f.radio_button :mode, "0", checked: true%>  기본 테마</li>
+               <li class="list-group-item"><%=f.radio_button :mode, "1" %>  자물쇠 테마</li>
+           </div>
+           <div class="row">
+               <li class="list-group-item"><%=f.radio_button :mode, "2" %>  순서형 테마</li>
+               <li class="list-group-item"><%=f.radio_button :mode, "3" %>  선택지 테마</li>
+           </div>
+           <div class="row">
+               <li class="list-group-item"><%=f.radio_button :mode, "4" %>  이미지선택형 테마</li>
+           </div>
+           </ul>
+           
         </div>
         <div class="col-md-3"></div>
         
     </div>
+    
+    

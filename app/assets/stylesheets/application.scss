@@ -34,18 +34,22 @@ body {
     text-align: center;
 }
 
+.nav-link {
+    color: white;
+}
+
 /* 내비게이션 CSS 끝, 풋터 CSS 시작 */
 
 .page-footer{
   //background: linear-gradient(to right, RGB(97, 115, 140), RGB(237, 235, 223)); 그라데이션 배경색
-  background: black;
+  background-color: black;
   position: static;
   right: 0;
   bottom: 0;
   left: 0;
   text-align: center;
   width: 100vw;
-  opacity: 0.8;
+  color: white;
 }
 
 /* 메인페이지 */

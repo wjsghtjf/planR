@@ -14,7 +14,7 @@
   padding: 0;
   display: inline-block;
   width: 18vw;
-  height: 50vh;
+  height: 60vh;
   margin-bottom: 1em;
   position: relative;
 
@@ -36,72 +36,33 @@
 }
 
 .card h5, .card p {
-  text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-
-
-.btn-play,
-.btn-play::after {
-  -webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.btn-play {
-  border: 1px solid #1F2344; 
-  border-radius: 3px;
-  color: #1F2344;
-}
-
-.btn-play:hover {
-  color: white;
-  background: #1F2344;
-}
-
-.btn-play::after {
-  height: 100%;
-  left: 0;
-  top: 0;
-  width: 0;
-}
-
-.btn-play:hover:after {
-  width: 100%;
-}
-
-
-
-
-
-
-
 
 /* 카드 목록 CSS 끝 */
 
 /* show.html.erb */
 
 .btn-blueblack {
-    border:1px solid #1F2344; 
-    color: #1F2344;
+    border:1px solid black;
+    color: black;
 }
 
 .btn-blueblack:visited {
-    border:1px solid #1F2344; 
-    color: #1F2344;
+    border:1px solid black;
+    color: black;
 }
 
 .btn-blueblack:hover {
-    background-color: #1F2344; 
+    background-color: black; 
     color: #FFFFFF;
 }
 
 .btn-blueblack:click {
-   border:1px solid #1F2344; 
-   color: #1F2344;
+   border:1px solid black; 
+   color: black;
 }
 
 /* show.html.erb 시작 */
@@ -124,4 +85,15 @@
 img{
   width: 100%;
   height: auto;
+}
+
+
+/* heart */
+
+.like-btn {
+  color: #8899a6;
+}
+
+.like-btn-unlike {
+  color: #ff2581;
 }

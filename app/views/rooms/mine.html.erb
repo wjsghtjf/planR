@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <p style="font-size: 20pt">:: 제작 중 방탈출</p>
+        <p style="font-size: 25pt"><b>제작 중 방탈출</b></p>
         <a href="<%= room_new_path%>" class="btn btn-blueblack new_room">새로운 방탈출 만들기</a>
         <br><br><hr>
     <% @rooms.each do |room| %>
@@ -20,8 +20,8 @@
  <% if @publish_stage_id== 0 || Stage.find(@publish_stage_id).laststage == 0 %>
   <div class="card-body">
     <h5 class="card-title"><%=room.title%></h5>
-    <p class="card-text">미완결된 방탈출 <i class="fas fa-sync fa-spin fa-2x"></i></p>
-    <p class="card_text">스테이지수 <%=@publish_length %> /  <%=room.stages.length %></p>
+    <p class="card-text"><center><b>미완결</b>된 방탈출   <i class="fas fa-sync fa-spin fa-lg"></i></center></p>
+    <p class="card_text"><center>스테이지수 <%=@publish_length %> /  <%=room.stages.length %></center></p>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <%=link_to "계속해서 수정", stage_manage_all_path(room.id), class: 'btn btn-outline-success'  %>
     <%= link_to "삭제", "#delete" , :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
@@ -31,8 +31,8 @@
    <% elsif @publish_stage_id!= 0 && Stage.find(@publish_stage_id).laststage == 1 %>
    <div class="card-body">
     <h5 class="card-title"><%=room.title%></h5>
-    <p class="card-text">완결된 방탈출 <i class="fas fa-check fa-2x"></i></p>
-    <p class="card_text">스테이지수 <%=@publish_length%> / <%=room.stages.length %></p>
+    <p class="card-text"><center><b>완결</b>된 방탈출  <i class="fas fa-check fa-lg"></i></center></p>
+    <p class="card_text"><center>스테이지수 <%=@publish_length%> / <%=room.stages.length %></center></p>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-outline-success">확인하기</a>
   </div>

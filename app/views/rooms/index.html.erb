@@ -4,6 +4,7 @@
 <br>
 <br>
 
+
   
 <div class="row">
 <div class="col-md-2"></div>
@@ -14,50 +15,27 @@
 
 <div class="card">
   
-  <img class="card-img-top" src="<%= room.image.url ? room.image.url  : '/assets/mainpage_img.jpg' %>" style="width:100%; height:53%;">
+  <img class="card-img-top" src="<%= room.image.url ? room.image.url  : '/assets/none.jpg' %>" style="width:100%; height:48%;">
   <div class="card-body">
     <h5 class="card-title"><%=room.title%></h5>
     <!--<p class="card-text"><%#=room.content%></p> 이거 카드 뒷면이나 마우스 올리면 보이게 합시다!~--> 
     <% @maker = User.find(room.user_id) %>
     <h6 style="color: gray;">by <%= @maker.nickname %></h6><br>
     <% if room.difficulty.round(2) == 0 %>
-    <h5 style="color: black;"><center><b>난이도 -</b></center></h5>
+    
+    <!--<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>-->
+    
+    <h5 style="color: black;"><b>난이도 - <span class="badge badge-pill badge-danger">!</span></b></h5>
+    <h5 style="color:black;"><b><i class="fas fa-heart" style="color:red;"></i> <%= room.likes.size %></b></h5>
     <% elsif room.difficulty.round(2) > 0 %>
-    <h5 style="color: black;"><center><b>난이도 <%= room.difficulty.round(2) %></b></center></h5>
+    <h5 style="color: black;"><b>난이도 <%= room.difficulty.round(2) %></b></h5>
+    <h5 style="color:black;"><b><i class="fas fa-heart" style="color:red;"></i> <%= room.likes.size %></b></h5>
     <% end %>
-    <!--<h5 style="color: red;"><center><b>좋아요 <#%= room.likes %></b></center></h5>-->
-    <a href="<%=room_show_path(room.id) %>" class="btn btn-play">플레이 하기</a>
+    <br>
+    <a href="<%=room_show_path(room.id) %>" class="btn btn-blueblack">플레이 하기</a>
   </div>
 </div>
 
-
-
-
-<!--<div class="card_list" ontouchstart="this.classList.toggle('hover');">-->
-  
-<!--  <a href="<%=room_show_path(room.id) %>">-->
-<!--  <div class="card">  -->
-      <%# if room.image.url.nil? %>
-<!--      <div class="card_front <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>"> -->
-        
-<!--        <div class="card-symbol"><%=room.title%>-->
-<!--        [-->
-        
-<!--        <%= room.difficulty.round(2) %>-->
-
-        
-<!--        ]<hr></div>-->
-<!--      </div>-->
-<!--      <hr>-->
-<!--      <div class="card_back <%=(room.image.url.nil?) ? "nonthumb" : "thumbnail" %>" style="<%="background-image: url(#{room.image.url(:thumb)})" if !room.image.url.nil?%>">-->
-<!--         <div class="card-symbol"><%=room.title%><hr>-->
-
-                  
-<!--        </div>-->
-<!--      </div>-->
-<!--  </div>-->
-<!--    </a>-->
-<!--</div>-->
 
 <% end %>
 
@@ -65,7 +43,14 @@
 <br>
 <br>
 
+<span class="badge badge-pill badge-danger">!</span><b>  난이도가 산정되기 전의 방탈출입니다. 일정량의 보너스를 획득하실 수 있습니다.</b>
+
+<br>
+<br>
+
 </div>
+
+
 
 
 

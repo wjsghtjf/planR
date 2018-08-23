@@ -10,39 +10,35 @@
     <br>
     <br>
     
-    <label>테마 설정</label>
-    
-    <p>
+   
         <%= render 'themechoice' , f: f%>
-    </p>
+    
 
     
 
-<div class='form-group'>
-    <%= f.label :title, '스테이지 제목' %>
+<div class='form-group form-inline'>
+    <%= f.label :title, '스테이지 제목' , class: 'control-label col-lg-4'%>
     <%= f.text_field :title ,placeholder: '제목을 입력하세요.', class: 'form-control', :autocomplete => :off  %>
 </div>
 
 
-<div class='form-group '>
-    <%= f.label :content , '내용'%>
+<div class='form-group form-inline '>
+    <%= f.label :content , '내용', class: 'control-label col-lg-4'%>
     <%= f.text_area :content ,placeholder: '내용을 입력하세요',  class: 'form-control' , :autocomplete => :off %>
 
 </div>
-<div class='form-group'>
-    <%= f.label :hint1, '힌트 1' %>
-    <%= f.text_field :hint1 ,placeholder: '첫번째 힌트를 기록하세요.', class: 'form-control'  , :autocomplete => :off %>
-    <small class="form-text text-muted">추천 : 가장 약한 힌트</small>
+<div class='form-group form-inline'>
+    <%= f.label :hint1, '힌트 1' , class: 'control-label col-lg-4'%>
+    <%= f.text_field :hint1 ,placeholder: '가장 약한 힌트', class: 'form-control'  , :autocomplete => :off %>
+    
 </div>
-<div class='form-group'>
-    <%= f.label :hint2, '힌트 2' %>
-    <%= f.text_field :hint2, placeholder: '두번째 힌트를 기록하세요.', class: 'form-control', :autocomplete => :off %>
-    <small class="form-text text-muted">추천 : 첫번째 힌트보다 강한 힌트</small>
+<div class='form-group form-inline'>
+    <%= f.label :hint2, '힌트 2' , class: 'control-label col-lg-4'%>
+    <%= f.text_field :hint2, placeholder: '첫번째 힌트보다 강한 힌트', class: 'form-control', :autocomplete => :off %>
 </div>
-<div class='form-group'>
-    <%= f.label :hint3, '힌트 3' %>
-    <%= f.text_field :hint3, placeholder: '세번째 힌트를 기록하세요.', class:'form-control', :autocomplete => :off %>
-    <small class="form-text text-muted">추천 : 두번째 힌트보다 강한 '정답에 가장 근접한' 힌트</small>
+<div class='form-group form-inline'>
+    <%= f.label :hint3, '힌트 3', class: 'control-label col-lg-4' %>
+    <%= f.text_field :hint3, placeholder: '정답에 가장 근접한 힌트', class:'form-control', :autocomplete => :off %>
 </div>
 
 
@@ -83,28 +79,8 @@
     
     
     <br><br>
-    <p style="font-size:25px;"><b>선택지 작성</b></p>
-    <div class='form-group'>
-        <%= f.label :selection_num1, '1번 항목' %>
-        <%= f.text_field :selection_num1 ,placeholder: '1번 선택지의 내용을 입력하세요.', class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-        <%= f.label :selection_num2, '2번 항목' %>
-        <%= f.text_field :selection_num2 ,placeholder: '2번 선택지의 내용을 입력하세요.', class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-        <%= f.label :selection_num3, '3번 항목' %>
-        <%= f.text_field :selection_num3 ,placeholder: '3번 선택지의 내용을 입력하세요.', class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-        <%= f.label :selection_num4, '4번 항목' %>
-        <%= f.text_field :selection_num4 ,placeholder: '4번 선택지의 내용을 입력하세요.', class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-        <%= f.label :selection_num5, '5번 항목' %>
-        <%= f.text_field :selection_num5 ,placeholder: '5번 선택지의 내용을 입력하세요.', class: 'form-control' %>
-    </div>
-    <%=render 'theme_selection' %>
+    
+    <%=render 'theme_selection',f: f %>
     
     
 </div>

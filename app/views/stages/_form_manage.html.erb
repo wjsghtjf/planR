@@ -43,18 +43,18 @@
 
 
   <% if @stage.mode!=4 %>
-  <label for='answer'>정답1</label>
+  <label for='answer'>정답</label>
   <text  class='form-control' name='answer'><%=@stage.answer%></text>
   <%end%>
   
   <% if @stage.answer2 && @stage.answer2.length>0 %>
-    <label for='answer2'>정답2</label>
+    <label for='answer2'>복수정답 1</label>
     <text  class='form-control' name='answer2'><%=@stage.answer2%></text>
   <% end %>
   
   
   <% if @stage.answer3 && @stage.answer3.length>0 %>
-    <label for='answer3'>정답3</label>
+    <label for='answer3'>복수정답 2</label>
     <text  class='form-control' name='answer3'><%=@stage.answer3%></text>
   <% end %>
 </div>

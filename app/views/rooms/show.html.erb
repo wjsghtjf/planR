@@ -6,22 +6,24 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <br>
-        <h3><%=@room.title %></h3>
+        <h3 style="font-size: 25pt"><b><%=@room.title %></b></h3>
         <hr>
         <br>
-        <h5>:: 게임 설명</h5>
+        <h5><b>게임 설명</b></h5>
         <br>
         <div class="content_box">
             <p><%=@room.content.html_safe %></p>
         </div>
         <br>
 
-        
         <div class="play_mode">
             
         <% if @stages.size == 0 %>
-            제작자가 배포한 스테이지가 없습니다.
-            다음에 또 방문해주세요!
+            <button type="button" class="btn btn-secondary btn-lg" disabled>싱글플레이 시작하기</button>
+            <button type="button" class="btn btn-secondary btn-lg" disabled>멀티플레이 시작하기</button>
+            <br>
+            <br>
+            <p style="font-size:15pt"><b>방탈출 제작자가 배포한 스테이지가 없습니다. 플레이를 시작할 수 없습니다.</b></p>
         <% else %>
             <% if @roomCal.nil? || @roomCal.mode == 0 %>
                 <p><b>플레이 모드를 선택해주세요.</b></p>
@@ -66,7 +68,7 @@
         
       <%=form_tag like_toggle_path, method: 'post' do %>
         <%=hidden_field_tag :room_id, @room.id %>
-        <%=submit_tag ((current_user.is_like? (@room)) ? '좋아요 취소' : '좋아요'), class: 'btn btn-primary'%>
+        <%=submit_tag ((current_user.is_like? (@room)) ? '좋아요 취소' : '좋아요'), class: 'heart'%>
       <% end %>
      
      

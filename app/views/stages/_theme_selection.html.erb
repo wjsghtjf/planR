@@ -1,5 +1,32 @@
 <div class='theme_selection'>
     <br>
+    <p style="font-size:25px;"><b>선택지 작성</b></p>
+    
+    
+    
+    
+    
+    
+    <div class='form-group'>
+        <%= f.label :selection_num1, '1번 항목' %>
+        <%= f.text_field :selection_num1 ,placeholder: '1번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num2, '2번 항목' %>
+        <%= f.text_field :selection_num2 ,placeholder: '2번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num3, '3번 항목' %>
+        <%= f.text_field :selection_num3 ,placeholder: '3번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num4, '4번 항목' %>
+        <%= f.text_field :selection_num4 ,placeholder: '4번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+        <%= f.label :selection_num5, '5번 항목' %>
+        <%= f.text_field :selection_num5 ,placeholder: '5번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+    </div>
     <br>
 <p style="font-size:25px;"><b>정답인 항목을 선택하십시오.</b></p>
 <table>
@@ -14,14 +41,13 @@
     
      
 </table>
-
+</div>
 <script>
 
 var chkNum= new Array(0,0,0,0,0,0);
  var play_num2='';
 function num_click2(num){
     chkNum[num]=1-chkNum[num];
-    
     
     play_num2='';
     
@@ -31,11 +57,14 @@ function num_click2(num){
             else play_num2 = play_num2+","+i;
         }
     }
-    
+
      document.getElementById("stage_answer").value = play_num2;
      
      
  }
+ 
+ //
+
  </script>
  
- </div>
+ 
