@@ -10,8 +10,11 @@ gem 'bundler', '~>1.16.3'
 #ec2 secret_key 관리
 gem 'figaro'
 
-gem 'simple_form'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+gem 'rolify'
+
+gem 'authority'  # 권한설정
+
 #이미지 업로드하기
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
@@ -23,7 +26,8 @@ gem "mini_magick"
 #Fog는 클라우드에파일의 저장을 쉽게할 수 있도록 도와주는 gem
 gem 'fog-aws' 
 #bootstrap 설치
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass'
+
 #jQuery 설치
 gem 'jquery-rails'
 #팝업기능
@@ -32,8 +36,6 @@ gem 'magnific-popup-rails', '~> 1.1'
 #회원가입 관련 정보
 #권한 관련
 gem 'cancancan'
-
-gem 'rolify'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -76,7 +78,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 #서버 올리기
 gem 'therubyracer', platforms: :ruby
 
-gem 'rails_12factor', :group => :production
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
