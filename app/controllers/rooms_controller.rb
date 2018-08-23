@@ -8,24 +8,31 @@ class RoomsController < ApplicationController
   
    
   def index
-    @rooms = Room.all
+        # if params[:sort] == "recent"
+    #   @rooms=Room.all
+    # elsif params[:sort] == "difficulty"
+    #   @rooms=Room.all
+    # elsif params[:sort] == "like"
+    #   @rooms=Room.all
+    # else
+    #   @rooms=Room.all
+    # end
+    
+    @page = Integer(params[:page] ? params[:page] : 1)
+    @page_limit = 9
+    if params[:query]
+      @rooms = Room.where("title like '%#{ params[:query] }%'")
+    else
+      @rooms=Room.all
+    end
+    
 
     # @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
     
     
     @dummy=0   # publish_stage_id값이 누적되어쌓임. 해결방안을위한 임시방편..나은방법있음추가요망
     @publish_stage_id=0
-    if params[:sort] == "recent"
-      @rooms=Room.all
-    elsif params[:sort] == "difficulty"
-      @rooms=Room.all
-    elsif params[:sort] == "like"
-      @rooms=Room.all
-    else
-      @rooms=Room.all
-    end
-    
-  
+
   end
   
   def show
@@ -123,6 +130,8 @@ class RoomsController < ApplicationController
     
     redirect_to room_mine_path
   end
+  
+
   
 #기타 Method
 

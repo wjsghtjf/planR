@@ -1,3 +1,12 @@
+<style>
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+  z-index:2;
+  color:#ffffff;
+  background-color:#2196f3;
+  border-color:#2196f3;
+}
+</style>
+
 <div class="content">
 <center>
 <br><br><br>
@@ -5,7 +14,7 @@
 <!-- Page Content -->
 <div class="row">
 	<div class="col-md-2"> 
-	<h3 style="text-align: center;">플로우차트</h3><hr>
+	<h5 style="text-align: center;">스테이지 리스트</h5><hr>
 		<div class="list-group"> <!-- 원래는 stage_list -->
 		
 	        <%= link_to "<b>방정보</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level ==0 }"%>
@@ -28,7 +37,7 @@
    </div>
    <div class="col-md-8">
    
-      <h2><%=(@stage_level ==0) ? ":: #{@room.title}" : ":: Stage #{@stage_level}" %></h2>
+      <h2><center><%=(@stage_level ==0) ? ":: #{@room.title}" : ":: Stage #{@stage_level}" %></center></h2>
         <div class="make_room">
           <% if @stage_level ==0 %>
             <% if @edit_mode %>

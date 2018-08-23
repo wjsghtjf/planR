@@ -10,15 +10,13 @@
    
     
     <div id="logo-div">
-        <img src="<%= asset_path 'planR.gif' %>" id="logo">
+        <img src="<%= asset_path 'R3.gif' %>" id="logo">
     </div>
     <!--<h1 class="main-title">-->
     <!--    Plan R-->
     <!--</h1>-->
 </main>
 </body>
-
-
 
 <script>
 
@@ -33,21 +31,19 @@ var isClicked= false;
 
 
 
-$("#logo-div").click(function(){
-    var rand = Math.floor(Math.random() * 4);
+$(document).click(function(){
+    var rand = Math.floor(Math.random() * 6;
     console.log(rand);
     if (rand == 1) {
-        document.getElementById("logo").src="<%=asset_path 'planR.gif' %>";
-        $("#logo").src = "<%=asset_path 'planR.gif' %>";
-        console.log(document.getElementById("logo").src);
-
-    }
+        document.getElementById("logo").src="<%=asset_path 'R1.gif' %>";    }
     else if( rand ==2) {
-document.getElementById("logo").src="<%=asset_path 'planR2.gif' %>";    }
+        document.getElementById("logo").src="<%=asset_path 'R5.gif' %>";    }
     else if( rand ==3) {
-document.getElementById("logo").src="<%=asset_path 'planR3.gif' %>";    }
+        document.getElementById("logo").src="<%=asset_path 'R4.gif' %>";    }
+    else if( rand ==4) {
+        document.getElementById("logo").src="<%=asset_path 'R2.gif' %>";    }    
     else {
-document.getElementById("logo").src="<%=asset_path 'planR4.gif' %>";    }
+        document.getElementById("logo").src="<%=asset_path 'R3.gif' %>";    }
 });
 });
 // let noise;

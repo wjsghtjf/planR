@@ -14,7 +14,7 @@
         <%= render 'themechoice' , f: f%>
     
 
-    
+  
 
 <div class='form-group form-inline'>
     <%= f.label :title, '스테이지 제목' , class: 'control-label col-lg-4'%>
@@ -48,25 +48,25 @@
 
 
 
-<div class='form-group' id = 'theme_pattern' style='display: none'>
+<div class='form-group form-inline' id = 'theme_pattern' style='display: none'>
     <div class='form-group'>
-        <%= f.label :pattern_num1, '항목 A' %>
+        <%= f.label :pattern_num1, '항목 A',class: 'control-label col-lg-4' %>
         <%= f.text_field :pattern_num1 ,placeholder: 'A 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
     <div class='form-group'>
-        <%= f.label :pattern_num2, '항목 B' %>
+        <%= f.label :pattern_num2, '항목 B',class: 'control-label col-lg-4' %>
         <%= f.text_field :pattern_num2 ,placeholder: 'B 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
     <div class='form-group'>
-        <%= f.label :pattern_num3, '항목 C' %>
+        <%= f.label :pattern_num3, '항목 C',class: 'control-label col-lg-4' %>
         <%= f.text_field :pattern_num3 ,placeholder: 'C 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
         <div class='form-group'>
-        <%= f.label :pattern_num4, '항목 D' %>
+        <%= f.label :pattern_num4, '항목 D',class: 'control-label col-lg-4' %>
         <%= f.text_field :pattern_num4 ,placeholder: 'D 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
         <div class='form-group'>
-        <%= f.label :pattern_num5, '항목 E' %>
+        <%= f.label :pattern_num5, '항목 E' ,class: 'control-label col-lg-4'%>
         <%= f.text_field :pattern_num5 ,placeholder: 'E 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
     <br>
@@ -92,18 +92,18 @@
 
 
 <div class='form-group' id='div_answer_1'>
-    <%= f.label :answer, '정답1' %>
+    <%= f.label :answer, '정답1',class: 'control-label col-lg-4' %>
     <%= f.text_field :answer ,placeholder: '정답을 입력해주세요.', class: 'form-control' %>
 </div>
 
 <div id='theme_ori'>
     <div class='form-group'>
-        <%= f.label :answer2, '정답2' %>
+        <%= f.label :answer2, '정답2',class: 'control-label col-lg-4' %>
         <%= f.text_field :answer2 ,placeholder: '제2의 정답 인정을 원할시 입력하세요.', class: 'form-control' %>
     </div>
     
     <div class='form-group'>
-        <%= f.label :answer3, '정답3' %>
+        <%= f.label :answer3, '정답3',class: 'control-label col-lg-4' %>
         <%= f.text_field :answer3 ,placeholder: '제3의 정답 인정을 원할시 입력하세요.', class: 'form-control' %>
     </div>
 

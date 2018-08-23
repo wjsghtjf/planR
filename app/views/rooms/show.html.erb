@@ -4,7 +4,7 @@
 <center>
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-5 align-middle">
         <br>
         <h3 style="font-size: 25pt"><b><%=@room.title %></b></h3>
         <hr>
@@ -15,15 +15,33 @@
             <p><%=@room.content.html_safe %></p>
         </div>
         <br>
+        <br>
+        
+        <hr>
+        
+        <p>
+          <strong><i class="fas fa-thumbs-up fa-lg"></i></strong>
+          <%= @room.likes.size %> 명이 좋아합니다. 
+        </p>
+        <%=form_tag like_toggle_path, method: 'post' do %>
+        <%=hidden_field_tag :room_id, @room.id %>
+        <%=submit_tag ((current_user.is_like? (@room)) ? '좋아요 취소' : '좋아요'), class: 'btn btn-blueblack'%>
+        <% end %>
+    </div>
+    <div class="col-md-5">
 
         <div class="play_mode">
             
+        <br><br> 
+        <p style="font-size:25pt;"><b>플레이 기록</b></p>
+        <br><br>
+            
         <% if @stages.size == 0 %>
+            <p style="font-size:13pt"><b>방탈출 제작자가 배포한 스테이지가 없습니다. 플레이를 시작할 수 없습니다.</b></p>
             <button type="button" class="btn btn-secondary btn-lg" disabled>싱글플레이 시작하기</button>
             <button type="button" class="btn btn-secondary btn-lg" disabled>멀티플레이 시작하기</button>
             <br>
             <br>
-            <p style="font-size:15pt"><b>방탈출 제작자가 배포한 스테이지가 없습니다. 플레이를 시작할 수 없습니다.</b></p>
         <% else %>
             <% if @roomCal.nil? || @roomCal.mode == 0 %>
                 <p><b>플레이 모드를 선택해주세요.</b></p>
@@ -55,21 +73,16 @@
         
         </div>
         
+
+        
         <br><br>
         <br><br>
-        <%= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>
-        --> <br><br>
+        <!--<#%= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>-->
+        <br><br>
          
-        <p>
-          <strong><i class="fas fa-thumbs-up fa-lg"></i></strong>
-          <%= @room.likes.size %> 명이 좋아합니다. 
-        </p>
     <p>
         
-      <%=form_tag like_toggle_path, method: 'post' do %>
-        <%=hidden_field_tag :room_id, @room.id %>
-        <%=submit_tag ((current_user.is_like? (@room)) ? '좋아요 취소' : '좋아요'), class: 'heart'%>
-      <% end %>
+
      
      
     </p>

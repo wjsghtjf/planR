@@ -2,9 +2,6 @@ Rails.application.routes.draw do
   
   devise_for :users
   
-
-
-  
   root 'posts#index'
   
   
@@ -56,6 +53,7 @@ Rails.application.routes.draw do
   
   #[플레이] 방탈출 전체 목록 보기
   get 'rooms/index' , as: 'room_index'  
+  get 'rooms/index/:query', to: 'rooms#index' , as: 'room_index_query'  
   
   #[플레이] 방탈출 소개페이지
   get 'rooms/:room_id/show', to: 'rooms#show', as: 'room_show'
@@ -163,4 +161,5 @@ Rails.application.routes.draw do
   #팀만들기
   post 'rooms/:room_id/teams/create', to: 'teams#create', as: 'team_create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
 end

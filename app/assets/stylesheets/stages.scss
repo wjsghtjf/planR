@@ -258,6 +258,15 @@ main {
 
 // 타임라인 내비게이션 끝
 
+//form-edit
+.edit-form-control {
+  width:500px;
+}
+
+
+
+
+
 // manage.html.erb 시작
 
 .stage_list {
@@ -317,6 +326,12 @@ main {
   border: 5px solid red;
   
 }
+
+#active {
+  background-color: black;
+}
+
+
 //테마고를떄 드롭다운
 /* Dropdown Button */
 .dropbtn {
