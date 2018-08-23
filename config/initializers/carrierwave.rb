@@ -11,3 +11,4 @@ CarrierWave.configure do |config|
   config.fog_directory  = 'plan-r'            # required
 end
 
+

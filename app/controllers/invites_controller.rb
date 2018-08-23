@@ -20,8 +20,8 @@ class InvitesController < ApplicationController
           puts "Invite 생성 : @invite"
           
           redirect_to room_team_path(params[:room_id],params[:team_id])
-      elsif
-          @already_invited= true
+      elsif @invite_user.id != current_user.id
+          @already_invited = true
           puts "이미 초대된 유저"
           
       else
@@ -44,7 +44,7 @@ class InvitesController < ApplicationController
     
     
     # 이거는 그저 임시용
-    if Integer(params[:invite_id])== -1
+    if Integer(params[:invite_id]) == -1
       @invites = current_user.invitations
       @invites.each do |inv|
         inv.invite_accepted=0
@@ -62,10 +62,9 @@ class InvitesController < ApplicationController
       redirect_to post_notification_path
     end
     
+    end
   end
-  
     
-  end
   
   def deleteAll
     @invites = Invitation.where("room_id = :room_id AND team_id = :team_id", { :room_id => params[:room_id], :team_id => params[:team_id]})
@@ -79,5 +78,7 @@ class InvitesController < ApplicationController
     @roomcal.destroy
     
     redirect_to room_show_path(params[:room_id])
+    
   end
+  
 end

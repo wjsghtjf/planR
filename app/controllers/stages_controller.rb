@@ -15,27 +15,25 @@ class StagesController < ApplicationController
     
     if params[:stage_level]
        @stage_level= Integer(params[:stage_level])
-      puts "Stage/show : stage_level = #{@stage_level} from parameter"
+      #puts "Stage/show : stage_level = #{@stage_level} from parameter"
       # URL로 감히 다음 스테이지를 보려고 한 경우, last_stage_level로 stage_level를 바꿔버린다.
       if @roomCal.last_stage_level < @stage_level
-        puts "#{current_user.id}, #{current_user.email} 님께서 비정상적인 접근을 시도했습니다."
+        #puts "#{current_user.id}, #{current_user.email} 님께서 비정상적인 접근을 시도했습니다."
         @stage_level=@roomCal.last_stage_level
       end
     elsif @roomCal
       @stage_level = @roomCal.last_stage_level
-      puts "Stage/show : stage_level = #{@stage_level} from roomCal"
+      #puts "Stage/show : stage_level = #{@stage_level} from roomCal"
     end
     
-     if @stages[@stage_level - 1].laststage ==1 && @stage_level >= @stages.length
+    if @stages[@stage_level - 1].laststage == 1 && @stage_level >= @stages.length
       @stage_level = @stages.length
       @wait_for_finish = true
       @room.clearcount = @room.clearcount + 1
       @room.save
-    elsif @stages[@stage_level -1].laststage ==0 && @stage_level >= @stages.length
+    elsif @stages[@stage_level - 1].laststage == 0 && @stage_level >= @stages.length
       @stage_level=@stages.length
       @wait_for_update = true
-      
-    
     end
     
   
@@ -53,7 +51,7 @@ class StagesController < ApplicationController
     #   puts "Stage/show : 업데이트 대기 상태 @stage_level = #{@stage_level}"
     # end
       
-    @stage=nil
+    @stage = nil
     
     
     
@@ -70,7 +68,7 @@ class StagesController < ApplicationController
     if @stage == nil
       
       if @wait_for_update == true
-        puts "Stage/show : @stage가 nil이지만 업데이트 대기 상태이므로 @stage = #{@stages.last}"
+        #puts "Stage/show : @stage가 nil이지만 업데이트 대기 상태이므로 @stage = #{@stages.last}"
         @stage=@stages.last
       
 #여기부터 완료처리 시퀀스
@@ -123,7 +121,7 @@ class StagesController < ApplicationController
 ##여기까지 완료처리 시퀀스
       
       else
-        puts "Stage/show : @stage가 nill이다"
+        #puts "Stage/show : @stage가 nill이다"
         
         redirect_to room_show_path(params[:room_id])
       end
@@ -152,7 +150,7 @@ class StagesController < ApplicationController
     end
     @stage = @stages[@stage_level - 1] if @stage_level > 0
     
-    puts "Stage/manage : @stage = #{@stage} with Stage_level : #{@stage_level}"
+    #puts "Stage/manage : @stage = #{@stage} with Stage_level : #{@stage_level}"
     #parameter 중에서 edit_mode가 있는 경우 @edit_mode를 참으로 설정한다.
     
     @edit_mode = params[:edit_mode].to_s == "true"
@@ -161,7 +159,7 @@ class StagesController < ApplicationController
       @user.award_edit = @user.award_edit + 1
       @user.save
     end
-    puts "Stage/manage : @edit_mode = #{@edit_mode}"
+    #puts "Stage/manage : @edit_mode = #{@edit_mode}"
     
     # 선택된 stage가 있으면서 선택된 스테이지의 image_url이 있는 경우 @stage_file_name에 파일명을 저장시킨다.
     # 수정모드에서 업로드 되있는 파일을 보여주기 위해서 사용 된다.
@@ -174,7 +172,7 @@ class StagesController < ApplicationController
     
     if  @room.image.url
       @room_file_name = @room.image.url.split('/')[-1]
-      puts "Stage/manage : @room_file_name = #{@room_file_name}"
+      #puts "Stage/manage : @room_file_name = #{@room_file_name}"
     else
       @room_file_name = ""
     end
@@ -315,7 +313,7 @@ class StagesController < ApplicationController
     
     if checkAnswer(@stage, @input_ans) 
       
-      puts "Stage/check : 정답"
+      #puts "Stage/check : 정답"
       
       @roomCal.last_stage_level = (@roomCal.last_stage_level + 1)
       @roomCal.save
@@ -349,9 +347,9 @@ class StagesController < ApplicationController
         @user.save
         #@stage.save
         @roomCal.save
-        puts "Stage/check : 오답, try 1증가  -> #{@roomCal.try}, 입력 #{params[:stage_answer]}, 출력 #{@stage.answer}"
+        #puts "Stage/check : 오답, try 1증가  -> #{@roomCal.try}, 입력 #{params[:stage_answer]}, 출력 #{@stage.answer}"
       else
-        puts "Stage/check : 오답, 이미 푼 문제"
+        #puts "Stage/check : 오답, 이미 푼 문제"
       end
       
     end
@@ -368,7 +366,7 @@ class StagesController < ApplicationController
     @room.difficulty = @room.difficulty / Float(@stages.length)
     @room.save
    
-   end 
+  end 
   
   
 #기타 Method
