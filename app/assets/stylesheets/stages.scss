@@ -318,58 +318,134 @@ main {
   
 }
 
-//테마고를떄 드롭다운
-/* Dropdown Button */
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
+//선택지테마
+
+.todoListContainer button {
+  outline: none;
+  cursor: pointer;
+}
+.todoListContainer {
+  width: 500px;
+  max-width: 80%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 3px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+#todoList {
+  text-align: left;
+  list-style-type: none;
+  margin: 0;
+  margin-top: 60px;
+  float: none;
+  padding: 0;
+  width: 100%;
+}
+@keyframes fadein {
+  from {
+    background-color: #ffffab;
+  }
+  to {
+    background-color: white;
+  }
+}
+#todoList li {
+  border: 0px;
+  border-bottom: 1px solid #f3f3f3;
+  padding: 10px;
+  margin: 5px auto;
+  clear: both;
+  transition: all 1.3s ease-in-out;
+  animation: fadein 1.3s ease-in-out;
+}
+
+#todoList li p {
+  display: inline-block;
+  margin: 0;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  width: 75%;
+  transition: all 0.3s ease;
+}
+
+#todoList li button {
+  float: right;
+  margin: -5px 5px;
+  border-radius: 100%;
+  border: 0px solid transparent;
+  width: 25px;
+  height: 25px;
+  text-align:center;
+}
+#newTodo {
+  padding: 10px;
+  border-radius: 3px 0 0 3px;
+  border: 0px;
+  border-bottom: 1px solid #cecece;
+  width: 445px;
+  float: left;
+  outline: none;
+}
+#addTodo {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  float: right;
+  border: 0px;
+  background-color: #fc616d;
+  cursor: pointer;
+}
+#addTodo .fa {
+  color: white;
+}
+.lineThrough {
+  background-color: grey;
+  color: lightgrey;
+}
+
+.doneTodo {
+  background-color: #00d7a1;
+  color: white;
+}
+.removeTodo {
+  background-color: #f43449;
+  color: white;
+}
+
+.doneTodoGrey {
+  background-color: grey;
+  color:blue;
+}
+
+.sohrabsLink {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  position: fixed;
+  font-weight: bold;
+  margin: 20px auto;
+  width: 180px;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  bottom: 0;
+  color: #fc616d;
+  background-color: white;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select,
+  textarea,
+  input {
     font-size: 16px;
-    border: none;
-    cursor: pointer;
+  }
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
-.dropdown-menu {
-  display:none;
-}
-.dropdown-toggle:hover dropdown-menu{
-  display:block;
-}
 
 
 // card3

@@ -27,6 +27,7 @@ gem "mini_magick"
 gem 'fog-aws' 
 #bootstrap 설치
 gem 'bootstrap-sass'
+gem 'simple_form'
 
 #jQuery 설치
 gem 'jquery-rails'
