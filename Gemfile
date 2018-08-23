@@ -10,7 +10,7 @@ gem 'bundler', '~>1.16.3'
 #ec2 secret_key 관리
 gem 'figaro'
 
-
+gem 'simple_form'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 #이미지 업로드하기
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
