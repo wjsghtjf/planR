@@ -161,10 +161,8 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
 			$("#img-upload").css("display","block");
-                $("#image-wrapper").css("display","block");
           $('#img-upload').attr('src', e.target.result);
           
-          $("#image-wrapper").css("display","block");
         }
       reader.readAsDataURL(input.files[0]);
     }
@@ -175,7 +173,6 @@ function readURL(input) {
 function setImage(img_url){
   $("#img-upload").css("display","block");
   $('#img-upload').attr('src', img_url);
-  $("#image-wrapper").css("display","block");
 }
 
  function cancelImage(){
@@ -185,7 +182,6 @@ function setImage(img_url){
   $("#btn_cancel").css("display","none");
   $('#img-upload').attr("src","");
   $("#img-upload").css("display","none");
-  $("#image-wrapper").css("display","none");
   
   $('#is_delete').val(true);
   resetImageTheme();
