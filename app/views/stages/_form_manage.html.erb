@@ -83,7 +83,7 @@
 <div>
     <div class='form-group'>
         <label>Uploaded Image</label><br/>
-        <div class = 'image-wrapper' style = "display: none;" id = 'image-wrapper'>
+        <div class = 'image-wrapper'id = 'image-wrapper'>
           
            <% if @stage.image && @stage.image.url %>
                <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main'  %>

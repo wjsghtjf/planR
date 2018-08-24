@@ -101,7 +101,6 @@ $(document).ready( function() {
     	        $("#btn_cancel").css("display","inline");
 		      	showImage();
     	   	    $("#img-upload").css("display","none");
-                $("#image-wrapper").css("display","none");
     	    }
 	    });
 
@@ -113,7 +112,6 @@ $(document).ready( function() {
 		    
 		  }else{
 		    $("#img-upload").css("display","none");
-		    $("#image-wrapper").css("display","none");
 		    if("<%=@stage_file_name %>".length){
 		      $("#btn_cancel").css("display","inline");
 		      showImage();
@@ -131,7 +129,6 @@ $(document).ready( function() {
   		  	setImage(img_url);
 		  }else{
 		    $("#img-upload").css("display","none");
-            $("#image-wapper").css("display","none");
 		    if("<%=@room_file_name %>".length){
 		      $("#btn_cancel").css("display","inline");
 		      showImage();
