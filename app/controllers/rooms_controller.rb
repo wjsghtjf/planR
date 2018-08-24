@@ -87,6 +87,8 @@ class RoomsController < ApplicationController
     @room.user_id= current_user.id
     @room.save
     
+    binding.pry
+    
     redirect_to stage_manage_all_path(@room.id)
   end
   
@@ -98,7 +100,6 @@ class RoomsController < ApplicationController
     if params[:is_delete_origin_image]=="true"
       @room.remove_image!
     end
-    binding.pry
     if params[:room][:image]
       @room.update(room_params)
     else
