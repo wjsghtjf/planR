@@ -206,6 +206,7 @@ class StagesController < ApplicationController
       @stage.update(stage_params_without_image)
     end
 
+  binding.pry
   
     @stage.save
     redirect_to stage_manage_each_path(@stage.room_id,params[:stage_level])

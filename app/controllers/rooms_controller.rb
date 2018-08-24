@@ -80,7 +80,7 @@ class RoomsController < ApplicationController
   #View 가 없는 Controller
     
   def create
-    @room=Room.new(room_params)
+    @room=Room.create(room_params)
     if @room.content.length==0
       @room.content="  "
     end

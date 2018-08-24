@@ -1,12 +1,13 @@
 <center>
 <div class="content">
-
+<br><br>
+<div class="index-top">
   <div class="search">
     <i class="fas fa-search"></i>
       <!--<#%="검색중인 문구 #{params[:query]}" if params[:query]%>-->
-      <%= form_tag room_index_path, class:'form-group mx-sm-3 mb-2', method: 'get' do %>
+      <%= form_tag room_index_path, class:'form-group col-md-10', method: 'get' do %>
       <%= hidden_field_tag :page, params[:page] ? params[:page]  : 1 %>
-      <%= text_field_tag :query, nil, class:'form-control col-md-2' %>
+      <%= text_field_tag :query, nil, class:'form-control col-md-4' %>
       <%= submit_tag "검색", class:'btn btn-blueblack' %>
       <% end %>
     <!-- 검색 결과 -->
@@ -16,7 +17,7 @@
         </b>
       <% end %>
     </div>
-
+<div class="range">
 <i class="fas fa-filter fa-lg"></i>
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
       <label class="btn btn-secondary active">
@@ -29,6 +30,7 @@
         <input type="radio" name="options" id="option3" autocomplete="off"> 좋아요순
       </label>
     </div>
+  </div>
   </div>
 <br>
   <div class="row">

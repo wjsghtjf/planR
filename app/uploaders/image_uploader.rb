@@ -6,8 +6,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 이미지를 저장할 장소의 종류를 설정
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   #이미지가 저장되는 위치
   # Override the directory where uploaded files will be stored.
