@@ -80,18 +80,14 @@ class RoomsController < ApplicationController
   #View 가 없는 Controller
     
   def create
-    @room = Room.new
-    binding.pry
+    @room = Room.new(room_params)
     @room.user_id= current_user.id
-    @room.title = room_params[:title]
-    @room.content = room_params[:content] && room_params[:content].length ? room_params[:content] : " "
-    @room.image = room_params[:image]
     
-    @room.save
+    @room.content = "  " if @room.contet.length==0
     
-    
-    
-    redirect_to stage_manage_all_path(@room.id)
+    if @room.save
+      redirect_to stage_manage_all_path(@room.id)
+      
   end
   
 
