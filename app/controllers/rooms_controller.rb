@@ -98,7 +98,7 @@ class RoomsController < ApplicationController
     if params[:is_delete_origin_image]=="true"
       @room.remove_image!
     end
-    
+    binding.pry
     if params[:room][:image]
       @room.update(room_params)
     else
