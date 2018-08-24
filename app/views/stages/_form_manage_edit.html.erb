@@ -40,11 +40,6 @@
 </div>
 
 
-<div class='form-group' id = 'theme_lock' style='display: none' >
-    <%=render 'theme_lock' %>
-</div>
-
-
 
 <div class='form-group form-inline' id = 'theme_pattern' style='display: none'>
     <div class='form-group'>
@@ -83,6 +78,7 @@
     
 </div>
 
+<div class="calculator">
 
 <div class='form-group' id = 'theme_image' style='display: none' >
     <%=render 'theme_image' %>
@@ -90,19 +86,28 @@
 
 
 <div class='form-group form-inline' id='div_answer_1'>
-    <%= f.label :answer, '정답1',class: 'control-label col-lg-4' %>
+    <%= f.label :answer, '정답',class: 'control-label col-lg-4' %>
     <%= f.text_field :answer ,placeholder: '정답을 입력해주세요.', class: 'form-control' %>
 </div>
 
+<hr class="cal-line">
+
+<div class='form-group' id = 'theme_lock' style='display: none' >
+    <%=render 'theme_lock' %>
+</div>
+
+</div>
+
+
 <div id='theme_ori'>
     <div class='form-group form-inline'>
-        <%= f.label :answer2, '정답2',class: 'control-label col-lg-4' %>
-        <%= f.text_field :answer2 ,placeholder: '제2의 정답 인정을 원할시 입력하세요.', class: 'form-control' %>
+        <%= f.label :answer2, '복수정답1',class: 'control-label col-lg-4' %>
+        <%= f.text_field :answer2 ,placeholder: '복수정답으로 인정하고 싶은 정답을 입력하세요.', class: 'form-control' %>
     </div>
     
     <div class='form-group form-inline'>
-        <%= f.label :answer3, '정답3',class: 'control-label col-lg-4' %>
-        <%= f.text_field :answer3 ,placeholder: '제3의 정답 인정을 원할시 입력하세요.', class: 'form-control' %>
+        <%= f.label :answer3, '복수정답2',class: 'control-label col-lg-4' %>
+        <%= f.text_field :answer3 ,placeholder: '복수정답으로 인정하고 싶은 정답을 입력하세요.', class: 'form-control' %>
     </div>
 
 </div>
@@ -200,14 +205,14 @@ function setTheme(mode){
      if(mode==0){
          document.getElementById('theme_ori').style.display='block';
         $('#stage_answer').removeAttr("readonly");
+        
      }
-    else{
+     else{
       document.getElementById('theme_ori').style.display='none';
         $('#stage_answer').prop('readOnly', true);
-      
-    } 
+     } 
     
-   if(mode==1){
+     if(mode==1){
         document.getElementById('theme_lock').style.display='block';
         if(mode==<%=@stage.mode%>)
             play_num="<%=@stage.answer%>";
@@ -256,7 +261,6 @@ function setTheme(mode){
         document.getElementById('btn_size_up').style.display='inline';
         document.getElementById('btn_size_down').style.display='inline';
          document.getElementById("div_answer_1").style.display = 'none';
-        
       
     }
     else{

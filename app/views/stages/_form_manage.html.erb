@@ -62,18 +62,18 @@
   </div>
   <%end%>
   
-  <% if @stage.answer2 && @stage.answer2.length>0 %>
+  <% if @stage.answer2%>
     <div class="card4">
       <h5><i class="fas fa-check">&nbsp;복수정답 1</i></h5>
-    <p><%=@stage.answer2%></p>
+    <p>&nbsp;<%=@stage.answer2%></p>
     </div>
   <% end %>
   
   
-  <% if @stage.answer3 && @stage.answer3.length>0 %>
+  <% if @stage.answer3%>
     <div class="card4">
       <h5><i class="fas fa-check">&nbsp;복수정답 2</i></h5>
-    <p><%=@stage.answer3%></p>
+    <p>&nbsp;<%=@stage.answer3%></p>
   <% end %>
     </div>
 
@@ -118,6 +118,10 @@
 <br>
 
 <p style="color:red;"><b>[주의] 한 번 배포 후에는 스테이지 수정이 불가능합니다.</b></p>
+
+<br>
+<br>
+<br>
 
 <script>
 <% if @stage.image.url  %>

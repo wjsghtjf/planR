@@ -1,4 +1,10 @@
+<style>
+    input[type=radio]:checked {
+    box-shadow:red 0px 0px 0px 5px;
+    background-color: #343a40;
+}
 
+</style>
 <div class="form-group form-inline">
      <%= f.label :mode, '모드 선택' , class: 'control-label col-lg-4'%>
     		<div class="col-sm-7 col-md-7">
@@ -17,14 +23,38 @@
     	</div> 
    
    
+   
+   <div class="btn-group btn-group-toggle" data-toggle="buttons" id='radioBtn'>
+      <label class="btn btn-blueblack active">
+        <%= f.radio_button :mode ,"0",checked: true%> 기본
+        
+        <!--<input type="radio" name="options" value="option1" autocomplete="off" >기본-->
+        
+      </label>
+      <label class="btn btn-blueblack">
+        <%= f.radio_button :mode ,"1",checked: true%> 자물쇠
+       
+      </label>
+      <label class="btn btn-blueblack" >
+        <%= f.radio_button :mode ,"2",checked: true%> 순서
+
+      </label>
+    </div>
+   
+   
+   
 <script>
-     $('#radioBtn a').on('click', function(){
-    var sel = $(this).data('title');
-    var tog = $(this).data('toggle');
-    $('#mode').val(sel);
+     $('#radioBtn label').on('click', function(){
+         var sol = $(this).attr('value');
+    var sel = $(this).data('mode');
+    var tog = $(this).value('toggle');
+    alert(tog);
+//    $('#mode').val(sel);
+    
     $('#'+tog).prop('value', sel);
-    mode=sel;
-    setTheme(mode);
+    
+    setTheme(sol);
+    
     
     $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
     $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');

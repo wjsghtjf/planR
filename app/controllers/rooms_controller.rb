@@ -8,23 +8,55 @@ class RoomsController < ApplicationController
   
    
   def index
-        # if params[:sort] == "recent"
-    #   @rooms=Room.all
-    # elsif params[:sort] == "difficulty"
-    #   @rooms=Room.all
-    # elsif params[:sort] == "like"
-    #   @rooms=Room.all
-    # else
-    #   @rooms=Room.all
-    # end
     
-    @page = Integer(params[:page] ? params[:page] : 1)
+    @page = Integer(params[:page] && params[:page].length>0 ? params[:page] : 1)
     @page_limit = 9
+    
+    
+    
     if params[:query]
-      @rooms = Room.where("title like '%#{ params[:query] }%'").reverse_order
-    else
-      @rooms=Room.all.reverse_order
+      @roomsQ = Room.where("title like '%#{ params[:query] }%'")
+    else 
+      @roomsQ = Room.all
     end
+    
+    if params[:sort] == "difficulty" 
+      @rooms=@roomsQ.order(difficulty: :desc )
+    elsif params[:sort] == "like"
+      @rooms=@roomsQ.left_outer_joins(:likes).sort_by { |r| r.likes.size }.reverse
+      
+    elsif params[:sort] == "recent"
+      @rooms=@roomsQ.order(created_at: :desc)
+    else 
+      @rooms=@roomsQ.order(created_at: :desc)
+    end
+    
+    
+    
+      
+    # @temp=@roomsFilter.new
+      
+   
+      # for j in 0..@rooms.length do
+
+    
+      #   for i in 0..(@rooms.length-1) do
+      #           a=@rooms[i].likes
+      #           b=@rooms[i+1].likes
+                
+      #       if  (a>=b)
+
+      #           @temp = @rooms[i]   
+      #           @rooms[i]=@rooms[i+1]
+      #           @rooms[i+1] = @temp
+      #         end
+
+      #     end
+      # end
+
+
+
+
     
 
     # @roomCal = RoomCal.find_by("user_id = ? ", current_user.id)
@@ -53,7 +85,6 @@ class RoomsController < ApplicationController
       room_cal.mode = 2
       room_cal.save
     end
-
     @user.award_multi = @user.award_multi + 1
     @user.save
     
@@ -83,11 +114,14 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user_id= current_user.id
     
-    @room.content = "  " if @room.contet.length==0
+    @room.content = "  " 
+  # 밑에주석처리한거 에러뜸..왜필요한것?
+    # if @room.contet.length==0
+    # end
     
     if @room.save
       redirect_to stage_manage_all_path(@room.id)
-      
+    end
   end
   
 

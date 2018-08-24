@@ -8,7 +8,7 @@
                 <tr>
             <%end%>
             <td>
-                <button type='button' onclick="num_click(<%=i%>);" class="btn-lg" ><%=i%></button>
+                <button type='button' onclick="num_click(<%=i%>);" class="btn-num key" ><%=i%></button>
             </td>
             <%if i%3==0 %>
                 </tr>
@@ -17,13 +17,13 @@
         
         <tr>
             <td>
-                <button  type='button' onclick="backspace_lock();" class="btn-lg btn-default" > ←</button>
+                <button  type='button' onclick="backspace_lock();" class="btn-num key" > ←</button>
             </td>
             <td>
-                <button type='button'  onclick="num_click(0);" class="btn-lg" >0</button>
+                <button type='button'  onclick="num_click(0);" class="btn-num key" >0</button>
             </td>
             <td>
-                <button type='button' onclick="num_clear()" class="btn-lg btn-danger" >C</button>
+                <button type='button' onclick="num_clear()" class="btn-num key" >C</button>
             </td>
         </tr>
     </table>

@@ -17,7 +17,7 @@
 	<h5 style="text-align: center;"><b>스테이지 리스트</b></h5><hr>
 		<div class="list-group"> <!-- 원래는 stage_list -->
 		
-	        <%= link_to "<b>방정보</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level ==0 }"%>
+	        <%= link_to "<b>방정보</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level == 0 }"%>
 	        
 	   		<% @stages.each_with_index do |s, i|%>
 	            <%= link_to "<b>스테이지 #{i+1}</b><br> - #{s.title}".html_safe, stage_manage_each_path(@room.id, i+1) , :class => "list-group-item list-group-item-action #{"active" if @stage_level == (i+1) }"%>

@@ -41,14 +41,14 @@
                     <%=hidden_field_tag :room_id, inv.room_id %>
                     <%=hidden_field_tag :invite_id, inv.id %>
                     <%=hidden_field_tag :invite_accepted, 1 %>
-                <%=submit_tag '수락', class: 'btn btn-primary' %>
+                <%=submit_tag '수락', class: 'btn btn-outline-primary' %>
                 <% end %>
                 
                 <%=form_tag(invite_update_path, { method: 'post', style: 'display:inline'}) do %>
                     <%=hidden_field_tag :room_id, inv.id %>
                     <%=hidden_field_tag :invite_id, inv.id %>
                     <%=hidden_field_tag :invite_accepted, 2 %>
-                <%=submit_tag '거절', class: 'btn btn-danger' %>
+                <%=submit_tag '거절', class: 'btn btn-outline-danger' %>
                 <% end %>
           <% end%>
       </td>
@@ -89,7 +89,7 @@
       <td><%= (@room_cals.length) - 1 %></td>
       <td>
           <%=form_tag(room_team_path(room_cal.room_id, room_cal.team_id), { method: 'get', style: 'display:inline'}) do %>
-            <%=submit_tag '팀 구성 페이지 바로가기', class: 'btn btn-info' %>
+            <%=submit_tag '팀 구성 페이지 바로가기', class: 'btn btn-outline-info' %>
           <% end %>
       </td>
 

@@ -9,7 +9,8 @@
         <a href="<%= room_new_path%>" class="btn btn-blueblack new_room">새로운 방탈출 만들기</a>
         <br><br><hr>
     <% @rooms.each do |room| %>
-     <%= render 'dialog_modal', room_id: room.id%>
+    
+     <%= render 'dialog_modal', room: room%>
     <% @publish_stage_id=room.publish_stage_id%>  
     <% @publish_length = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => room.publish_stage_id, :room_id => room.id}).length%> 
         <div class="card">
@@ -27,7 +28,7 @@
     <p class="card_text"><center>스테이지수 <%=@publish_length %> /  <%=room.stages.length %></center></p>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <%=link_to "계속해서 수정", stage_manage_all_path(room.id), class: 'btn btn-blueblack'  %>
-    <%= link_to "삭제", "#delete" , :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
+    <%=link_to "삭제", "#delete_#{room.id}",  :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
     <%#=link_to "삭제", room_delete_path(room.id), class:'btn btn-outline-danger' data-toggle="modal" data-target="#delete" %>
   </div>
   

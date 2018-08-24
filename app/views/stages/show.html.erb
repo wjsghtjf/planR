@@ -1,3 +1,15 @@
+<style>
+  new_hr{ 
+  
+    border:         none;
+    border-left:    1px solid hsla(200, 10%, 50%,100);
+    height:         100vh;
+    width:          0.3px;   
+    color:#9b9292;
+  }
+</style>
+
+
 <script>
 $(document).ready( function() {
     if("<%=params[:is_wrong_answer] %>" == 'true')
@@ -5,11 +17,9 @@ $(document).ready( function() {
 })
 </script>
 
-<br><br><br><br><br><br>
-<div class="content">
+<body style="background-color:#1e1e1e">
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-7">
         <br><br>
         <%= render 'dialog_modal' %><br><br>
 
@@ -19,9 +29,69 @@ $(document).ready( function() {
         <% else %>
             <% if @stage %>
                 <%= render 'form', stage: @stage%>
+            <% end %>
+        <% end %>
+                
+
+                
+    </div>
+    
+    <new_hr></new_hr>
+    
+    
+    <div class="col-md-4">
+      
+      <br>
+      <br>
+      <br>
+        
+            <div class='form-group' style="text-align:center; color:white;">
+              <label for='content' style="font-size:20pt;"><b>힌트 개방</b></label>
+      
+              <br><br>
+  
+  <% if !(@stage.hint1.nil?) && @stage.hint1.length > 0 && @stageCal.usedhint1 == 1 %>
+    <%= link_to '<i class="fas fa-key fa-2x"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,1,@stage.id), method: :post, :class => 'btn btn-blueblack' %>
+  <% elsif !(@stage.hint1.nil?) && @stage.hint1.length >0 %>
+    <button class='btn btn-blueblack' data-toggle="modal" data-target="#myModal1">
+      <i class="fas fa-key fa-2x"></i>
+    </button>
+  <% end %>
+  
+  <% if !(@stage.hint2.nil?) && @stage.hint2.length > 0 && @stageCal.usedhint2 == 1 %>
+    <%= link_to '<i class="fas fa-key fa-2x"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,2,@stage.id), method: :post, :class => 'btn btn-blueblack' %>
+  <% elsif !(@stage.hint2.nil?) && @stage.hint2.length > 0 && @stageCal.usedhint1 == 1%>
+    <button class='btn btn-blueblack' data-toggle="modal" data-target="#myModal2">
+      <i class="fas fa-key fa-2x"></i>
+    </button>
+  <% elsif !(@stage.hint2.nil?) && @stage.hint2.length > 0 %>
+    <button class='btn btn-blueblack disabled'>
+      <i class="fas fa-key fa-2x"></i>
+    </button>
+  <% end %>
+  
+  <% if !(@stage.hint3.nil?) && @stage.hint3.length > 0 && @stageCal.usedhint3 == 1%>
+    <%= link_to '<i class="fas fa-key fa-2x"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,3,@stage.id), method: :post, :class => 'btn btn-blueblack' %>
+  <% elsif !(@stage.hint3.nil?) && @stage.hint3.length > 0 && @stageCal.usedhint2 == 1%>
+    <button class='btn btn-blueblack' data-toggle="modal" data-target="#myModal3">
+      <i class="fas fa-key fa-2x"></i>
+    </button>
+  <% elsif !(@stage.hint3.nil?) && @stage.hint3.length >0 %>
+    <button class='btn btn-blueblack disabled'>
+      <i class="fas fa-key fa-2x"></i>
+    </button>
+  <% end %>
+  
+              </div>
+  
+  <br>
+  <br>
+  <br>
+        
+                        
                 <div class='form-group'>
                     
-                <% if @stage.mode==1%>       
+                <% if @stage.mode==1 %>       
                     <%=render 'theme_lock'%>
         
                 <% elsif @stage.mode==2%>
@@ -53,10 +123,11 @@ $(document).ready( function() {
                     <%=submit_tag '제출', id: 'btn_check_answer', class: 'btn btn-blueblack'%>
                     <% end %>
                 <% end %>
-            <% end %>
-        <%end%>    
-                
-    </div>
+
+        
+        </div>
+        
+        
         <% if  @stage_level > 0 %>
           <form method='POST' action="<%=stage_show_path(@room.id) %>" class='btn-form'>
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -80,7 +151,11 @@ $(document).ready( function() {
        <%= render './time_lines/timeline' %>
     </div>
 </div>
+
 </div>
+
 <br><br><br><br><br><br>
+
+</body>
 
  

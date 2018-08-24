@@ -1,124 +1,42 @@
 
-<input type='hidden' name='stage_id' value = '<%=@stage.id%>'/>
-
-<div class='form-group'>
-  <label for='title'>STAGE <%=@stage_level +1 %> ::</label>
-  <p><%=@stage.title %></p>
-</div>
-  
-<% if @stage.laststage == 1 %>
-  <h2><p style="color:red;">FINAL STAGE</p><h2>
-<% end %>
-
-<div class='form-group'>
-  <label for='content'>내용 :: </label>
-  <p class='form-control' name='content'><%=@stage.content%> </p>
-</div>
-
-<br><br>
-
-<div class='form-group'>
-  <label for='content'>힌트 개방 :: </label>
-  
-  <% if !(@stage.hint1.nil?) && @stage.hint1.length > 0 && @stageCal.usedhint1 == 1 %>
-    <%= link_to '<i class="fas fa-key"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,1,@stage.id), method: :post, :class => 'btn btn-primary' %>
-  <% elsif !(@stage.hint1.nil?) && @stage.hint1.length >0 %>
-    <button class='btn btn-primary' data-toggle="modal" data-target="#myModal1">
-      <i class="fas fa-key"></i>
-    </button>
-  <% end %>
-  
-  <% if !(@stage.hint2.nil?) && @stage.hint2.length > 0 && @stageCal.usedhint2 == 1 %>
-    <%= link_to '<i class="fas fa-key"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,2,@stage.id), method: :post, :class => 'btn btn-primary' %>
-  <% elsif !(@stage.hint2.nil?) && @stage.hint2.length > 0 && @stageCal.usedhint1 == 1%>
-    <button class='btn btn-primary' data-toggle="modal" data-target="#myModal2">
-      <i class="fas fa-key"></i>
-    </button>
-  <% elsif !(@stage.hint2.nil?) && @stage.hint2.length > 0 %>
-    <button class='btn btn-secondary disabled'>
-      <i class="fas fa-key"></i>
-    </button>
-  <% end %>
-  
-  <% if !(@stage.hint3.nil?) && @stage.hint3.length > 0 && @stageCal.usedhint3 == 1%>
-    <%= link_to '<i class="fas fa-key"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,3,@stage.id), method: :post, :class => 'btn btn-primary' %>
-  <% elsif !(@stage.hint3.nil?) && @stage.hint3.length > 0 && @stageCal.usedhint2 == 1%>
-    <button class='btn btn-primary' data-toggle="modal" data-target="#myModal3">
-      <i class="fas fa-key"></i>
-    </button>
-  <% elsif !(@stage.hint3.nil?) && @stage.hint3.length >0 %>
-    <button class='btn btn-secondary disabled'>
-      <i class="fas fa-key"></i>
-    </button>
-  <% end %>
-  
-  
-  
-  <!--#######-->
-  <!--<#% if !(@stage.hint1.nil?) && @stage.hint1.length > 0 %>-->
-  <!--    <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal1">-->
-  <!--    <i class="fas fa-key"></i>-->
-  <!--    </button>-->
-  <!--<#% end %>-->
-  
-  <!--<#% if @stageCal.usedhint1 == 1 || @stageCal.usedhint2 == 1 %>-->
-  <!--    <#% if !(@stage.hint2.nil?) && @stage.hint2.length > 0 %>-->
-  <!--        <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal2">-->
-  <!--        <i class="fas fa-key"></i>-->
-  <!--        </button>-->
-  <!--    <#% end %>-->
-  <!--<#% else %>-->
-  <!--    <#% if !(@stage.hint2.nil?) && @stage.hint2.length > 0 %>-->
-  <!--        <button class='btn-floating disabled' >-->
-  <!--        <i class="fas fa-key"></i>-->
-  <!--        </button>-->
-  <!--    <#% end %>-->
-  <!--<#% end %>-->
-      
-        
-        
-  <!--<#% if @stageCal.usedhint2 == 1 %>-->
-  <!--    <#% if !(@stage.hint3.nil?) && @stage.hint3.length > 0 %>-->
-  <!--        <button class='btn-floating pulse' data-toggle="modal" data-target="#myModal3">-->
-  <!--        <i class="fas fa-key"></i>-->
-  <!--        </button>-->
-  <!--    <#% end %>-->
-  <!--<#% else %>-->
-  <!--    <#% if !(@stage.hint3.nil?) && @stage.hint3.length > 0 %>-->
-  <!--        <button class='btn-floating disabled' >-->
-  <!--        <i class="fas fa-key"></i>-->
-  <!--        </button>-->
-  <!--    <#% end %>-->
-  <!--<#% end %>-->
-  
-
-  
-</div>
 
 
+    <input type='hidden' name='stage_id' value = '<%=@stage.id%>'/>
 
 
-<!--이미지가 있는 경우에만 -->
-<% if (@stage.image && @stage.image.length)>0 %>
-  <div>
     <div class='form-group'>
-      
-
-        
-         <div class = 'image' style = "position: relative;">
-          
-        <label>이미지</label><br/>
-           <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main' if @stage.image.url %>
-
-          <% if @stage_level < @roomCal.last_stage_level %>            
-             <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
-          <% end %>
-         
-        </div>
-        
+      <% if @stage.laststage == 1 %>
+      <h2 style="font-size:40pt; color:red; text-align:center;"><label for = 'title'><b>FINAL STAGE</b></label></h2>
+      <% else %>
+      <h2 style="font-size:40pt; color:white; text-align:center;"><label for = 'title'><b>STAGE <%= @stage_level + 1 %></b></label></h2>
+      <% end %>
+      <h3 style="font-size:25pt; color:gray; text-align:center;"><label for = 'title'><b><%=@stage.title %></b></h3>
     </div>
-  </div>
-<% end %>
+    
+    <br><br>
+    
+    <div class='form-group' align='center'>
+      <p class='form-control col-lg-10' name='content'><%=@stage.content%> </p>
+    </div>
+
+    <br><br>
+
+
+    <!--이미지가 있는 경우에만 -->
+        <% if (@stage.image && @stage.image.length)>0 %>
+          <div>
+            <div class='form-group' align='center'>
+                 <div class = 'image' style = "position: relative;">
+                    <label>이미지</label><br/>
+                       <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main' if @stage.image.url %>
+                       <% if @stage_level < @roomCal.last_stage_level %>            
+                       <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
+                       <% end %>
+                 </div>
+            </div>
+          </div>
+        <% end %>
+
 
 <script>
 

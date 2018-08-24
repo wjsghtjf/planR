@@ -31,11 +31,14 @@
 <% end %>
 
 <br>
+<br>
+<br>
 
 <%if @room.publish_stage_id == 0  %>
   <%= link_to "수정하기",  stage_manage_each_path(@room.id,0, edit_mode: true) , class: 'btn btn-blueblack' %>
 <% end %>
 
+<br>
 <br>
 <br>
 

@@ -17,3 +17,17 @@ stage1 = Stage.create(room_id: room.id, title: '답:1',content: 'ㅋㅋㅋㅋ', 
 
 room2 = Room.create(title: '오버액션탈출하기', user_id: userHs.id, content: '뀨?')
 stage2_1 = Stage.create(room_id: room.id, title: '하늘에서 내려온 토끼가 하는말',content: '바니바니', hint1: '나는 열여섯', hint2: '이제곳 열입곡')
+
+
+
+userHr = User.create(nickname: 'bbbb', email: 'adfilmssdfsfd2@naver.com', password: 'asdfasdf', rank_point: 7.20, item_freehint:10)
+Room.create(title: '자지마 코딩해야지1', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지2', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지3', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지4', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지5', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지6', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지7', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지8', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지9', user_id: userHr.id, content: '뀨?')
+Room.create(title: '자지마 코딩해야지10', user_id: userHr.id, content: '뀨?')

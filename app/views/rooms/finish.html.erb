@@ -1,25 +1,31 @@
-<div class="content">
+<div class="content" align="center">
     <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
 <br>
 <br>
-<h1><%=@room.title %><br>CLEAR</h1>
+<h1 style="font-size:40pt;"><b><%=@room.title %><br>CLEAR</b></h1>
 <hr>
 
-<h3>이번 시즌 나의 EP : 
+<br>
+<br>
+
+<b style="font-size:20pt;">나의 EP</b><br>
 <% if @user.rank_point.round(2) >= 10.00%>
 10.0 
 <% else %>
 <%= @user.rank_point.round(2) %>
 <% end %>
 <br>
-다음 랭킹 등급까지 남은 EP : 
+<br>
+<b style="font-size:20pt;">다음 랭킹 등급까지</b><br>
 <% if @user.rank_point.round(2) >= 10.00 %>
 0 (이번 시즌 획득할 수 있는 EP의 최대량에 도달하였습니다.)
 <% else %>
 <%= @nextrank_ep.round(2) %>
 <% end %>
+
+
 <br>
 <br>
 <% if @user.rank_point.round(2) >= 10.00 %>

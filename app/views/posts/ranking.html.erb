@@ -11,32 +11,42 @@
 <br>
 <br>
 
-이번 시즌 나의 랭킹 등급 :
+<div style="font-size:25pt; color:gray;" align="center">
 <% if @user.rank_point.round(2) >= 10.00 %>
-    그랜드마스터
+    뉴비 > 숙련자 > 실력자 > 마스터 > <b style="font-size:40pt; color:#353a3f;">그랜드마스터</b>
 <% elsif @user.rank_point.round(2) >= 9.00 %>
-    마스터
-<% elsif @user.rank_point.round(2) >= 6.00 %>
-    실력자
+    뉴비 > 숙련자 > 실력자 > <b style="font-size:40pt; color:#d36065;">마스터</b> > 그랜드마스터
+ <% elsif @user.rank_point.round(2) >= 6.00 %>
+    뉴비 > 숙련자 > <b style="font-size:40pt; color:#f7cb60;">실력자</b> > 마스터 > 그랜드마스터
 <% elsif @user.rank_point.round(2) >= 3.00 %>
-    숙련자
+    뉴비 > <b style="font-size:40pt; color:#65aec0;">숙련자</b> > 실력자 > 마스터 > 그랜드마스터
 <% else %>
-    뉴비
+    <b style="font-size:50pt; color:#6db26b;">뉴비</b> > 숙련자 > 실력자 > 마스터 > 그랜드마스터
 <% end %>
+</div>
+
+<hr>
 <br>
-이번 시즌 나의 EP : 
+
+<div align="center">
+<b style="font-size:20pt;">나의 EP</b><br>
 <% if @user.rank_point.round(2) >= 10.00%>
 10.0 
 <% else %>
 <%= @user.rank_point.round(2) %>
 <% end %>
 <br>
-다음 랭킹 등급까지 남은 EP : 
+<br>
+<b style="font-size:20pt;">다음 랭킹 등급까지</b><br>
 <% if @user.rank_point.round(2) >= 10.00 %>
 0 (이번 시즌 획득할 수 있는 EP의 최대량에 도달하였습니다.)
 <% else %>
 <%= @nextrank_ep.round(2) %>
 <% end %>
+
+</div>
+
+
 <br>
 <br>
 <% if @user.rank_point.round(2) >= 10.00 %>

@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2018_08_12_181902) do
     t.string "title", default: ""
     t.text "content", default: ""
     t.float "difficulty", default: 0.0
-    t.integer "likes", default: 0
     t.integer "clearcount", default: 0
     t.string "image"
     t.integer "user_id"
