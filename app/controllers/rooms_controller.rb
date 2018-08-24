@@ -81,14 +81,15 @@ class RoomsController < ApplicationController
     
   def create
     @room = Room.new
+    binding.pry
     @room.user_id= current_user.id
-    @room=Room.update(room_params)
-    if @room.content.length==0
-      @room.content=" "
-    end
+    @room.title = room_params[:title]
+    @room.content = room_params[:content] && room_params[:content].length ? room_params[:content] : " "
+    @room.image = room_params[:image]
+    
     @room.save
     
-    binding.pry
+    
     
     redirect_to stage_manage_all_path(@room.id)
   end

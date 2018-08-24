@@ -17,15 +17,15 @@
       <% end %>
     </div><br><br><br>
 <div class="range">
-      <label class="btn btn-range active">
+      <a class="btn btn-range active">
         <input type="radio" name="options" id="option1" autocomplete="off" checked> 최신순
-      </label>
-      <label class="btn btn-range">
+      </a>
+      <a class="btn btn-range">
         <input type="radio" name="options" id="option2" autocomplete="off"> 난이도순
-      </label>
-      <label class="btn btn-range">
+      </a>
+      <a class="btn btn-range">
         <input type="radio" name="options" id="option3" autocomplete="off"> 좋아요순
-      </label>
+      </a>
   </div>
   </div>
 <br>
@@ -53,7 +53,7 @@
           <% @maker = User.find(room.user_id) %>
           <h6 style="color: gray;">by <%= @maker.nickname %></h6><br>
             <% if room.difficulty.round(2) == 0 %>
-          <!--<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>-->
+          <!--<a type="a" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</a>-->
               <h5 style="color: black; font-size:15pt; text-align:center;"><b>난이도 - <span class="badge badge-pill badge-danger">!</span></b></h5>
               <h5 style="color:black; font-size:15pt; text-align:center;"><b><i class="fas fa-heart" style="color:red;"></i> <%= room.likes.size %></b></h5>
             <% elsif room.difficulty.round(2) > 0 %>
@@ -81,10 +81,10 @@
 
 <!-- 페이지 내비게이션 -->
 
-<nav aria-label="Page navigation example">
+<nav aria-a="Page navigation example">
   <ul class="pagination pagination-centered">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link" href="#" aria-a="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
@@ -96,7 +96,7 @@
     <% end %>
     
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
+      <a class="page-link" href="#" aria-a="Next">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>
