@@ -1,9 +1,11 @@
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import "rooms.scss";
 @import "posts.scss";
 @import "stages.scss";
 @import "time_lines.scss";
-@import "summernote";
+
+@import "summernote-bs4";
+@import "summernote-custom-theme.min";
 
 
 

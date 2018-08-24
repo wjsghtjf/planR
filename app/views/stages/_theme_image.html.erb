@@ -50,7 +50,7 @@ function redraw(x,y,size){
     document.getElementById("stage_answer").value = ans_X+","+ans_Y+","+ans_size;
 }
 
- var img = document.getElementsByTagName("img")[0];
+var img = document.getElementById("img-upload");
 img.onload=function(){
     drawImageTheme(img);
 }

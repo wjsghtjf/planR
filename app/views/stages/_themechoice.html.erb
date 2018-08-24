@@ -4,11 +4,12 @@
     		<div class="col-sm-7 col-md-7">
     			<div class="input-group">
     				<div id="radioBtn" class="btn-group">
-    					<a class="btn btn-outline-dark btn-sm active" data-toggle="happy" data-title="0" id="0"><%=hidden_field_tag :mode,"0"%>기본</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="1" id="1"><%=hidden_field_tag :mode,"1"%>자물쇠</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="2" id="2"><%=hidden_field_tag :mode,"2"%>순서</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="3" id="3"><%=hidden_field_tag :mode,"3"%>선택지</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="4" id="4"><%=hidden_field_tag :mode,"4"%>이미지 클릭</a>
+    				    <%=f.hidden_field :mode, value: 0%>
+    					<a class="btn btn-outline-dark btn-sm active" data-toggle="happy" data-title="0" id="0">기본</a>
+    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="1" id="1">자물쇠</a>
+    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="2" id="2">순서</a>
+    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="3" id="3">선택지</a>
+    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="4" id="4">이미지 클릭</a>
     				</div>
     				<input type="hidden" name="happy" id="happy">
     			</div>
@@ -20,7 +21,10 @@
      $('#radioBtn a').on('click', function(){
     var sel = $(this).data('title');
     var tog = $(this).data('toggle');
+    $('#mode').val(sel);
     $('#'+tog).prop('value', sel);
+    mode=sel;
+    setTheme(mode);
     
     $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
     $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');

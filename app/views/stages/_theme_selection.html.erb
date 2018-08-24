@@ -1,13 +1,12 @@
 <div class='theme_selection' >
     <br>
     <p style="font-size:25px;"><b>선택지 작성</b></p>
-    
     <div class="todoListContainer">
         <input style="VISIBILITY: hidden; WIDTH: 0px">
-  <input type="text" id="newTodo" placeholder="add todo"><button id="addTodo"><i class="fa fa-plus"></i></button>
-  <ul id="todoList">
-  </ul>
-</div>
+        <input type="text" id="newTodo" placeholder="add todo"><button id="addTodo"><i class="fa fa-plus"></i></button>
+        <ul id="todoList">
+        </ul>
+    </div>
     
     
     
@@ -64,15 +63,13 @@ function num_click2(num){
     }
 
      document.getElementById("stage_answer").value = play_num2;
-     
-     
  }
  
  //
  
  var listItemID = 1;
 $("#addTodo").on("click", function() {
-  if(listItemID >= 5){
+  if(listItemID > 5){
       alert("최대 선택지는 다섯개입니다.");
   }else{
   
@@ -81,10 +78,8 @@ $("#addTodo").on("click", function() {
         alert("Please add to do item");
       } else {
         $("#todoList").append(
-          '<li id= " li'+  listItemID +' "><button data-id=" li' +
-            listItemID +'" class="doneTodo" ><i class="fa fa-check"></i></button> <p class="todotext">' +
-            newTodo + "</p> " + '<button data-id=" li' +
-            listItemID +'" class="removeTodo" ><i class="fa fa-minus"></i></button> </li>' );
+          '<li id= " li'+  listItemID +' "><button type="button" data-id="li' +listItemID+'" class="doneTodo" ><i class="fa fa-check"></i></button> <p class="todotext">' +
+            newTodo + "</p> " + '<button type="button"data-id="li' +listItemID+'" class="removeTodo"  ><i class="fa fa-minus"></i></button> </li>' );
         
         listItemID++;
     
@@ -100,12 +95,14 @@ $("#addTodo").on("click", function() {
 $(document).on("click", ".removeTodo", function() {
   var checkstr = confirm("Are you sure you want to delete this?");
   if (checkstr == true) {
-    var removeItemId = "#" + $(this).attr("data-id");
+    var removeItemId = "#"+$(this).attr("data-id");
+    console.log(removeItemId);
     $(removeItemId).remove();
+    
   } else {
-
+    return false;
   }
-  
+  return false;
 });
 //todo complete
 $(document).on("click", ".doneTodo", function() {
@@ -113,7 +110,7 @@ $(document).on("click", ".doneTodo", function() {
   $(completeItemId).toggleClass("lineThrough");
   $(this).toggleClass("doneTodoGrey");
 //this는 .doneTodo
- 
+ return false;
 });
 
 

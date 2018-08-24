@@ -7,7 +7,7 @@ class ChatsController < ApplicationController
     def create
         @chat= Chat.new(chats_params)
         @chat.save
-        puts "타임라인 글 작성 하기 성공, 요청한 room_id:#{params[:room_id]}, stage_level: #{params[:stage_level]}로 복귀"
+        #puts "타임라인 글 작성 하기 성공, 요청한 room_id:#{params[:room_id]}, stage_level: #{params[:stage_level]}로 복귀"
         
 
         # JS로 대체 chats/create.html.erb

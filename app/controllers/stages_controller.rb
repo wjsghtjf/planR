@@ -1,7 +1,7 @@
 class StagesController < ApplicationController
   
   before_action :find_user, only: [:check, :show, :create, :delete, :manage, :hintpage_item]
-  before_action :find_room, only: [:show,:manage, :hintpage,:check]
+  before_action :find_room, only: [:show, :manage, :hintpage,:check]
   before_action :find_stages, only: [:show,:check]
   before_action :find_stage, only: [:update, :delete, :check]
   before_action :find_roomCal, only: [:show, :check, :hintpage, :hintpage_item]
@@ -56,13 +56,6 @@ class StagesController < ApplicationController
     
     
     @stage = @stages[@stage_level]
-    # @stages.each_with_index do |s, index|
-    #   if index == @stage_level
-    #     @stage=s
-    #     puts "Stage/show : @stage = #{@stage}"
-    #     break
-    #   end
-    # end
     
     
     if @stage == nil
@@ -138,13 +131,10 @@ class StagesController < ApplicationController
  
   
   def manage
-    # 스테이지 목록을 ���한 stage의 배열
     @stages = Stage.where('room_id' => @room.id)
     
-    #parameter 중에서 stage_level가 있는 경우
     if params[:stage_level] 
       @stage_level = [Integer(params[:stage_level]), @stages.length ].min
-    # stage배열이 한개 이상일 경우 stage 배열에서 가장 마지막 stage를 화면에 띄어준다.
     else
       @stage_level = @stages.length
     end
@@ -418,12 +408,15 @@ class StagesController < ApplicationController
   end
   
   def stage_params
-      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,:image,:answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
+      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,
+      :image,
+      :answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
   end 
   
   
   def stage_params_without_image
-      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,:answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
+      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,
+      :answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
   end 
   
   

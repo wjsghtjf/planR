@@ -347,7 +347,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
-  summernote-rails (~> 0.8.10.0)
+  summernote-rails
   therubyracer
   turbolinks (~> 5)
   tzinfo-data
