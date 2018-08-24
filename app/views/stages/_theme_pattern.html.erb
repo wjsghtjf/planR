@@ -1,14 +1,44 @@
 <div class='theme_pattern'>
     <br>
     <br>
-<p style="font-size:25px;"><b>클릭해야 하는 순서를 지정해주십시오.</b></p>
+
+    <div class='form-group form-inline'>
+        <%= f.label :pattern_num1, '항목 A',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.text_field :pattern_num1 ,placeholder: 'A 항목에 해당되는 내용을 입력하세요.', class: 'form-control col-lg-5' %>
+    </div>
+    <div class='form-group form-inline'>
+        <%= f.label :pattern_num2, '항목 B',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.text_field :pattern_num2 ,placeholder: 'B 항목에 해당되는 내용을 입력하세요.', class: 'form-control col-lg-5' %>
+    </div>
+    <div class='form-group form-inline'>
+        <%= f.label :pattern_num3, '항목 C',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.text_field :pattern_num3 ,placeholder: 'C 항목에 해당되는 내용을 입력하세요.', class: 'form-control col-lg-5' %>
+    </div>
+        <div class='form-group form-inline'>
+        <%= f.label :pattern_num4, '항목 D',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.text_field :pattern_num4 ,placeholder: 'D 항목에 해당되는 내용을 입력하세요.', class: 'form-control col-lg-5' %>
+    </div>
+        <div class='form-group form-inline'>
+        <%= f.label :pattern_num5, '항목 E' ,class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.text_field :pattern_num5 ,placeholder: 'E 항목에 해당되는 내용을 입력하세요.', class: 'form-control col-lg-5' %>
+    </div>
+    
+    <br>
+    <br>
+    
+    <p style="font-size:18pt;"><b>클릭해야 하는 순서를 지정해주십시오.</b></p>
     
 <button type="button" onclick="pattern_click('A')" class="btn btn-primary btn-lg">A</button>
 <button type="button" onclick="pattern_click('B')" class="btn btn-primary btn-lg">B</button>
 <button type="button" onclick="pattern_click('C')" class="btn btn-primary btn-lg">C</button>
 <button type="button" onclick="pattern_click('D')" class="btn btn-primary btn-lg">D</button>
 <button type="button" onclick="pattern_click('E')" class="btn btn-primary btn-lg">E</button>
-<br>
+<br><br>
 <button type="button" onclick="backspace()" class="btn btn-danger btn-lg"><-</button>
 <button type="button" onclick="pattern_clear()" class="btn btn-danger btn-lg">초기화</button>
 

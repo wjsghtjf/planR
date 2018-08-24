@@ -44,6 +44,7 @@ center {
 
 .nav-link {
     color: white;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .nav-item :hover {
@@ -134,4 +135,7 @@ label.active{
     color: #ffffff;
     background-color: #2e2e2e;
     border-color: #2e2e2e;
+}
+.hide{
+    display: none !important;
 }

@@ -2,7 +2,7 @@
 <%=hidden_field_tag :stage_level, params[:stage_level] %>
 
 
-<div class='card3'>
+<div class='card3' style='height:150px;'>
   <h5>스테이지 테마</h5>
   <p>
     
@@ -21,24 +21,24 @@
     </p>
 </div>
 
-<div class='card3'>
+<div class='card3' style='height:150px;'>
   <h5>스테이지 제목</h5>
-  <p><%=@stage.title %></p>
+  <p style="word-wrap: break-word;"><%=@stage.title %></p>
 </div>
 
 <%= render 'dialog_modal' %>
         
 
-<div class='card5'>
+<div class='card5' style='height:auto;'>
   
   <h5>내용</h5>
-  <p><%=@stage.content.html_safe %> </p>
+  <p style="word-wrap: break-word;"><%=@stage.content.html_safe %> </p>
 </div>
 
 <div class='card4'>
   
   <h5><i class="far fa-lightbulb">&nbsp;힌트</i></h5>
-  <p><%=@stage.hint1%></p>
+  <p type="text-area"><%=@stage.hint1%></p>
 </div>
 
 <div class='card4'>
@@ -80,13 +80,16 @@
 <!--이미지가 있는 경우에만 -->
 
 
-<% if @stage.image && @stage.image.length>0 %>
 <div>
     <div class='form-group'>
         <label>Uploaded Image</label><br/>
-        <div class = 'image' style = "position: relative;">
+        <div class = 'image-wrapper' style = "position: relative;">
           
-           <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main' if @stage.image.url %>
+           <% if @stage.image && @stage.image.url %>
+               <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main'  %>
+           <% else %>
+               <%= image_tag '' , id: 'img-upload', class: 'img-main hide'  %>
+           <% end %>
 
 
           <% if @stage.mode==4 %>
@@ -95,9 +98,8 @@
          
         </div>
 
-    </div>
+    </div> 
 </div>
-<% end %>
 </div>
 <br>
 <br>
@@ -124,18 +126,20 @@
 <br>
 
 <script>
-<% if @stage.image.url  %>
+$(document).ready(function(){
+  
+ var img = document.getElementById("img-upload");
 
- var img = document.getElementsByTagName("img")[0];
 img.onload=function(){
+<% if @stage.image.url  %>
     drawImageTheme(img);
+<% end %>
 }
 
 
 function drawImageTheme(img){
   if(4==<%=@stage.mode%>){
-    
-    
+        
         var ansSize = <%=@Ans_img && @Ans_img[2] ? @Ans_img[2] : 0%>*img.width/100;
         var ansX = <%=@Ans_img && @Ans_img[0] ? @Ans_img[0] : 0%>*img.width/100 - ansSize/2;
         var ansY = <%=@Ans_img && @Ans_img[1] ? @Ans_img[1] : 0%>*img.height/100 - ansSize/2;
@@ -146,6 +150,5 @@ function drawImageTheme(img){
         document.getElementById('img-border').style.top=ansY;
     }
 }
-<% end %>
-  
+});
 </script>

@@ -1,38 +1,38 @@
 <div class='theme_selection' >
     <br>
-    <p style="font-size:25px;"><b>선택지 작성</b></p>
-    <div class="todoListContainer">
-        <input style="VISIBILITY: hidden; WIDTH: 0px">
-        <input type="text" id="newTodo" placeholder="add todo"><button id="addTodo"><i class="fa fa-plus"></i></button>
-        <ul id="todoList">
-        </ul>
-    </div>
+    <p style="font-size:18pt;"><b>선택지 작성</b></p>
+    <!--<div class="todoListContainer">-->
+    <!--    <input style="VISIBILITY: hidden; WIDTH: 0px">-->
+    <!--    <input type="text" id="newTodo" placeholder="add todo"><button id="addTodo"><i class="fa fa-plus"></i></button>-->
+    <!--    <ul id="todoList">-->
+    <!--    </ul>-->
+    <!--</div>-->
     
     
     
     
     <div class='form-group'>
         <%= f.label :selection_num1, '1번 항목' %>
-        <%= f.text_field :selection_num1 ,placeholder: '1번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+        <%= f.text_field :selection_num1 ,placeholder: '1번 선택지의 내용을 입력하세요.', class: 'form-control col-lg-5' %>
     </div>
     <div class='form-group'>
         <%= f.label :selection_num2, '2번 항목' %>
-        <%= f.text_field :selection_num2 ,placeholder: '2번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+        <%= f.text_field :selection_num2 ,placeholder: '2번 선택지의 내용을 입력하세요.', class: 'form-control col-lg-5' %>
     </div>
     <div class='form-group'>
         <%= f.label :selection_num3, '3번 항목' %>
-        <%= f.text_field :selection_num3 ,placeholder: '3번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+        <%= f.text_field :selection_num3 ,placeholder: '3번 선택지의 내용을 입력하세요.', class: 'form-control col-lg-5' %>
     </div>
     <div class='form-group'>
         <%= f.label :selection_num4, '4번 항목' %>
-        <%= f.text_field :selection_num4 ,placeholder: '4번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+        <%= f.text_field :selection_num4 ,placeholder: '4번 선택지의 내용을 입력하세요.', class: 'form-control col-lg-5' %>
     </div>
     <div class='form-group'>
         <%= f.label :selection_num5, '5번 항목' %>
-        <%= f.text_field :selection_num5 ,placeholder: '5번 선택지의 내용을 입력하세요.', class: 'form-control' %>
+        <%= f.text_field :selection_num5 ,placeholder: '5번 선택지의 내용을 입력하세요.', class: 'form-control col-lg-5' %>
     </div>
     <br>
-<p style="font-size:25px;"><b>정답인 항목을 선택하십시오.</b></p>
+<p style="font-size:18pt;"><b>정답인 항목을 선택하십시오.</b></p>
 <table>
     <% for i in 1..5 do%> 
         
@@ -67,51 +67,51 @@ function num_click2(num){
  
  //
  
- var listItemID = 1;
-$("#addTodo").on("click", function() {
-  if(listItemID > 5){
-      alert("최대 선택지는 다섯개입니다.");
-  }else{
+//  var listItemID = 1;
+// $("#addTodo").on("click", function() {
+//   if(listItemID > 5){
+//       alert("최대 선택지는 다섯개입니다.");
+//   }else{
   
-      var newTodo = $("#newTodo").val();
-      if (newTodo === "") {
-        alert("Please add to do item");
-      } else {
-        $("#todoList").append(
-          '<li id= " li'+  listItemID +' "><button type="button" data-id="li' +listItemID+'" class="doneTodo" ><i class="fa fa-check"></i></button> <p class="todotext">' +
-            newTodo + "</p> " + '<button type="button"data-id="li' +listItemID+'" class="removeTodo"  ><i class="fa fa-minus"></i></button> </li>' );
+//       var newTodo = $("#newTodo").val();
+//       if (newTodo === "") {
+//         alert("Please add to do item");
+//       } else {
+//         $("#todoList").append(
+//           '<li id= "list'+  listItemID +' "><button type="button" data-id="li' +listItemID+'" class="doneTodo" ><i class="fa fa-check"></i></button> <p class="todotext">' +
+//             newTodo + "</p> " + '<button type="button"data-id="li' +listItemID+'" class="removeTodo"  ><i class="fa fa-minus"></i></button> </li>' );
         
-        listItemID++;
+//         listItemID++;
     
-        //clear input after adding todo
-        $("#newTodo").val("").focus();
-      }
-  }
-  return false;
-});
+//         //clear input after adding todo
+//         $("#newTodo").val("").focus();
+//       }
+//   }
+//   return false;
+// });
 
 
-//remove todo
-$(document).on("click", ".removeTodo", function() {
-  var checkstr = confirm("Are you sure you want to delete this?");
-  if (checkstr == true) {
-    var removeItemId = "#"+$(this).attr("data-id");
-    console.log(removeItemId);
-    $(removeItemId).remove();
+// //remove todo
+// $(document).on("click", ".removeTodo", function() {
+//   var checkstr = confirm("Are you sure you want to delete this?");
+//   if (checkstr == true) {
+//     var removeItemId = "#"+$(this).parents("li").attr("id");
+//     console.log(removeItemId);
+//     $("removeItemId").remove();
     
-  } else {
-    return false;
-  }
-  return false;
-});
-//todo complete
-$(document).on("click", ".doneTodo", function() {
-  var completeItemId = "#" + $(this).attr("data-id") + " .todotext";
-  $(completeItemId).toggleClass("lineThrough");
-  $(this).toggleClass("doneTodoGrey");
-//this는 .doneTodo
- return false;
-});
+//   } else {
+//     return false;
+//   }
+//   return false;
+// });
+// //todo complete
+// $(document).on("click", ".doneTodo", function() {
+//   var completeItemId = "#" + $(this).attr("data-id") + " .todotext";
+//   $(completeItemId).toggleClass("lineThrough");
+//   $(this).toggleClass("doneTodoGrey");
+// //this는 .doneTodo
+//  return false;
+// });
 
 
 </script>

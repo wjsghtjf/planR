@@ -45,11 +45,13 @@
           <% break %>
         <% end %>
       <%# @rooms.each do |room| %>
+      
         <% room = @rooms[j] %>
+        <% next if room.stages.size==0 %>
+        <% next if room.publish_stage_id==0 %>
       <% @publish_stage_id=room.publish_stage_id%> 
       <!-- 카드 -->
       <div class="card">
-        
       <%#=room.created_at%>
         <img class="card-img-top" src="<%= room.image.url ? room.image.url  : asset_path('none.jpg') %>" style="width:100%; height:48%;">
         <div class="card-body">
@@ -61,6 +63,7 @@
           <!--<p class="card-text"><%#=room.content%></p> 이거 카드 뒷면이나 마우스 올리면 보이게 합시다!~--> 
           <% @maker = User.find(room.user_id) %>
           <h6 style="color: gray;">by <%= @maker.nickname %></h6>
+          <br>
             <% if room.difficulty.round(2) == 0 %>
           <!--<a type="a" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</a>-->
               <h5 style="color: black; font-size:15pt; text-align:center;"><b>난이도 - <span class="badge badge-pill badge-danger">!</span></b></h5>

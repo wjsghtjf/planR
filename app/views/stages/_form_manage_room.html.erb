@@ -1,10 +1,5 @@
 <input type='hidden' name='stage_id' value = '<%=@room.id%>'/>
 
-<div class='form-group'>
-  <label for='title'>방탈출 제목</label>
-  <text  class='form-control' name='title' ><%=@room.title %></text>
-  
-</div>
 
 
 <div class='form-group '>
@@ -13,6 +8,11 @@
   <div class='form-control' name='content' ><%=@room.content.html_safe%> </div>
 
 </div>
+
+
+
+<br>
+<br>
 
 <!--이미지가 있는 경우에만 -->
 

@@ -118,11 +118,8 @@ class StagesController < ApplicationController
         
         redirect_to room_show_path(params[:room_id])
       end
-        
-    else
-      set_stageCal()
-      
     end
+      set_stageCal()
     if @stage && @stage.mode == 4
       getAnserInfoImageTheme(@stage)
     end
@@ -508,7 +505,7 @@ class StagesController < ApplicationController
   
   def getAnserInfoImageTheme(stage)
     @Ans_img = stage.answer.split(",").map { |s| s.to_f }
-  
+    puts @Ans_img
   end
   
   

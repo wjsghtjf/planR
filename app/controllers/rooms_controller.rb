@@ -114,11 +114,6 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user_id= current_user.id
     
-    @room.content = "  " 
-  # 밑에주석처리한거 에러뜸..왜필요한것?
-    # if @room.contet.length==0
-    # end
-    
     if @room.save
       redirect_to stage_manage_all_path(@room.id)
     end

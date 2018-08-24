@@ -13,8 +13,7 @@
 
 <div class='form-group '>
     <%= f.label :content , '설명'%>
-    <%= f.text_area :content, id: 'myEditor' , placeholder: '방 설명을 입력하세요', class: 'form-control' , :autocomplete => :off %>
-
+    <%= f.text_area :content, placeholder: '방 설명을 입력하세요', class: 'form-control' , :autocomplete => :off %>
 </div>
 
 
@@ -53,15 +52,3 @@
     <%= f.submit '저장', class: 'btn btn-default'   %>
   <% end %>
 <!--</form>-->
-
-
-
-<script>
-
-                
-  $(function() {
-    $('#myEditor').froalaEditor({toolbarInline: false})
-  });
- 
-</script>
- 

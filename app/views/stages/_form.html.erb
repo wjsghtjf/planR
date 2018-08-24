@@ -15,8 +15,8 @@
     
     <br><br>
     
-    <div class='form-group' align='center'>
-      <p class='form-control col-lg-10' name='content'><%=@stage.content%> </p>
+    <div class='form-group' align='center' style="height: auto;">
+      <p type="text_area" class='form-control col-lg-10' name='content' style="word-wrap: break-word; height:auto;"><%=@stage.content%> </p>
     </div>
 
     <br><br>
@@ -26,9 +26,9 @@
         <% if (@stage.image && @stage.image.length)>0 %>
           <div>
             <div class='form-group' align='center'>
-                 <div class = 'image' style = "position: relative;">
+                 <div class = 'image-wrapper' style = "position: relative;">
                     <label>이미지</label><br/>
-                       <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main' if @stage.image.url %>
+                       <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-show' if @stage.image.url %>
                        <% if @stage_level < @roomCal.last_stage_level %>            
                        <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
                        <% end %>
@@ -66,10 +66,14 @@ $(document).ready(function () {
  }
 });
 
- var img = document.getElementsByTagName("img")[0];
-<% if @stage_level < @roomCal.last_stage_level %>  
+ var img = document.getElementById("img-upload");
+ 
   img.onload=function(){
+    alert(img.width);
+    alert(img.height);
+    <% if @stage_level < @roomCal.last_stage_level %>  
       drawImageTheme(img);
+    <% end %>
   }
   function drawImageTheme(img){
       if(4==<%=@stage.mode%>){
@@ -83,5 +87,4 @@ $(document).ready(function () {
         document.getElementById('img-border').style.top=ansY;
       }
   }
-<% end %>
 </script>

@@ -13,43 +13,39 @@
 <script>
 $(document).ready( function() {
     if("<%=params[:is_wrong_answer] %>" == 'true')
-        alert('정답이 아닙니다');
+        alert('정답이 아닙니다.');
 })
 </script>
 
+
 <body style="background-color:#1e1e1e">
+  
+  
+  
+  
+  
 <div class="row">
     <div class="col-md-7">
-        <br><br>
         <%= render 'dialog_modal' %><br><br>
-
         <% if @wait_for_update %>
             <p><b>완결되지 않은 방탈출입니다. 추후의 업데이트를 기다려주세요!</b></p>
-            
         <% else %>
             <% if @stage %>
-                <%= render 'form', stage: @stage%>
+                <%= render 'form'%>
             <% end %>
         <% end %>
-                
-
-                
     </div>
-    
+     
     <new_hr></new_hr>
     
-    
     <div class="col-md-5">
-      
-      <br>
-      <br>
-      <br>
-        
-            <div class='form-group' style="text-align:center; color:white;">
-              <label for='content' style="font-size:20pt;"><b>힌트 개방</b></label>
-      
-              <br><br>
-  
+    <%= render './time_lines/timeline' %>
+    
+
+    
+    
+    <div class='form-group' style="text-align:center; color:white;float:right; margin-right: 3em">
+              <br>
   <% if !(@stage.hint1.nil?) && @stage.hint1.length > 0 && @stageCal.usedhint1 == 1 %>
     <%= link_to '<i class="fas fa-key fa-2x"></i>'.html_safe, stage_hintpage_path(@room.id,@stage_level,1,@stage.id), method: :post, :class => 'btn btn-blueblack' %>
   <% elsif !(@stage.hint1.nil?) && @stage.hint1.length >0 %>
@@ -81,16 +77,23 @@ $(document).ready( function() {
       <i class="fas fa-key fa-2x"></i>
     </button>
   <% end %>
-  
-              </div>
-  
-  <br>
-  <br>
-  <br>
+    <table>
+    <% for i in 1..5 do%> 
         
-                        
+        <td>
+            <!--<%#radio_button :mode, onclick="num_click2(#{i});", checked: true%> <%#=i%>번문항</li><br>-->
+            <button type='button' class="btn btn-info" onclick="num_click2(<%=i%>);" ><%=i%>번문항이 정답</button>
+        </td>
+        
+    <% end %>
+    
+     
+</table>
+    
+  </div>
+    
                 <div class='form-group'>
-                    
+
                 <% if @stage.mode==1 %>       
                     <%=render 'theme_lock'%>
         
@@ -110,25 +113,35 @@ $(document).ready( function() {
                      <h4>4: <%=@stage.selection_num4%> </h4>  
                      <h4>5: <%=@stage.selection_num5%> </h4>
                      <hr>
-                     <%= render 'theme_selection'%>
                
                 <% end %>
                 
-                <% if @stage_level == @roomCal.last_stage_level %>
+                
+                    <div class="answer" style="text-align:center;">
+                     <% if @stage_level == @roomCal.last_stage_level %>
                     <%=form_tag stage_check_path(@room.id), {method: 'post', id:'nextStage'} do %>
-                    <label for='stage_answer'>정답 입력창 :: </label>
+                    <label for='stage_answer' style="color:white">정답 :: </label>
                     <%=text_field_tag :stage_answer,  "", autocomplete: 'off' , readonly: ((@stage.mode==0) ? false : true)  %>
                     <%=hidden_field_tag :stage_level, @stage_level%>
                     <%=hidden_field_tag :stage_id, @stage.id%>
                     <%=submit_tag '제출', id: 'btn_check_answer', class: 'btn btn-blueblack'%>
                     <% end %>
+    
                 <% end %>
-
+    </div>
+                
         
         </div>
-        
-        
-        <% if  @stage_level > 0 %>
+        <br><br><hr>
+    </div>
+    <div class="col-md-1">
+    </div>
+    
+</div>
+
+
+
+<% if  @stage_level > 0 %>
           <form method='POST' action="<%=stage_show_path(@room.id) %>" class='btn-form'>
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <input type='hidden' value='<%= @stage_level-1 %>' name='stage_level'/>
@@ -144,14 +157,6 @@ $(document).ready( function() {
             <input type='submit' value='다음' class='btn btn-default'/>
           </form>
         <% end %>
-        
-        <br><br><hr>
-    </div>
-    <div class="col-md-1">
-       <%= render './time_lines/timeline' %>
-    </div>
-</div>
-
 </div>
 
 <br><br><br><br><br><br>

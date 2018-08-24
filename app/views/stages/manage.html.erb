@@ -24,7 +24,7 @@
         	<% end  %>
         	
         	
-	        <% if  @stage_level!=20 &&(  @stages.length==0 ||  @stages.last.laststage == 0 ) %>
+	        <% if  @stage_level!=20 &&( @stages.length==0 ||  @stages.last.laststage == 0 ) %>
 	        	<%=form_tag stage_create_path, { method: 'post'} do %>
 				    <%= hidden_field_tag :room_id, @room.id %>		    
 				    <br><%=submit_tag 'Add Stage', class: "btn btn-blueblack" %>
@@ -40,11 +40,11 @@
         <div class="make_room">
           <% if @stage_level ==0 %>
             <% if @edit_mode %>
-                <%= render 'form_manage_room_edit', stage: @room, :class => "form_manage" %>
+                <%= render 'form_manage_room_edit', room: @room, :class => "form_manage" %>
             <% else %>
                 <h2 style="font-size:30pt;"><b><center><%=(@stage_level ==0) ? "#{@room.title}" : ":: Stage #{@stage_level}" %></center></b></h2>
                 <br>
-                <%= render 'form_manage_room', stage: @room, :class => "form_manage" %>
+                <%= render 'form_manage_room', room: @room, :class => "form_manage" %>
             <% end %>
           <% elsif %>
             <% if @edit_mode %>

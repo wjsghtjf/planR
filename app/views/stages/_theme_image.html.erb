@@ -1,9 +1,11 @@
+<p style="font-size:18pt;"><b>이미지를 업로드하고, 클릭해야 하는 부분 선택과 사이즈를 조절해주십시오.</b></p>
 
 <script>
 var size =50;
 var boardX, boardY;
-$(function(){
-  $('#img-upload').mousemove(function(e) {
+
+$(document).ready(function () {
+    $('#img-upload').mousemove(function(e) {
     if($('input[type="radio"]')[4].checked==false) return
     mouseX = e.offsetX;
     mouseY = e.offsetY;
@@ -11,10 +13,6 @@ $(function(){
     $('#img-area').css('width',size).css('height',size);
     $('#img-area').css("left", mouseX-(size/2)).css("top", mouseY-(size/2)).html(null);
  });
-});
-
-
-$(document).ready(function () {
       
    $("#img-upload").click(function(){
     if($('input[type="radio"]')[4].checked==false) return
