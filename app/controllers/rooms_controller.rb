@@ -23,7 +23,7 @@ class RoomsController < ApplicationController
     if params[:sort] == "difficulty" 
       @rooms=@roomsQ.order(difficulty: :desc )
     elsif params[:sort] == "like"
-      @rooms=@roomsQ.left_outer_joins(:likes).sort_by { |r| r.likes.size }.reverse
+      @rooms=@roomsQ.left_outer_joins(:likes).group(:room_id).sort_by { |r| r.likes.size }.reverse
       
     elsif params[:sort] == "recent"
       @rooms=@roomsQ.order(created_at: :desc)
