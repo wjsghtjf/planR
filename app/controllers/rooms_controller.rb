@@ -81,12 +81,11 @@ class RoomsController < ApplicationController
     
   def create
     @room = Room.new
-    @room.save
+    @room.user_id= current_user.id
     @room=Room.update(room_params)
     if @room.content.length==0
-      @room.content="  "
+      @room.content=" "
     end
-    @room.user_id= current_user.id
     @room.save
     
     binding.pry

@@ -125,3 +125,25 @@ img{
   margin-right: 1em;
 }
 
+.btn-range {
+    border:1px solid black;
+    color: black;
+    background-color: white;
+    border-radius: none;
+    margin: 3px;
+}
+
+.btn-range:visited {
+    border:1px solid black;
+    color: black;
+}
+
+.btn-range:hover {
+    background-color: black; 
+    color: #FFFFFF;
+}
+
+.btn-range:click {
+   border:1px solid black; 
+   color: black;
+}
