@@ -11,8 +11,7 @@
         <p>방이 삭제됩니다.</p>
       </div>
       <div class="modal-footer">
-	      <%=form_tag room_delete_path(@roomid), {method: 'post', style:'display:inline'} do %>
-	    	
+	      <%=form_tag room_delete_path(room_id), {method: 'post', style:'display:inline'} do %>
 		    <%=submit_tag '삭제하기', class: 'btn btn-blueblack' %>
 	      <% end %>
         <button type="button" class="btn btn-blueblack" data-dismiss="modal">취소</button>

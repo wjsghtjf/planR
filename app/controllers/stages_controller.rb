@@ -407,18 +407,6 @@ class StagesController < ApplicationController
     end
   end
   
-  def stage_params
-      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,
-      :image,
-      :answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
-  end 
-  
-  
-  def stage_params_without_image
-      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,
-      :answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
-  end 
-  
   
   def checkAnswer(stage, input_ans)
     
@@ -522,4 +510,18 @@ class StagesController < ApplicationController
     @Ans_img = stage.answer.split(",").map { |s| s.to_f }
   
   end
+  
+  
+  
+  def stage_params
+      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,
+      :image,
+      :answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
+  end 
+  
+  
+  def stage_params_without_image
+      params.require(:stage).permit(:title,:content,:hint1,:hint2,:hint3,
+      :answer,:answer2,:answer3,:mode,:selection_num1,:selection_num2,:selection_num3,:selection_num4,:selection_num5,:pattern_num1,:pattern_num2,:pattern_num3,:pattern_num4,:pattern_num5)
+  end 
 end

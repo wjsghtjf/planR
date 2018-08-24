@@ -9,8 +9,7 @@
         <a href="<%= room_new_path%>" class="btn btn-blueblack new_room">새로운 방탈출 만들기</a>
         <br><br><hr>
     <% @rooms.each do |room| %>
-    <% @roomid = room.id %>
-     <%= render 'dialog_modal' %>
+     <%= render 'dialog_modal', room_id: room.id%>
     <% @publish_stage_id=room.publish_stage_id%>  
     <% @publish_length = Stage.where("id <= :end_id AND room_id= :room_id", {:end_id => room.publish_stage_id, :room_id => room.id}).length%> 
         <div class="card">
@@ -19,22 +18,30 @@
   
  <% if @publish_stage_id== 0 || Stage.find(@publish_stage_id).laststage == 0 %>
   <div class="card-body">
+    <% if room.title != "" %>
     <h5 class="card-title"><%=room.title%></h5>
+    <% else %>
+    <h5 class="card-title">제목 없음</h5>
+    <% end %>
     <p class="card-text"><center><b>미완결</b>된 방탈출   <i class="fas fa-sync fa-spin fa-lg"></i></center></p>
     <p class="card_text"><center>스테이지수 <%=@publish_length %> /  <%=room.stages.length %></center></p>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
-    <%=link_to "계속해서 수정", stage_manage_all_path(room.id), class: 'btn btn-outline-success'  %>
+    <%=link_to "계속해서 수정", stage_manage_all_path(room.id), class: 'btn btn-blueblack'  %>
     <%= link_to "삭제", "#delete" , :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
     <%#=link_to "삭제", room_delete_path(room.id), class:'btn btn-outline-danger' data-toggle="modal" data-target="#delete" %>
   </div>
   
    <% elsif @publish_stage_id!= 0 && Stage.find(@publish_stage_id).laststage == 1 %>
    <div class="card-body">
+    <% if room.title != "" %>
     <h5 class="card-title"><%=room.title%></h5>
+    <% else %>
+    <h5 class="card-title">제목 없음</h5>
+    <% end %>
     <p class="card-text"><center><b>완결</b>된 방탈출  <i class="fas fa-check fa-lg"></i></center></p>
     <p class="card_text"><center>스테이지수 <%=@publish_length%> / <%=room.stages.length %></center></p>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
-    <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-outline-success">확인하기</a>
+    <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-blueblack">확인하기</a>
   </div>
      <% end %>
 </div>

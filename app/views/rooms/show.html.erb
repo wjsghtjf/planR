@@ -3,8 +3,7 @@
 <br>
 <center>
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-5 align-middle">
+    <div class="col-md-12">
         <br>
         <h3 style="font-size: 25pt"><b><%=@room.title %></b></h3>
         <hr>
@@ -27,8 +26,8 @@
         <%=hidden_field_tag :room_id, @room.id %>
         <%=submit_tag ((current_user.is_like? (@room)) ? '좋아요 취소' : '좋아요'), class: 'btn btn-blueblack'%>
         <% end %>
-    </div>
-    <div class="col-md-5">
+        
+        <hr>
 
         <div class="play_mode">
             
@@ -71,7 +70,6 @@
             <% end %>
         <% end %>
         
-        </div>
         
 
         
@@ -80,12 +78,7 @@
         <!--<#%= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>-->
         <br><br>
          
-    <p>
-        
 
-     
-     
-    </p>
         <br><br><hr>
         
                     
@@ -93,7 +86,6 @@
             
         <br><br><br><br>
     </div>
-    <div class="col-md-1"></div> 
 </div>
 </center>
 </div>

@@ -32,12 +32,12 @@ body {
     background-color: black;
 }
 
-#navbarNav {
-    text-align: center;
-}
-
 .nav-link {
     color: white;
+}
+
+.nav-item :hover {
+    color: lightgrey;
 }
 
 /* 내비게이션 CSS 끝, 풋터 CSS 시작 */

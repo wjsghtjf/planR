@@ -37,10 +37,9 @@
   </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" href="/">플랜R</a>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+<nav class="navbar navbar-dark">
+  <a class="navbar-brand" href="/"><img src="/assets/logo.png" style="width:5em; height:1.5em;"></a>
+    <ul class="nav justify-content-end">
       <li class="nav-item">
         <%= link_to '방탈출 메이커', room_mine_path, :class => "nav-link"%>
       </li>
@@ -66,64 +65,7 @@
       </li>
       <% end %>
     </ul>
-  </div>
 </nav>
-
-<!--<nav class="navbar navbar-default navbar-doublerow navbar-trans navbar-fixed-top">-->
-  <!-- top nav -->
-<!--  <nav class="navbar navbar-top hidden-xs">-->
-<!--    <div class="container">-->
-      <!-- left nav top -->
-<!--      <ul class="nav navbar-nav pull-left">-->
-<!--        <li><#%= link_to "매뉴얼", post_about_path, :class => 'text-black'%></li>-->
-<!--        <li><#%= link_to "랭킹", post_ranking_path, :class => 'text-black' %></li>-->
-<!--      </ul>-->
-      <!-- right nav top -->
-<!--      <#% if user_signed_in? %>-->
-<!--      <ul class="nav navbar-nav pull-right">-->
-<!--         <li><#%= link_to "마이페이지", post_mypage_path, :class => 'text-black' %></li>-->
-<!--         <li><#%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'text-black' %></li>-->
-<!--      </ul>-->
-<!--     <#% elsif %>-->
-<!--      <ul class="nav navbar-nav pull-right">-->
-<!--         <li><#%= link_to "로그인", user_session_path, :class => 'text-black' %></li>-->
-<!--         <li><#%= link_to "회원가입", "/users/sign_up", :class => 'text-black' %></li>-->
-<!--      </ul>-->
-<!--      <#% end %>-->
-<!--    </div>-->
-<!--    <div class="dividline light-grey"></div>-->
-<!--  </nav>-->
-  
-  <!-- down nav -->
-<!--  <nav class="navbar navbar-down">-->
-<!--    <div class="container">-->
-<!--      <div class="flex-container">  -->
-<!--        <div class="navbar-header flex-item">-->
-<!--          <div class="navbar-brand"><a href="/">PLAN R</a></div>-->
-<!--        </div>-->
-<!--        <ul class="nav navbar-nav flex-item hidden-xs">-->
-<!--          <li><#%= link_to '방탈출 메이커', room_mine_path, :class => 'text-black'%></li>-->
-<!--          <li><#%= link_to '방탈출 플레이', room_index_path, :class => 'text-black'%></li>-->
-<!--        </ul>-->
-        <!--<ul class="nav navbar-nav flex-item hidden-xs pull-right">-->
-        <!--  <li><#%= link_to '마이페이지', post_mypage_path, :class => 'text-black' %></li>-->
-        <!--</ul>-->
-        <!-- dropdown only moblie -->
-<!--          <div class="dropdown visible-xs pull-right">-->
-<!--            <button class="btn btn-default dropdown-toggle " type="button" id="dropdownmenu" data-toggle="dropdown">-->
-<!--              <span class="glyphicon glyphicon-align-justify"></span> -->
-<!--            </button>-->
-<!--            <ul class="dropdown-menu">-->
-<!--              <li><#%= link_to '방탈출 메이커', room_mine_path %></li>-->
-<!--              <li><#%= link_to '방탈출 플레이', room_index_path %></li>-->
-<!--              <li role="separator" class="divider"></li>-->
-<!--              <li><a href="#">contact us</a></li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>  -->
-<!--      </div>-->
-<!--    </nav>-->
-<!--  </nav> -->
     
 
     <%= yield %>
