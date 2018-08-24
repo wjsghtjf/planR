@@ -99,7 +99,7 @@
 
 img{
   width: 100%;
-  height: auto;
+  height: auto;;
 }
 
 
@@ -125,7 +125,8 @@ img{
   height: 10em;
 }
 
-.search {
-  float: right;
-  margin-right: 1em;
+.content-wrapper {
+  margin: 1em;
+  background-color: RGBA(255, 255, 255, 0.1);
+  height: 100%;
 }

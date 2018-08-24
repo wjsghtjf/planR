@@ -26,7 +26,7 @@
         <% if (@stage.image && @stage.image.length)>0 %>
           <div>
             <div class='form-group' align='center'>
-                 <div class = 'image-wrapper' style = "position: relative;">
+                 <div class = 'image-wrapper'  id = 'image-wrapper' style= 'display: none'>
                     <label>이미지</label><br/>
                        <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-show' if @stage.image.url %>
                        <% if @stage_level < @roomCal.last_stage_level %>            

@@ -3,7 +3,7 @@
   
     border:         none;
     height: 100vh;
-    border-right:    1px solid hsla(200, 10%, 50%,100);
+    /*border-right:    1px solid hsla(200, 10%, 50%,100);*/
     width:          0.3px;   
     color:#9b9292;
   }
@@ -27,9 +27,10 @@ $(document).ready( function() {
   
 <div class="row">
     <div class="col-md-7 right_border">
+        <div class="content-wrapper">
         <%= render 'dialog_modal' %><br><br>
         <% if @wait_for_update %>
-            <p style="font-size:20pt; color:white;"><b>완결되지 않은 방탈출입니다. 추후의 업데이트를 기다려주세요!</b></p>
+            <p style="font-size:20pt; color:white;"><b>&nbsp;&nbsp;완결되지 않은 방탈출입니다. 추후의 업데이트를 기다려주세요!</b></p>
         <% else %>
             <% if @stage %>
                 <%= render 'form'%>
@@ -38,9 +39,11 @@ $(document).ready( function() {
         
         
     </div>
+    </div>
      
 
     <div class="col-md-5" >
+    <% if !(@wait_for_update) %>
       
       <div>
         
@@ -89,24 +92,43 @@ $(document).ready( function() {
             <%=render 'theme_lock'%>
 
         <% elsif @stage.mode==2%>
-            <h4>1: <%=@stage.pattern_num1%></h4>
-            <h4>2: <%=@stage.pattern_num2%> </h4>
-            <h4>3: <%=@stage.pattern_num3%> </h4>
-            <h4>4: <%=@stage.pattern_num4%> </h4>  
-            <h4>5: <%=@stage.pattern_num5%> </h4>
+            <div style="color:white;">
+            <h4>1. <%=@stage.pattern_num1%></h4>
+            <h4>2. <%=@stage.pattern_num2%> </h4>
+            <h4>3. <%=@stage.pattern_num3%> </h4>
+            <h4>4. <%=@stage.pattern_num4%> </h4>  
+            <h4>5. <%=@stage.pattern_num5%> </h4>
             <hr>
-            <%= render 'theme_pattern'%>
-            
+            </div>
+            <button type="button" onclick="pattern_click('A')" class="btn btn-primary btn-lg">A</button>
+            <button type="button" onclick="pattern_click('B')" class="btn btn-primary btn-lg">B</button>
+            <button type="button" onclick="pattern_click('C')" class="btn btn-primary btn-lg">C</button>
+            <button type="button" onclick="pattern_click('D')" class="btn btn-primary btn-lg">D</button>
+            <button type="button" onclick="pattern_click('E')" class="btn btn-primary btn-lg">E</button>
+            <br><br>
+            <button type="button" onclick="backspace()" class="btn btn-danger btn-lg"><-</button>
+            <button type="button" onclick="pattern_clear()" class="btn btn-danger btn-lg">초기화</button>
+                        
         <% elsif @stage.mode==3%>
-             <h4>1: <%=@stage.selection_num1%></h4>
-             <h4>2: <%=@stage.selection_num2%> </h4>
-             <h4>3: <%=@stage.selection_num3%> </h4>
-             <h4>4: <%=@stage.selection_num4%> </h4>  
-             <h4>5: <%=@stage.selection_num5%> </h4>
+          <div style="color:white;">
+          <p>주어진 선택지</p>
+             <h4>1. <%=@stage.selection_num1%></h4>
+             <h4>2. <%=@stage.selection_num2%> </h4>
+             <h4>3. <%=@stage.selection_num3%> </h4>
+             <h4>4. <%=@stage.selection_num4%> </h4>  
+             <h4>5. <%=@stage.selection_num5%> </h4>
              <hr>
+          </div>
+             <% for i in 1..5 do%> 
+              <td>
+                  <button type='button' class="btn btn-outline-info" onclick="num_click2(<%=i%>);" ><%=i%>번문항이 정답</button>
+              </td>
+             <% end %>
        
         <% end %>
         
+        <br>
+        <br>
         
             <div class="answer" style="text-align:center;">
              <% if @stage_level == @roomCal.last_stage_level %>
@@ -120,6 +142,7 @@ $(document).ready( function() {
 
         <% end %>
                 
+                <% end %>
       </div>
             
 
@@ -160,4 +183,45 @@ $(document).ready( function() {
 
 </body>
 
+
+<script>
+
+var chkNum= new Array(0,0,0,0,0,0);
+ var play_num2='';
+function num_click2(num){
+    chkNum[num]=1-chkNum[num];
+    
+    play_num2='';
+    
+    for(var i in chkNum){
+        if(chkNum[i]==1){
+            if(play_num2.length==0) play_num2=i+"";
+            else play_num2 = play_num2+","+i;
+        }
+    }
+
+     document.getElementById("stage_answer").value = play_num2;
+ }
+ 
+ 
+ var play_string='';
+ 
+ function backspace(){
+   play_string = play_string.substr(0,play_string.length-1);
+   document.getElementById("stage_answer").value = play_string;
+     
+ }
+ 
+ function pattern_click(num){
+     play_string = play_string + ""+ num;
+     
+     document.getElementById("stage_answer").value = play_string;
+     
+ }
+ function pattern_clear(){
+   play_string = '';
+   document.getElementById("stage_answer").value = play_string;
+ }
+ 
+ </script>
  

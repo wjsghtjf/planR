@@ -41,6 +41,7 @@
     <% end %>
     <p class="card-text"><center><b>완결</b>된 방탈출  <i class="fas fa-check fa-lg"></i></center></p>
     <p class="card_text"><center>스테이지수 <%=@publish_length%> / <%=room.stages.length %></center></p>
+     <%=link_to "삭제", "#delete_#{room.id}",  :class => "btn btn-outline-danger", "data-toggle" => "modal" %>
     <!--<h6 style="color: gray;">by <%#= User.find_by(user_id: room.user_id).nickname %></h6>-->
     <a href="<%=stage_manage_all_path(room.id) %>" class="btn btn-blueblack">확인하기</a>
   </div>

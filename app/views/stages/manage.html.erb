@@ -17,10 +17,10 @@
 	<h5 style="text-align: center;"><b>스테이지 리스트</b></h5><hr>
 		<div class="list-group"> <!-- 원래는 stage_list -->
 		
-	        <%= link_to "<b>방정보</b><br> - #{@room.title}".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level == 0 }"%>
+	        <%= link_to "<b>방정보</b><br>".html_safe, stage_manage_each_path(@room.id, 0) , :class => "list-group-item list-group-item-action #{"active" if @stage_level == 0 }"%>
 	        
 	   		<% @stages.each_with_index do |s, i|%>
-	            <%= link_to "<b>스테이지 #{i+1}</b><br> - #{s.title}".html_safe, stage_manage_each_path(@room.id, i+1) , :class => "list-group-item list-group-item-action #{"active" if @stage_level == (i+1) }"%>
+	            <%= link_to "<b>스테이지 #{i+1}</b><br>".html_safe, stage_manage_each_path(@room.id, i+1) , :class => "list-group-item list-group-item-action #{"active" if @stage_level == (i+1) }"%>
         	<% end  %>
         	
         	
@@ -101,6 +101,7 @@ $(document).ready( function() {
     	        $("#btn_cancel").css("display","inline");
 		      	showImage();
     	   	    $("#img-upload").css("display","none");
+                $("#image-wrapper").css("display","none");
     	    }
 	    });
 
@@ -112,6 +113,7 @@ $(document).ready( function() {
 		    
 		  }else{
 		    $("#img-upload").css("display","none");
+		    $("#image-wrapper").css("display","none");
 		    if("<%=@stage_file_name %>".length){
 		      $("#btn_cancel").css("display","inline");
 		      showImage();
@@ -129,6 +131,7 @@ $(document).ready( function() {
   		  	setImage(img_url);
 		  }else{
 		    $("#img-upload").css("display","none");
+            $("#image-wapper").css("display","none");
 		    if("<%=@room_file_name %>".length){
 		      $("#btn_cancel").css("display","inline");
 		      showImage();
@@ -161,7 +164,10 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
 			$("#img-upload").css("display","block");
+                $("#image-wrapper").css("display","block");
           $('#img-upload').attr('src', e.target.result);
+          
+          $("#image-wrapper").css("display","block");
         }
       reader.readAsDataURL(input.files[0]);
     }
@@ -172,6 +178,7 @@ function readURL(input) {
 function setImage(img_url){
   $("#img-upload").css("display","block");
   $('#img-upload').attr('src', img_url);
+  $("#image-wrapper").css("display","block");
 }
 
  function cancelImage(){
@@ -181,6 +188,7 @@ function setImage(img_url){
   $("#btn_cancel").css("display","none");
   $('#img-upload').attr("src","");
   $("#img-upload").css("display","none");
+  $("#image-wrapper").css("display","none");
   
   $('#is_delete').val(true);
   resetImageTheme();

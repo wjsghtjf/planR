@@ -6,22 +6,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="index-top">
-      
-      <div class="search">
-      <!--<#%="검색중인 문구 #{params[:query]}" if params[:query]%>-->
-      <%= form_tag room_index_path, class:'form-inline my-2 my-lg-0', method: 'get' do %>
-      <%= hidden_field_tag :page, params[:page] ? params[:page]  : 1 %>
-      <%= hidden_field_tag :sort, params[:sort] ? params[:sort]  : '' %>
-      <%= text_field_tag :query, nil, class:'form-control mr-sm-2' , value: params[:query]%>
-      <%= submit_tag "검색", class:'btn btn-blueblack' %>
-      <% end %>
-    <!-- 검색 결과 -->
-      <% if params[:query] %>
-        <b>
-      <%= "\"#{ params[:query] }\"로 검색하신 결과입니다." if params[:query] && params[:query].length>0 %>
-        </b>
-      <% end %>
-    </div>
+
     
     <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
     <div class="btn-group btn-group-toggle">
@@ -51,8 +36,8 @@
       <%# @rooms.each do |room| %>
       
         <% room = @rooms[j] %>
-        <% next if room.stages.size==0 %>
-        <% next if room.publish_stage_id==0 %>
+        <%# next if room.stages.size==0 %>
+        <%# next if room.publish_stage_id==0 %>
       <% @publish_stage_id=room.publish_stage_id%> 
       <!-- 카드 -->
       <div class="card">
@@ -111,6 +96,21 @@
             </li>
           </ul>
         </nav>
+    <!--    <div class="search justify-content-center">-->
+      <!--<#%="검색중인 문구 #{params[:query]}" if params[:query]%>-->
+    <!--  <%= form_tag room_index_path, class:'form-inline my-2 my-lg-0', method: 'get' do %>-->
+    <!--  <%= hidden_field_tag :page, params[:page] ? params[:page]  : 1 %>-->
+    <!--  <%= hidden_field_tag :sort, params[:sort] ? params[:sort]  : '' %>-->
+    <!--  <%= text_field_tag :query, nil, class:'form-control mr-sm-2' , value: params[:query]%>-->
+    <!--  <%= submit_tag "검색", class:'btn btn-blueblack' %>-->
+    <!--  <% end %>-->
+    <!-- 검색 결과 -->
+    <!--  <% if params[:query] %>-->
+    <!--    <b>-->
+    <!--  <%= "\"#{ params[:query] }\"로 검색하신 결과입니다." if params[:query] && params[:query].length>0 %>-->
+    <!--    </b>-->
+    <!--  <% end %>-->
+    <!--</div>-->
 <span class="badge badge-pill badge-danger">!</span><b>  난이도가 산정되기 전의 방탈출입니다. 일정량의 보너스를 획득하실 수 있습니다.</b>
 
 <br>

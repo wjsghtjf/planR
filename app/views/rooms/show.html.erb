@@ -1,8 +1,4 @@
-<style>
-.wrapper-div {
-  vertical-align: middle
-}
-</style>
+
 
 <div class="content" align="center">
 <br>
@@ -10,7 +6,9 @@
     <center>
         <div class="row">
             <div class="col-md-2"></div>
+            
             <div class="col-md-8">
+                
                 <h5 style="font-size: 30pt; text-align:center;"><b><%= @room.title %></b></h5>
         <hr>
         <br>
@@ -103,7 +101,7 @@
         <% end %>
         
         
-        <%= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>
+        <%#= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>
        
         
                     

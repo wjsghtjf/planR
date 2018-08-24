@@ -118,8 +118,9 @@ class StagesController < ApplicationController
         
         redirect_to room_show_path(params[:room_id])
       end
-    end
+    else
       set_stageCal()
+    end
     if @stage && @stage.mode == 4
       getAnserInfoImageTheme(@stage)
     end
@@ -428,7 +429,7 @@ class StagesController < ApplicationController
   
   def checkRanking_forStage()
     
-    if @stage.mode == 0 || @stage.mode == 1 || @stage.mode == 2 || @stage.mode == 4
+    if @stage.mode == 0 || @stage.mode == 1 || @stage.mode == 2 || @stage.mode == 4 || @stage.mode == 3
       if @stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1 && @stageCal.usedhint3 == 1
         if @stageCal.useditem == 3
           @user.rank_point = @user.rank_point + 0.01*10
@@ -455,49 +456,49 @@ class StagesController < ApplicationController
         end
       end
       @user.save
-    elsif @stage.mode == 3
-        if(@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1 && @stageCal.usedhint3 == 1)
-          if(@stageCal.selection_try >= 5)
-            @user.rank_point = @user.rank_point + 0.001*10
-          elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
-            @user.rank_point = @user.rank_point + 0.002*10
-          elsif(@stageCal.selection_try == 1 || @stageCal.selection_try == 2)
-            @user.rank_point = @user.rank_point + 0.003*10
-          else
-            @user.rank_point = @user.rank_point + 0.004*10
-          end
-        elsif(@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1)
-          if(@stageCal.selection_try >= 5)
-            @user.rank_point = @user.rank_point + 0.003*10
-          elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
-            @user.rank_point = @user.rank_point + 0.004*10
-          elsif(@stageCal.selection_try == 1 || @stageCal.selecton_try == 2)
-            @user.rank_point = @user.rank_point + 0.005*10
-          else
-            @user.rank_point = @user.rank_point + 0.006*10
-          end
-        elsif(@stageCal.usedhint1 == 1)
-          if(@stageCal.selection_try >= 5)
-            @user.rank_point = @user.rank_point + 0.005*10
-          elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
-            @user.rank_point = @user.rank_point + 0.006*10
-          elsif(@stageCal.selection_try == 1 || @stageCal.selecton_try == 2)
-            @user.rank_point = @user.rank_point + 0.007*10
-          else
-            @user.rank_point = @user.rank_point + 0.008*10
-          end
-        else
-          if(@stageCal.selection_try >= 5)
-            @user.rank_point = @user.rank_point + 0.007*10
-          elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
-            @user.rank_point = @user.rank_point + 0.008*10
-          elsif(@stageCal.selection_try == 1 || @stageCal.selecton_try == 2)
-            @user.rank_point = @user.rank_point + 0.009*10
-          else
-            @user.rank_point = @user.rank_point + 0.01*10
-          end
-        end  
     end
+    # elsif @stage.mode == 3
+        # if(@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1 && @stageCal.usedhint3 == 1)
+        #   if(@stageCal.selection_try >= 5)
+        #     @user.rank_point = @user.rank_point + 0.001*10
+        #   elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
+        #     @user.rank_point = @user.rank_point + 0.002*10
+        #   elsif(@stageCal.selection_try == 1 || @stageCal.selection_try == 2)
+        #     @user.rank_point = @user.rank_point + 0.003*10
+        #   else
+        #     @user.rank_point = @user.rank_point + 0.004*10
+        #   end
+        # elsif(@stageCal.usedhint1 == 1 && @stageCal.usedhint2 == 1)
+        #   if(@stageCal.selection_try >= 5)
+        #     @user.rank_point = @user.rank_point + 0.003*10
+        #   elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
+        #     @user.rank_point = @user.rank_point + 0.004*10
+        #   elsif(@stageCal.selection_try == 1 || @stageCal.selecton_try == 2)
+        #     @user.rank_point = @user.rank_point + 0.005*10
+        #   else
+        #     @user.rank_point = @user.rank_point + 0.006*10
+        #   end
+        # elsif(@stageCal.usedhint1 == 1)
+        #   if(@stageCal.selection_try >= 5)
+        #     @user.rank_point = @user.rank_point + 0.005*10
+        #   elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
+        #     @user.rank_point = @user.rank_point + 0.006*10
+        #   elsif(@stageCal.selection_try == 1 || @stageCal.selecton_try == 2)
+        #     @user.rank_point = @user.rank_point + 0.007*10
+        #   else
+        #     @user.rank_point = @user.rank_point + 0.008*10
+        #   end
+        # else
+        #   if(@stageCal.selection_try >= 5)
+        #     @user.rank_point = @user.rank_point + 0.007*10
+        #   elsif(@stageCal.selection_try == 3 || @stageCal.selection_try == 4)
+        #     @user.rank_point = @user.rank_point + 0.008*10
+        #   elsif(@stageCal.selection_try == 1 || @stageCal.selecton_try == 2)
+        #     @user.rank_point = @user.rank_point + 0.009*10
+        #   else
+        #     @user.rank_point = @user.rank_point + 0.01*10
+        #   end
+        # end  
  
 
   end
