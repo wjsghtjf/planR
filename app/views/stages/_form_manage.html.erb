@@ -101,10 +101,6 @@
     </div> 
 </div>
 </div>
-<br>
-<br>
-
-
 <%if @room.publish_stage_id < @stage.id %>
   <%= link_to "수정하기",  stage_manage_each_path(@room.id,@stage_level, edit_mode: true) , class: 'btn btn-blueblack' %>
   <button class='btn btn-blueblack' data-toggle="modal" data-target="#delete">
@@ -116,9 +112,7 @@
   
 <% end %>
 
-<br>
-<br>
-
+<br/>
 <p style="color:red;"><b>[주의] 한 번 배포 후에는 스테이지 수정이 불가능합니다.</b></p>
 
 <br>

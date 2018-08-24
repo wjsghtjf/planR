@@ -49,7 +49,7 @@
                                     <%= hidden_field_tag :room_id, @room.id %>
                                     <%= hidden_field_tag :stage_level, @stage_level %>
                                     <%= hidden_field_tag :chat_id, c.id %>
-                                    <%=submit_tag("삭제",class: "btn btn-warning")%>
+                                    <%=submit_tag("삭제",class: "btn btn-outline-warning")%>
                                 <% end %>    
                             </div>
                             <span class="chatmessage"><%=c.content%></span>
@@ -71,8 +71,11 @@
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.hidden_field :stage_id, value: @stage.id %>
                 <%= f.hidden_field :team_id, value: @roomCal.team_id %>
+                
+                <br>
+                <br>
             
-                <div class='form-group'>
+                <div class='form-group' style="font-size:15pt; color:#1e1e1e;">
                     <%= f.label :content , '내용'%>
                     <%= f.text_area :content ,placeholder: '내용을 입력하세요', class: 'form-control' , :autocomplete => :off %>
                 </div>
@@ -100,13 +103,13 @@ function show_now(){
 }
 function updateList(is_all){
     if(is_all){
-        $('#lb_all_stage').css('color', 'red');
+        $('#lb_all_stage').css('color', '#f7606d');
         $('#lb_now_stage').css('color', '#9e9e9e');
         $('.this_stage_false').css('display','block');
     }
     else{
         $('#lb_all_stage').css('color', '#9e9e9e');
-        $('#lb_now_stage').css('color', 'red');
+        $('#lb_now_stage').css('color', '#f7606d');
         $('.this_stage_false').css('display','none');
     }
     
