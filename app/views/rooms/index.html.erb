@@ -6,7 +6,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="index-top">
-  <div class="search">
+      
+      <div class="search">
       <!--<#%="검색중인 문구 #{params[:query]}" if params[:query]%>-->
       <%= form_tag room_index_path, class:'form-inline my-2 my-lg-0', method: 'get' do %>
       <%= hidden_field_tag :page, params[:page] ? params[:page]  : 1 %>
@@ -23,7 +24,7 @@
     </div>
     
     <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
-    <div class="btn-group btn-group-toggle" >
+    <div class="btn-group btn-group-toggle">
       <label class="btn btn-blueblack <%="active" if params[:sort]=="recent" %>">
         <input type="radio" name="options" value="option1" autocomplete="off" >
         <%=link_to '최신순' ,  room_index_path+"?sort=recent&page=#{params[:page]}&query=#{params[:query]}"%>
@@ -38,6 +39,9 @@
         <input type="radio" name="options" value="option3" autocomplete="off" checked><%=link_to '좋아요순', room_index_path+"?sort=like&page=#{params[:page]}&query=#{params[:query]}"  %>
       </label>
     </div>
+    
+    
+    
     </div>
       <% for i in 0.. @page_limit-1 %>
       <%j=i+(@page-1)*@page_limit%>

@@ -6,11 +6,11 @@
 
     <div class='form-group'>
       <% if @stage.laststage == 1 %>
-      <h2 style="font-size:40pt; color:red; text-align:center;"><label for = 'title'><b>FINAL STAGE</b></label></h2>
+      <h2 style="font-size:40pt; color:#f7606d; text-align:center;"><label for = 'title'><b>FINAL STAGE</b></label></h2>
       <% else %>
       <h2 style="font-size:40pt; color:white; text-align:center;"><label for = 'title'><b>STAGE <%= @stage_level + 1 %></b></label></h2>
       <% end %>
-      <h3 style="font-size:25pt; color:gray; text-align:center;"><label for = 'title'><b><%=@stage.title %></b></h3>
+      <h3 style="font-size:30pt; color:gray; text-align:center;"><label for = 'title'><b><%=@stage.title %></b></h3>
     </div>
     
     <br><br>
@@ -69,8 +69,6 @@ $(document).ready(function () {
  var img = document.getElementById("img-upload");
  
   img.onload=function(){
-    alert(img.width);
-    alert(img.height);
     <% if @stage_level < @roomCal.last_stage_level %>  
       drawImageTheme(img);
     <% end %>

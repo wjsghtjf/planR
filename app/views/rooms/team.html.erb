@@ -5,7 +5,7 @@
 
 <br>
 <br>
-<p style="font-size: 30px"><b>팀원 구성하기</b></p>
+<p style="font-size: 30pt; text-align:center;"><b>팀원 구성하기</b></p>
 <hr>
 <br>
 
@@ -33,6 +33,7 @@
 <br>
 
 <h5>팀원 리스트</h5>
+<p><b><i class="fas fa-check fa-lg"></i>&nbsp;&nbsp;:&nbsp;&nbsp;상대가 초대 수락, <i class="fas fa-times fa-lg"></i>&nbsp;&nbsp;:&nbsp;&nbsp;상대가 초대 거절, <i class="fas fa-sync fa-spin fa-lg"></i>&nbsp;&nbsp;:&nbsp;&nbsp;상대 대기 상태</b></p>
 <ul class="list-group">
 
 <% @invites.each do |invite| %>
@@ -58,13 +59,17 @@
   <%=form_tag room_confirm_path(@room.id,params[:team_id]), {method: 'post' , class: 'btn btn-blueblack' } do %>
     <%=hidden_field_tag :team_id , params[:team_id] %>
     <%=submit_tag '이 구성으로 시작하기', class:  'btn btn-blueblack' %>
+  <br>
+  <p style="font-size:13pt; color:red;">'이 구성으로 시작하기'를 클릭하면 더 이상 모드 변경이 불가능합니다. 신중하게 시작해주세요.</p>
+  <br>
   <% end %>
+  
   <% end %>
-  <%=form_tag invite_delete_all_path, {method: 'post' , class: 'btn btn-blueblack' } do %>
+  <%=form_tag invite_delete_all_path, {method: 'post' } do %>
     <%=hidden_field_tag :room_id , params[:room_id] %>
     <%=hidden_field_tag :team_id , params[:team_id]%>
     <br>
-    <%=submit_tag '싱글/멀티 모드 초기화', class:  'btn btn-blueblack' %>
+    <%=submit_tag '싱글/멀티 모드 초기화', class:  'btn btn-outline-danger' %>
   <% end %>
   
 

@@ -6,6 +6,7 @@
     </div>
 </div>
 <!-- nav-right -->
+
 <main>
     
     <div class="nav-right hidden-xs" >
@@ -16,7 +17,6 @@
         </div>
     </div>
 <!-- nav-right -->
-</nav>
     
 </main>
     
@@ -37,7 +37,7 @@
                     <div class='this_stage_false'>Stage <%=@c_level %></div>
                     <% end %>
                     
-                    <div class='this_stage_<%= c.stage_id == @stage.id%>'>
+                    <div style="background-color:white;" class='this_stage_<%= c.stage_id == @stage.id%>'>
                     
                             <span class="chatBorder"></span>
                             <!--<span class="st">STAGE <%#=@c_level %> </span>-->
@@ -86,7 +86,6 @@
         </li>
       </ul>
     </div>
- </div>
 
     
 <script>
@@ -143,38 +142,3 @@ $(document).ready( function() {
                                
                            
 </script>
-
-
-<!--이거 없어도 돌아가는거 같은데-->
-<!--<script>-->
-<!--var isOpened = false;-->
-    
-<!--const sidebarBox = document.querySelector('#box'),-->
-<!--		sidebarBtn = document.querySelector('#btn'),-->
-<!--		pageWrapper = document.querySelector('#page-wrapper');-->
-
-<!--sidebarBtn.addEventListener('click', event => {-->
-<!--    isOpened=true;    -->
-<!--		sidebarBtn.classList.toggle('active');-->
-<!--		sidebarBox.classList.toggle('active');-->
-<!--});-->
-
-<!--pageWrapper.addEventListener('click', event => {-->
-
-<!--		if (sidebarBox.classList.contains('active')) {-->
-		  
-<!--        isOpened=false;-->
-<!--				sidebarBtn.classList.remove('active');-->
-<!--				sidebarBox.classList.remove('active');-->
-<!--		}-->
-<!--});-->
-
-<!--window.addEventListener('keydown', event => {-->
-
-<!--		if (sidebarBox.classList.contains('active') && event.keyCode === 27) {-->
-<!--        isOpened=false;-->
-<!--				sidebarBtn.classList.remove('active');-->
-<!--				sidebarBox.classList.remove('active');-->
-<!--		}-->
-<!--});-->
-<!--</script>-->

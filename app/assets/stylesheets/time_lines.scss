@@ -7,7 +7,7 @@
 main {
   z-index: 2;
   position: relative;
-  height: 100%;
+  
   background-color: transparent;
   -webkit-transition: transform .5s ease-in-out;
   -moz-transition: transform .5s ease-in-out;
@@ -119,7 +119,7 @@ main {
 
 .nav-right {
   position: fixed;
-  right: 40px;
+  right: 80px;
   top: 20px;
 }
 
@@ -307,7 +307,7 @@ main {
 
 @media (min-width: 768px) {
   .nav-right {
-    position: absolute;
+    position: fixed;
   }
   .hidden-xs {
     display: block;
