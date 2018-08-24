@@ -20,6 +20,11 @@ body {
     overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
+.row {
+    margin-left:15px;
+    margin-right:15px;
+}
+ 
 .content {
     position: relative;
     height: auto;
@@ -60,10 +65,7 @@ center {
 }
 
 /* 메인페이지 */
-.row {
-    margin-left:15px;
-    margin-right:15px;
-}
+
 
 footer {
     background-color:black;
@@ -126,4 +128,10 @@ footer {
 
 .fous:focus {
   box-shadow: inset 0 1px 1px rgba(33, 37, 41, 0.075), 0 0 8px rgba(33, 37, 41, 0.8);
+}
+
+label.active{
+    color: #ffffff;
+    background-color: #2e2e2e;
+    border-color: #2e2e2e;
 }

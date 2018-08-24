@@ -11,15 +11,13 @@
 
 <br>
 <br>
-<p style="font-size:30px;"><b>계정 수정</b></p>
-<br>
-<br>
+<p style="color:#1e1e1e; font-size:30pt;" align="center"><b>계정 수정</b></p>
 <hr>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs" align="left">
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -27,7 +25,7 @@
     <% end %>
     <%= f.input :nickname,
                 required: true,
-                autofocus: true %>
+                autofocus: true%>
     <%= f.input :password,
                 hint: "변경하지 않고 싶다면 빈칸으로 유지해주세요.",
                 required: false,
@@ -41,16 +39,14 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+<br>
+<br>
+
+  <div class="form-actions" align="center">
+    <%= f.button :submit, "Update", class:'btn btn-blueblack'%>
   </div>
 <% end %>
 
-<h3>회원탈퇴하기</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
 </div>
 </div>
 </div>

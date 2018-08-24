@@ -6,22 +6,8 @@
 
 </style>
 <div class="form-group form-inline">
-     <%= f.label :mode, '모드 선택' , class: 'control-label col-lg-4'%>
-    		<div class="col-sm-7 col-md-7">
-    			<div class="input-group">
-    				<div id="radioBtn" class="btn-group">
-    				    <%=f.hidden_field :mode, value: 0%>
-    					<a class="btn btn-outline-dark btn-sm active" data-toggle="happy" data-title="0" id="0">기본</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="1" id="1">자물쇠</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="2" id="2">순서</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="3" id="3">선택지</a>
-    					<a class="btn btn-outline-dark btn-sm notActive" data-toggle="happy" data-title="4" id="4">이미지 클릭</a>
-    				</div>
-    				<input type="hidden" name="happy" id="happy">
-    			</div>
-    		</div>
-    	</div> 
-   
+     <%= f.label :mode, '모드 선택' , class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    
    
    <div class="btn-group btn-group-toggle" data-toggle="buttons" id='radioBtn'>
@@ -32,11 +18,19 @@
         
       </label>
       <label class="btn btn-blueblack">
-        <%= f.radio_button :mode ,"1",checked: true%> 자물쇠
+        <%= f.radio_button :mode ,"1",class:'btn btn-blueblack'%> 자물쇠
        
       </label>
       <label class="btn btn-blueblack" >
-        <%= f.radio_button :mode ,"2",checked: true%> 순서
+        <%= f.radio_button :mode ,"2" %> 순서
+
+      </label>
+       <label class="btn btn-blueblack" >
+        <%= f.radio_button :mode ,"3"%> 선택지
+
+      </label>
+             <label class="btn btn-blueblack" >
+        <%= f.radio_button :mode ,"4"%> 이미지 클릭
 
       </label>
     </div>
@@ -44,21 +38,15 @@
    
    
 <script>
-     $('#radioBtn label').on('click', function(){
-         var sol = $(this).attr('value');
-    var sel = $(this).data('mode');
-    var tog = $(this).value('toggle');
-    alert(tog);
-//    $('#mode').val(sel);
-    
-    $('#'+tog).prop('value', sel);
-    
+var qqq;
+
+     $('#radioBtn label ').on('click', function(){
+    var sol=$(this).children().get(0).value;
+    console.log(sol);
     setTheme(sol);
     
     
-    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
-    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
-    setTheme(sel);
+    
 })
 
 </script>

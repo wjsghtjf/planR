@@ -17,7 +17,7 @@
     <!-- 검색 결과 -->
       <% if params[:query] %>
         <b>
-      "<%= "#{ params[:query] }" %>"로 검색하신 결과입니다.
+      <%= "\"#{ params[:query] }\"로 검색하신 결과입니다." if params[:query] && params[:query].length>0 %>
         </b>
       <% end %>
     </div>

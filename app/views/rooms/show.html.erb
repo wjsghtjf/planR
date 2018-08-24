@@ -3,7 +3,8 @@
 <br>
 <center>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
         <br>
         <h3 style="font-size: 25pt"><b><%=@room.title %></b></h3>
         <hr>
@@ -31,9 +32,9 @@
 
         <div class="play_mode">
             
-        <br><br> 
+        <br>
         <p style="font-size:25pt;"><b>플레이 기록</b></p>
-        <br><br>
+        <br>
             
         <% if @stages.size == 0 %>
             <p style="font-size:13pt"><b>방탈출 제작자가 배포한 스테이지가 없습니다. 플레이를 시작할 수 없습니다.</b></p>
@@ -70,22 +71,18 @@
             <% end %>
         <% end %>
         
-        
-
-        
         <br><br>
-        <br><br>
+        <p text-color"10px">[Tip] 멀티 플레이 선택 시, 방탈출 클리어 보너스로 획득하는 EP(Escape Point)가 감소됩니다.</p>
+        
         <!--<#%= link_to 'RoomCal 초기화하기'.html_safe, room_cal_delete_path(@room.id), method: :post, :class => 'btn btn-warning bt-lg' %>-->
-        <br><br>
-         
-
-        <br><br><hr>
+       
         
                     
-        <p text-color"10px">[Tip] 멀티 플레이 선택 시, 방탈출 클리어 보너스로 획득하는 EP(Escape Point)가 감소됩니다.</p>
             
         <br><br><br><br>
     </div>
 </div>
+</div>
+<div class="col-md-2"></div>
 </center>
 </div>

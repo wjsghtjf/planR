@@ -15,27 +15,33 @@
   
 
 <div class='form-group form-inline'>
-    <%= f.label :title, '스테이지 제목' , class: 'control-label col-lg-4'%>
-    <%= f.text_field :title ,placeholder: '제목을 입력하세요.', class: 'form-control', :autocomplete => :off  %>
+    <%= f.label :title, '스테이지 제목' , class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :title ,placeholder: '제목을 입력하세요.', class: 'form-control col-lg-4', :autocomplete => :off  %>
 </div>
+<div>
 <%= render 'themechoice' , f: f%>
-
+</div>
 <div class='form-group form-inline '>
-    <%= f.label :content , '내용', class: 'control-label col-lg-4'%>
+    <%= f.label :content , '내용', class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.text_area :content ,placeholder: '내용을 입력하세요',  class: 'form-control' , :autocomplete => :off %>
 
 </div>
 <div class='form-group form-inline'>
-    <%= f.label :hint1, '힌트 1' , class: 'control-label col-lg-4'%>
+    <%= f.label :hint1, '힌트 1' , class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.text_field :hint1 ,placeholder: '가장 약한 힌트', class: 'form-control'  , :autocomplete => :off %>
     
 </div>
 <div class='form-group form-inline'>
-    <%= f.label :hint2, '힌트 2' , class: 'control-label col-lg-4'%>
+    <%= f.label :hint2, '힌트 2' , class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.text_field :hint2, placeholder: '첫번째 힌트보다 강한 힌트', class: 'form-control', :autocomplete => :off %>
 </div>
 <div class='form-group form-inline'>
-    <%= f.label :hint3, '힌트 3', class: 'control-label col-lg-4' %>
+    <%= f.label :hint3, '힌트 3', class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.text_field :hint3, placeholder: '정답에 가장 근접한 힌트', class:'form-control', :autocomplete => :off %>
 </div>
 
@@ -43,23 +49,28 @@
 
 <div class='form-group form-inline' id = 'theme_pattern' style='display: none'>
     <div class='form-group'>
-        <%= f.label :pattern_num1, '항목 A',class: 'control-label col-lg-4' %>
+        <%= f.label :pattern_num1, '항목 A',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :pattern_num1 ,placeholder: 'A 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
     <div class='form-group'>
-        <%= f.label :pattern_num2, '항목 B',class: 'control-label col-lg-4' %>
+        <%= f.label :pattern_num2, '항목 B',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :pattern_num2 ,placeholder: 'B 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
     <div class='form-group'>
-        <%= f.label :pattern_num3, '항목 C',class: 'control-label col-lg-4' %>
+        <%= f.label :pattern_num3, '항목 C',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :pattern_num3 ,placeholder: 'C 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
         <div class='form-group'>
-        <%= f.label :pattern_num4, '항목 D',class: 'control-label col-lg-4' %>
+        <%= f.label :pattern_num4, '항목 D',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :pattern_num4 ,placeholder: 'D 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
         <div class='form-group'>
-        <%= f.label :pattern_num5, '항목 E' ,class: 'control-label col-lg-4'%>
+        <%= f.label :pattern_num5, '항목 E' ,class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :pattern_num5 ,placeholder: 'E 항목에 해당되는 내용을 입력하세요.', class: 'form-control' %>
     </div>
     <br>
@@ -86,9 +97,12 @@
 
 
 <div class='form-group form-inline' id='div_answer_1'>
-    <%= f.label :answer, '정답',class: 'control-label col-lg-4' %>
+    <%= f.label :answer, '정답',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.text_field :answer ,placeholder: '정답을 입력해주세요.', class: 'form-control' %>
 </div>
+
+<br>
 
 <hr class="cal-line">
 
@@ -101,12 +115,14 @@
 
 <div id='theme_ori'>
     <div class='form-group form-inline'>
-        <%= f.label :answer2, '복수정답1',class: 'control-label col-lg-4' %>
+        <%= f.label :answer2, '복수정답1',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :answer2 ,placeholder: '복수정답으로 인정하고 싶은 정답을 입력하세요.', class: 'form-control' %>
     </div>
     
     <div class='form-group form-inline'>
-        <%= f.label :answer3, '복수정답2',class: 'control-label col-lg-4' %>
+        <%= f.label :answer3, '복수정답2',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.text_field :answer3 ,placeholder: '복수정답으로 인정하고 싶은 정답을 입력하세요.', class: 'form-control' %>
     </div>
 
@@ -116,6 +132,9 @@
 </div>
   <!-- /.card -->
   
+<br>
+<br>
+<br>
 
     <p>
       <label>
@@ -203,6 +222,7 @@ function setTheme(mode){
     else 
      document.getElementById("stage_answer").value = "";
      if(mode==0){
+         
          document.getElementById('theme_ori').style.display='block';
         $('#stage_answer').removeAttr("readonly");
         
