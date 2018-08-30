@@ -1,0 +1,38 @@
+<div class='img-wrapper <%='hide' if defined?(data_url).nil? || data_url.nil? %>' id = 'img-wrapper'>
+    
+    <% if defined?(data_url) && data_url %>
+        <label>Uploaded Image</label><br/>
+        <img src='<%=data_url %>' class='img-main' id='img-upload'/>
+    <% else %>
+        <img  class='img-main' id='img-upload'/>
+    <% end %>
+    
+    <span id = 'img-border' class='hide' style = "position:absolute; height: 50px; width:50px; pointer-events: none; left: 0px; top: 0px;"></span>
+ </div>
+ 
+
+ <script>
+<% if @stage.mode==4%>
+$(this).ready(function(){
+     var img = document.getElementById("img-upload");
+    drawImageTheme(img);
+    img.onload=function(){
+        drawImageTheme(img);
+    }
+    
+    
+    function drawImageTheme(img){
+        if(img.complete && img.naturalHeight !== 0){
+            var ansSize = <%=@Ans_img && @Ans_img[2] ? @Ans_img[2] : 0%>*img.width/100;
+            var ansX = <%=@Ans_img && @Ans_img[0] ? @Ans_img[0] : 0%>*img.width/100 - ansSize/2;
+            var ansY = <%=@Ans_img && @Ans_img[1] ? @Ans_img[1] : 0%>*img.height/100 - ansSize/2;
+            $('#img-border').removeClass('hide');
+            $('#img-border').width(ansSize);
+            $('#img-border').height(ansSize);
+            $('#img-border').css('left' , ansX);
+            $('#img-border').css('top', ansY);
+        }
+    }
+});
+<% end %>
+</script>

@@ -194,6 +194,7 @@ class StagesController < ApplicationController
   
     
     if params[:is_delete_origin_image]=="true"
+      puts "기존에 있던 이미지 삭제 ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ"
       @stage.remove_image!
     end
     
@@ -285,9 +286,7 @@ class StagesController < ApplicationController
            if @Ans_arr[i]==@Ans_com1
              @mode3_Ans=1
            end   
-      
       end
-      
     end
     
     if @stage.mode == 2

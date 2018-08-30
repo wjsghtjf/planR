@@ -77,26 +77,11 @@
   <% end %>
     </div>
 
-<!--이미지가 있는 경우에만 -->
 
 
 <div>
     <div class='form-group'>
-        <label>Uploaded Image</label><br/>
-        <div class = 'image-wrapper'id = 'image-wrapper'>
-          
-           <% if @stage.image && @stage.image.url %>
-               <%= image_tag @stage.image.url , id: 'img-upload', class: 'img-main'  %>
-           <% else %>
-               <%= image_tag '' , id: 'img-upload', class: 'img-main hide'  %>
-           <% end %>
-
-
-          <% if @stage.mode==4 %>
-             <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
-          <% end %>
-         
-        </div>
+          <%=render './common/image/image_answer', data_url: @stage.image.url %>
 
     </div> 
 </div>
@@ -119,30 +104,3 @@
 <br>
 <br>
 
-<script>
-$(document).ready(function(){
-  
- var img = document.getElementById("img-upload");
-
-img.onload=function(){
-<% if @stage.image.url  %>
-    drawImageTheme(img);
-<% end %>
-}
-
-
-function drawImageTheme(img){
-  if(4==<%=@stage.mode%>){
-        
-        var ansSize = <%=@Ans_img && @Ans_img[2] ? @Ans_img[2] : 0%>*img.width/100;
-        var ansX = <%=@Ans_img && @Ans_img[0] ? @Ans_img[0] : 0%>*img.width/100 - ansSize/2;
-        var ansY = <%=@Ans_img && @Ans_img[1] ? @Ans_img[1] : 0%>*img.height/100 - ansSize/2;
-        document.getElementById('img-border').style.display='inline';
-        document.getElementById('img-border').style.width=ansSize;
-        document.getElementById('img-border').style.height=ansSize;
-        document.getElementById('img-border').style.left=ansX;
-        document.getElementById('img-border').style.top=ansY;
-    }
-}
-});
-</script>

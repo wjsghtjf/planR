@@ -1,0 +1,125 @@
+ <span class='input-group-btn'>
+    <span class='btn btn-blueblack btn-file'>
+        <label for='imgInp' style="font-size:13pt; color:black; text-align:center;">업로드</label>
+        <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
+    </span>
+</span>
+
+
+<input type='text' class='input-form' name='input_image' readonly value='<%=filename if defined?(filename) %>'>
+<button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
+
+<%=hidden_field_tag :is_delete_origin_image, false, id: 'is_delete' %>
+
+
+
+<script>
+  
+var imgInput=null;	
+
+                
+$(document).ready( function() {
+    
+    $(document).on('change', '.btn-file :file', function() {
+      var input = $(this),
+   		  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		  input.trigger('fileselect', [label]);
+		});
+		
+   		$('.btn-file :file').on('fileselect', function(event, label) {
+	    var input = $(this).parents('.input-group').find(':text'), log = label;
+		    if( input.length ) {
+		      if(log.length)
+		        input.val(log);
+		        showImage();
+		    } else {
+		        if( log ) alert(log);
+		    }
+		    $('#is_delete').val(true);
+		    resetImageTheme();
+		}); 
+		$("#imgInp").change(function(){
+    	    if (this.files && this.files[0]) {
+    	        imgInput = this;
+    	        $("#btn_cancel").removeClass('hide');
+		      	showImage();
+    	   	    $('#img-wrapper').removeClass('hide');
+    	    }
+	    });
+
+		
+	  if( <%=@edit_mode ? @edit_mode : false %>==false){
+	  	<% if (defined?(data_url)) %>
+	    	var img_url = "<%=data_url %>";
+	    	setImage(img_url);
+	  	<% end %>
+	    
+	  }else{
+	    $('#img-wrapper').addClass('hide');
+	    <%if defined?(filename) && filename.length>0 %>
+    	  $('#img-wrapper').removeClass('hide');
+	      $("#btn_cancel").removeClass('hide');
+	      showImage();
+	    <% else %>
+	      $("#btn_cancel").addClass('hide');
+	    <% end %>
+	  }
+		  
+		
+		  
+	});
+	
+function showImage(){
+
+    if(imgInput)
+       readURL(imgInput);
+    else{
+  		<% if defined?(data_url) && data_url %>
+  	    	var img_url = '<%=data_url%>';
+    		setImage(img_url);
+      	<% end %>
+    }
+    
+}
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+    
+        var reader = new FileReader();
+        reader.onload = function (e) {
+		    $('#img-wrapper').removeClass('hide');
+            $('#img-upload').attr('src', e.target.result);
+        }
+      reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+
+function setImage(img_url){
+  $('#img-wrapper').removeClass('hide');
+  $('#img-upload').attr('src', img_url);
+}
+
+ function cancelImage(){
+  imgInput=null;
+  $('.btn-file :file').parents('.input-group').find(':text').val("");
+  $("#imgInp").val('');
+  $('#img-upload').attr("src","");
+  $('#img-wrapper').addClass('hide');
+    
+  $("#btn_cancel").addClass('hide');
+  
+  $('#is_delete').val(true);
+  resetImageTheme();
+        
+}
+function resetImageTheme(){
+    $('#img-area').addClass('hide');
+    $('#img-wrapper').addClass('hide');
+    if(<%= ( @stage && @stage.mode=="true") ? "true" : "false" %>)
+    	$("#stage_answer").val("");
+}
+
+</script>

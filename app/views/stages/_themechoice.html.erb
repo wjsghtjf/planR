@@ -11,31 +11,22 @@
    
    
    <div class="btn-group btn-group-toggle" data-toggle="buttons" id='radioBtn'>
-      <label class="btn btn-blueblack active">
-        <%= f.radio_button :mode ,"0",checked: true%> 기본
-        
-        <!--<input type="radio" name="options" value="option1" autocomplete="off" >기본-->
-        
-      </label>
-      <label class="btn btn-blueblack">
-        <%= f.radio_button :mode ,"1",class:'btn btn-blueblack'%> 자물쇠
        
-      </label>
-      <label class="btn btn-blueblack" >
-        <%= f.radio_button :mode ,"2" %> 순서
-
-      </label>
-       <label class="btn btn-blueblack" >
-        <%= f.radio_button :mode ,"3"%> 선택지
-
-      </label>
-             <label class="btn btn-blueblack" >
-        <%= f.radio_button :mode ,"4"%> 이미지 클릭
-
-      </label>
+       <% @a = ['기본', '자물쇠','순서','선택지','이미지클릭']%>
+       
+       <%@a.each_with_index do  |t,i|%>
+                <% if mode==i %>
+                   <label class="btn btn-blueblack active">
+                    <%= f.radio_button :mode ,i,checked: true%> <%=t%>
+                <%else%>
+                   <label class="btn btn-blueblack">
+                    <%= f.radio_button :mode ,i%><%=t%>
+                <% end%>
+        
+              </label>
+       <% end %>
+    
     </div>
-   
-   
    
 <script>
 

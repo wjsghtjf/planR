@@ -9,7 +9,7 @@ $(document).ready(function () {
     if($('input[type="radio"]')[4].checked==false) return
     mouseX = e.offsetX;
     mouseY = e.offsetY;
-    $('#img-area').css('display','inline');
+    $('#img-area').removeClass('hide');
     $('#img-area').css('width',size).css('height',size);
     $('#img-area').css("left", mouseX-(size/2)).css("top", mouseY-(size/2)).html(null);
  });
@@ -34,7 +34,7 @@ function sizeUp(){
 }
 function redraw(x,y,size){
     if($('input[type="radio"]')[4].checked==false) return
-    $('#img-border').css('display','inline');
+    $('#img-border').removeClass('hide');
     $('#img-border').css('width',size).css('height',size);
     $('#img-border').css("left", x-(size/2)).css("top", y-(size/2)).html(null);
     
@@ -48,22 +48,5 @@ function redraw(x,y,size){
     document.getElementById("stage_answer").value = ans_X+","+ans_Y+","+ans_size;
 }
 
-var img = document.getElementById("img-upload");
-img.onload=function(){
-    drawImageTheme(img);
-}
-
-function drawImageTheme(img){
-  if(4==<%=@stage.mode%>){
-          var ansSize = <%=@Ans_img && @Ans_img[2] ? @Ans_img[2] : 0%>*img.width/100;
-          var ansX = <%=@Ans_img && @Ans_img[0] ? @Ans_img[0] : 0%>*img.width/100 - ansSize/2;
-          var ansY = <%=@Ans_img && @Ans_img[1] ? @Ans_img[1] : 0%>*img.height/100 - ansSize/2;
-        document.getElementById('img-border').style.display='inline';
-        document.getElementById('img-border').style.width=ansSize;
-        document.getElementById('img-border').style.height=ansSize;
-        document.getElementById('img-border').style.left=ansX;
-        document.getElementById('img-border').style.top=ansY;
-    }
-}
 
 </script>

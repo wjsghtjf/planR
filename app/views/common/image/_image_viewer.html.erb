@@ -1,0 +1,10 @@
+
+<div class='img-wrapper <%='hide' if defined?(data_url).nil? || data_url.nil? %>' id = 'img-wrapper'>
+    <% if defined?(data_url) && data_url %>
+        <label>Uploaded Image</label><br/>
+        <img src='<%=data_url %>' class='img-main' id='img-upload'/>
+    <% else %>
+        <img src="" class='img-main' id='img-upload'/>
+    <% end %>
+ </div>
+ 

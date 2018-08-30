@@ -14,19 +14,19 @@
 <br>
 <br>
 
-<!--이미지가 있는 경우에만 -->
 
 
-<% if @room.image.url.nil? %>
-    <img onclick="IMGclick();" src="<%=image_path 'mainpage_img.jpg'%>">
-<% else %>
 <div>
     <div class='form-group'>
         <label>Uploaded Image</label><br/>
-         <%= image_tag @room.image.url , id: 'img-upload', class: 'img-main' if @room.image.url %>
+        
+        <% if @room.image.url.nil? %>
+            <img src="<%=image_path 'mainpage_img.jpg'%>">
+        <% else %>
+            <%=render './common/image/image_viewer' ,  data_url: @room.image.url %>
+        <% end %>
     </div>
 </div>
-<% end %>
 
 <br>
 <br>
@@ -40,13 +40,3 @@
 <br>
 <br>
 
-<script>
-    function IMGclick(){
-        var offX = event.offsetX;
-     var offY = event.offsetY;
-  
-     alert("이미지의 X좌표는 " + offX + ", Y좌표는 " + offY + " 입니다.");
-    }
-    
-    
-</script>

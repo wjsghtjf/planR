@@ -40,6 +40,7 @@ center {
 
 .navbar {
     background-color: black;
+    padding: .8rem 1rem;
 }
 
 .nav-link {
@@ -87,10 +88,6 @@ footer {
     background: white;
     cursor: inherit;
     display: inline;
-}
-// stage manage에서 미리보기 버튼 
-#btn_preview , #btn_cancel{
-    display: none;
 }
 
 
@@ -147,4 +144,9 @@ label.active{
   position: absolute;
   max-height: 100%;
   max-width: 100%;
+}
+.img-wrapper {
+   width: 30vw;
+  height: 30vh;
+  position: relative;
 }

@@ -20,7 +20,7 @@
     <%= f.text_field :title ,placeholder: '제목을 입력하세요.', class: 'form-control col-lg-4', :autocomplete => :off  %>
 </div>
 <div>
-<%= render 'themechoice' , f: f %>
+<%= render 'themechoice' , f: f , mode: @stage.mode%>
 </div>
 <div class='form-group form-inline '>
     <%= f.label :content , '내용', class: 'control-label col-lg-4', style:'background-color:#818284; color:white;'%>
@@ -49,35 +49,16 @@
         <%= f.label :upload, '이미지 업로드',class: 'control-label col-lg-4', style:'background-color:#818284; color:white;' %>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class='input-group'>
-            <span class='input-group-btn'>
-                <span class='btn btn-blueblack btn-file'>
-                    <label for='imgInp' style="font-size:13pt; color:black; text-align:center;">업로드</label>
-                    <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
-                </span>
-            </span>
-            
-            
-            <input type='text' class='input-form' name='input_image' readonly value='<%=@stage_file_name %>'>
-            
-            
-            <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
-        
-            <%=hidden_field_tag :is_delete_origin_image, false, id: 'is_delete' %>
+            <%=render './common/image/file_uploader', f: f , filename: @stage_file_name,  data_url: @stage.image.url, isHide: true %>
         </div>
     </div>
 
 <div>
    <div class='form-group'>
-        <div class='image-wrapper' id = 'image-wrapper'>
-            
-            <img src='<%=@stage.image.url if @stage.image.blank?%>' class='img-main' id='img-upload'/>
+        <%=render './common/image/image_answer', data_url: @stage.image.url %>
          
-             <span id = 'img-border' style = "position:absolute; height: 50px; width:50px;  display:none; pointer-events: none; left: 0px; top: 0px;"></span>
-             <span id = 'img-area' style = "position:absolute; height:50px; width:50px;   pointer-events: none; display:none;"></span>
-         </div>
-         
-             <button type="button" onClick = "sizeUp();" class = 'btn btn-default' id='btn_size_up' style =" display:none;">▲</button>
-             <button type="button" onClick = "sizeDown();" class = 'btn btn-default' id='btn_size_down' style =" display:none;">▼</button>
+         <button type="button" onClick = "sizeUp();" class = 'btn btn-default hide' id='btn_size_up'>▲</button>
+         <button type="button" onClick = "sizeDown();" class = 'btn btn-default hide' id='btn_size_down'>▼</button>
         
     </div>
     
@@ -88,14 +69,14 @@
 <hr>
 
 
-<div class='form-group form-inline' id = 'theme_pattern' style='display: none'>
+<div class='form-group form-inline hide' id = 'theme_pattern'>
 
     <br><br>
     <%=render 'theme_pattern', f: f %>
 </div>
 
 
-<div class='form-group' id ='theme_selection' style='display: none'>
+<div class='form-group hide' id ='theme_selection'>
     
     <br><br>
     <%=render 'theme_selection', f: f %>
@@ -103,13 +84,13 @@
 </div>
 
 
-<div class='form-group' id = 'theme_image' style='display: none' >
+<div class='form-group hide' id = 'theme_image'>
     
     <br><br>
     <%=render 'theme_image' %>
 </div>
 
-    <div class='form-group' id = 'theme_lock' style='display: none' >
+    <div class='form-group hide' id = 'theme_lock'>
         <br><br>
         <%=render 'theme_lock' %>
     </div>
@@ -192,39 +173,39 @@ function setTheme(mode){
      document.getElementById("stage_answer").value = "";
      if(mode==0){
          
-         document.getElementById('theme_ori').style.display='block';
+        $('#theme_ori').removeClass('hide');
         $('#stage_answer').removeAttr("readonly");
         
      }
      else{
-      document.getElementById('theme_ori').style.display='none';
+        $('#theme_ori').addClass('hide');
         $('#stage_answer').prop('readOnly', true);
      } 
     
      if(mode==1){
-        document.getElementById('theme_lock').style.display='block';
+        $('#theme_lock').removeClass('hide');
         if(mode==<%=@stage.mode%>)
             play_num="<%=@stage.answer%>";
    }
     else{
-        document.getElementById('theme_lock').style.display='none';
+        $('#theme_lock').addClass('hide');
         
         play_num="";
     }
     
     if(mode==2){
-        document.getElementById('theme_pattern').style.display='block';
+        $('#theme_pattern').removeClass('hide');
         
         if(mode==<%=@stage.mode%>)
             play_string="<%=@stage.answer%>";
     }
     else{
-        document.getElementById('theme_pattern').style.display='none';
+        $('#theme_pattern').addClass('hide');
         play_string='';
     }
     
     if(mode==3){
-        document.getElementById('theme_selection').style.display='block';
+        $('#theme_selection').removeClass('hide');
         
         if(mode==<%=@stage.mode%>){
             
@@ -239,26 +220,26 @@ function setTheme(mode){
         }
     }
     else{
-        document.getElementById('theme_selection').style.display='none';
+        $('#theme_selection').addClass('hide');
         
         chkNum= new Array(0,0,0,0,0,0);
         play_num2='';
     }
     
     if(mode==4){
-        document.getElementById('theme_image').style.display='block';
-        document.getElementById('btn_size_up').style.display='inline';
-        document.getElementById('btn_size_down').style.display='inline';
-         document.getElementById("div_answer_1").style.display = 'none';
+        $('#theme_image').removeClass('hide');
+        $('#btn_size_up').removeClass('hide');
+        $('#btn_size_down').removeClass('hide');
+        $("#div_answer_1").addClass('hide');
       
     }
     else{
-        document.getElementById('theme_image').style.display='none';
-        document.getElementById('img-area').style.display='none';
-        document.getElementById('img-border').style.display='none';
-        document.getElementById('btn_size_up').style.display='none';
-        document.getElementById('btn_size_down').style.display='none';
-         document.getElementById("div_answer_1").style.display = 'block';
+        $('#theme_image').addClass('hide');
+        $('#img-area').addClass('hide');
+        $('#img-border').addClass('hide');
+        $('#btn_size_up').addClass('hide');
+        $('#btn_size_down').addClass('hide');
+        $("#div_answer_1").removeClass('hide');
     }
         
     

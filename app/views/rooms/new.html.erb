@@ -28,40 +28,17 @@
         <div class='form-group'>
           <label>방탈출 썸네일 업로드</label>
             <div class='input-group'>
-                <span class='input-group-btn'>
-                    <span class='btn btn-blueblack btn-file'>
-                        <label for='imgInp'>Browse… </label>
-          				  <%= f.file_field :image , id:'imgInp' , accept: 'image/png,image/jpeg'%>
-                    </span>
-                </span>
-                
-                
-                <input type='text' class='input-form' name='image' readonly value='<%=@stage_file_name %>'>
-                
-                
-                
-                <button type='button' id='btn_cancel' onClick='cancelImage()' class='btn btn-danger' >X</button>
-            
+                <%=render './common/image/file_uploader', f: f %>
             </div>
             
         </div>
         
          <div class='form-group'>
-      	  <div class='image' style='position:relative' >
-            
-            <img  class='img-main' id='img-upload'/>
-         
+              <%=render './common/image/image_viewer' %>
          </div>
-         </div>
-    
-        
-        
-    
+
          <%= f.submit '만들기' , class: "btn btn-blueblack" %>
          
-         
-         
-      
 
      <%end%>
     </div>
@@ -72,77 +49,3 @@
 </div>
 </div>
 
-<!--여기서 부터 자바스크립트입니다 -->
-<script>
-
-    //파일 선택기를 통해서 추가된 파일을 임시 저장하는 변수
-	  var imgInput=null;
-	  
-
-
-
-$(document).ready(function() {
-  
-   $(document).on('change', '.btn-file :file', function() {
-      var input = $(this),
-   		  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		  input.trigger('fileselect', [label]);
-		});
-		
-   		$('.btn-file :file').on('fileselect', function(event, label) {
-	    var input = $(this).parents('.input-group').find(':text'), log = label;
-		    if( input.length ) {
-		      if(log.length)
-		        input.val(log);
-		        showImage();
-		    } else {
-		        if( log ) alert(log);
-		    }
-		}); 
-		$("#imgInp").change(function(){
-    	    if (this.files && this.files[0]) {
-    	        imgInput = this;
-    	        $("#btn_cancel").css("display","inline");
-		      	showImage();
-    	   	    $("#img-upload").css("display","none");
-    	    }
-	    });
-
-		
-	});
-	
-function showImage(){
-    if(imgInput)
-       readURL(imgInput);
-}
-
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-    
-        var reader = new FileReader();
-        reader.onload = function (e) {
-			$("#img-upload").css("display","block");
-          $('#img-upload').attr('src', e.target.result);
-        }
-      reader.readAsDataURL(input.files[0]);
-    }
-}
-
-
-
-function setImage(img_url){
-  $("#img-upload").css("display","block");
-  $('#img-upload').attr('src', img_url);
-}
-
- function cancelImage(){
-  imgInput=null;
-  $('.btn-file :file').parents('.input-group').find(':text').val("");
-  $("#imgInp").val('');
-  $("#btn_cancel").css("display","none");
-  $('#img-upload').attr("src","");
-  $("#img-upload").css("display","none");
-  
-}
-</script>
